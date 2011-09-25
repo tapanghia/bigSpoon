@@ -1004,7 +1004,10 @@
 				<prop key="/productionPricing.htm">prodPricingController</prop>
 				<prop key="/brandAdvertisement.htm">brandAdvController</prop>
 				<prop key="/reports.htm">reportsController</prop>
-				<prop key="/reportsViewer.htm">reportsViewerController</prop>				
+				<prop key="/reportsViewer.htm">reportsViewerController</prop>
+				<prop key="/operationsDept.htm">operationsDeptController</prop>
+				<prop key="/financeDept.htm">financeDeptController</prop>
+				<prop key="/humanResourcesDept.htm">humanResourcesDeptController</prop>				
 			</props>
 		</property>
 		<property name="alwaysUseFullPath" value="true" />
@@ -1179,6 +1182,33 @@
 	<bean id="reportsViewerController" class="com.marklabs.web.controllers.ReportsViewerController">
 		<property name="dataSource" ref="dataSource"/>
 		<property name="marketResearchStudiesService" ref="marketResearchStudiesService"/>
+	</bean>
+
+	<bean id="operationsDeptController" class="com.marklabs.web.controllers.OperationsDeptController">
+		<property name="methodNameResolver">
+			<bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+				<property name="paramName"><value>do</value></property>
+				<property name="defaultMethodName"><value>index</value></property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="financeDeptController" class="com.marklabs.web.controllers.FinanceDeptController">
+		<property name="methodNameResolver">
+			<bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+				<property name="paramName"><value>do</value></property>
+				<property name="defaultMethodName"><value>index</value></property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="humanResourcesDeptController" class="com.marklabs.web.controllers.HumanResourcesDeptController">
+		<property name="methodNameResolver">
+			<bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+				<property name="paramName"><value>do</value></property>
+				<property name="defaultMethodName"><value>index</value></property>
+			</bean>
+		</property>
 	</bean>
 	
 </beans>

@@ -41,7 +41,8 @@ public class ReportsController extends AbstractController {
 
 	
 	private String getReportPath(HttpServletRequest request, String reportName){
-		String reportPath = request.getSession().getServletContext().getRealPath("reports") + System.getProperty("file.separator") + reportName +".jasper";
+		String reportPath = request.getSession().getServletContext().getRealPath("reports") + 
+			System.getProperty("file.separator") + reportName +".jasper";
 		System.out.println("reportPath: "+reportPath);
 		return reportPath;
 	}
@@ -100,6 +101,15 @@ public class ReportsController extends AbstractController {
 		}
 		else if (null != currentLink && currentLink.equalsIgnoreCase(Constants.BOARD_LINK)) {
 			mav = new ModelAndView("BoardRoomReports");
+		}
+		else if (null != currentLink && currentLink.equalsIgnoreCase(Constants.FINANCE_DEPT_LINK)) {
+			mav = new ModelAndView("FinanceHomeReports");
+		}
+		else if (null != currentLink && currentLink.equalsIgnoreCase(Constants.OPERATIONS_DEPT_LINK)) {
+			mav = new ModelAndView("OperationsHomeReports");
+		}
+		else if (null != currentLink && currentLink.equalsIgnoreCase(Constants.HR_DEPT_LINK)) {
+			mav = new ModelAndView("HumanResourcesHomeReports");
 		}
 		
 		final String reportName = request.getParameter("reportName");

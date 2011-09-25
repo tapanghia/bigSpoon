@@ -83,12 +83,21 @@
 					<li><a href="javascript:window.open('basicDescription.jsp?', 'resizable=no, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no');" title="Help">Basic Description</a></li>
 				</ul>
 			</li>
-			<li class="write <%= (currentLink.equalsIgnoreCase("researchproject"))?"current":"" %>"><a href="researchProject.htm" title="R&D Team">R&DTeam</a>
+			<!-- R&D Projects functionality is removed from bizLABS -->
+			<!-- li class="write <%= (currentLink.equalsIgnoreCase("researchproject"))?"current":"" %>">
+				<a href="researchProject.htm" title="R&D Team">R&DTeam</a>
 				<ul>
 					<li><a href="researchProject.htm" title="R&D Team Home">R&D Team Home</a></li>
 					<li><a href="reports.htm?reportName=RnDReport" title="View R&D Reports">View R&D Reports</a></li>
 					<li><a href="researchProject.htm?do=addResearchProject" title="Add Research Project">Add Research Project</a></li>
 					<li><a href="researchProject.htm?do=getResearchProjectsForTeam" title="View/Edit Research Projects">View/Edit Research Projects</a></li>
+				</ul>
+			</li-->
+			<li class="write <%= (currentLink.equalsIgnoreCase("FinanceDept"))?"current":"" %>">
+				<a href="" title="Finances">Finances</a>
+				<ul>
+					<li><a href="financeDept.htm" title="Finance Team Home">Finance Team Home</a></li>
+					<li><a href="financeDept.htm" title="Finances">Finances</a></li>
 				</ul>
 			</li>
 			<li class="comments <%= (currentLink.equalsIgnoreCase("marketing"))?"current":"" %>"><a href="marketingTeam.htm" title="Marketing Team">MarketingTeam</a>
@@ -99,7 +108,22 @@
 					<li><a href="brandAdvertisement.htm" title="Advertisement">Advertisement</a></li>
 				</ul>
 			</li>
-			<li class="medias <%= (currentLink.equalsIgnoreCase("sales"))?"current":"" %>"><a href="salesTeam.htm" title="Sales Team">SalesTeam</a>
+			<li class="write <%= (currentLink.equalsIgnoreCase("OperationsDept"))?"current":"" %>">
+				<a href="" title="Operations">Finances</a>
+				<ul>
+					<li><a href="operationsDept.htm" title="Operations Team Home">Operations Team Home</a></li>
+					<li><a href="operationsDept.htm" title="Operations">Operations</a></li>
+				</ul>
+			</li>
+			<li class="write <%= (currentLink.equalsIgnoreCase("HumanResourcesDept"))?"current":"" %>">
+				<a href="" title="Human Resources">HumanResources</a>
+				<ul>
+					<li><a href="humanResourcesDept.htm" title="Human Resource Team Home">Human Resource Team Home</a></li>
+					<li><a href="humanResourcesDept.htm" title="Human Resources">Human Resources</a></li>
+				</ul>
+			</li>
+			<li class="medias <%= (currentLink.equalsIgnoreCase("sales"))?"current":"" %>">
+			<a href="salesTeam.htm" title="Sales Team">SalesTeam</a>
 				<ul>
 					<li><a href="salesTeam.htm" title="Sales Team">Sales Team</a></li>
 					<li><a href="salesTeam.htm?do=getSalesForceMgmt" title="Sales Force Management">Sales Force Management</a></li>
