@@ -25,5 +25,11 @@ public class OperationsDeptController extends MultiActionController{
 		return mav;
 	}
 	
+	public ModelAndView manageTeamOperations(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView("manageTeamOperations");
+		
+		
+		return mav;
+	}
 	
 }

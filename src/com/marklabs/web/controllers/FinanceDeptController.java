@@ -26,4 +26,10 @@ public class FinanceDeptController extends MultiActionController {
 	}
 
 	
+	public ModelAndView manageTeamFinances(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView("manageTeamFinances");
+		
+		
+		return mav;
+	}
 }

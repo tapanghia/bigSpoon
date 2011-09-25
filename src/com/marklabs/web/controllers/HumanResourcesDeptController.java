@@ -25,4 +25,11 @@ public class HumanResourcesDeptController extends MultiActionController{
 		ModelAndView mav = new ModelAndView("humanResourcesDeptHome");
 		return mav;
 	}
+	
+	public ModelAndView manageTeamHumanResources(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView("manageTeamHumanResources");
+		
+		
+		return mav;
+	}
 }
