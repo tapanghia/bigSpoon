@@ -79,6 +79,9 @@
                 <value>hbm/AverageMarginOffered.hbm.xml</value>
                 <value>hbm/ReportsTeamPurchaseMap.hbm.xml</value>
                 <value>hbm/Report.hbm.xml</value>
+                <value>hbm/TeamFinance.hbm.xml</value>
+                <value>hbm/TeamOperations.hbm.xml</value>
+                <value>hbm/TeamHR.hbm.xml</value>
             </list>
         </property>
     </bean>
@@ -113,7 +116,7 @@
 
 	 <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost/marklabs"/>
+        <property name="url" value="jdbc:mysql://localhost/bizlabs"/>
         <property name="username" value="db.username"/>
         <property name="password" value="db.password"/>
     </bean>
@@ -981,6 +984,68 @@
             </props>
         </property>
     </bean>
+
+	<!-- New module service declarations/entries  -->
+	
+	<bean id="financeServiceServiceTarget" 
+     		class="com.marklabs.financeDept.FinanceService" depends-on="sessionFactory">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="financeService" 
+    	class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="target" ref="financeServiceServiceTarget"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="add*">PROPAGATION_REQUIRED</prop>
+                <prop key="delete*">PROPAGATION_REQUIRED</prop>
+                <prop key="update*">PROPAGATION_REQUIRED</prop>
+                <prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+                <prop key="save*">PROPAGATION_REQUIRED</prop>
+            </props>
+        </property>
+    </bean>
+	
+	<bean id="operationsServiceServiceTarget" 
+     		class="com.marklabs.operationsDept.OperationsService" depends-on="sessionFactory">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="operationsService" 
+    	class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="target" ref="operationsServiceServiceTarget"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="add*">PROPAGATION_REQUIRED</prop>
+                <prop key="delete*">PROPAGATION_REQUIRED</prop>
+                <prop key="update*">PROPAGATION_REQUIRED</prop>
+                <prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+                <prop key="save*">PROPAGATION_REQUIRED</prop>
+            </props>
+        </property>
+    </bean>
+	
+	<bean id="hrServiceServiceTarget" 
+     		class="com.marklabs.HRDept.HRService" depends-on="sessionFactory">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="hrService" 
+    	class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="target" ref="hrServiceServiceTarget"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="add*">PROPAGATION_REQUIRED</prop>
+                <prop key="delete*">PROPAGATION_REQUIRED</prop>
+                <prop key="update*">PROPAGATION_REQUIRED</prop>
+                <prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+                <prop key="save*">PROPAGATION_REQUIRED</prop>
+            </props>
+        </property>
+    </bean>
 	
 	<!-- ========================= CONTROLLER DEFINITIONS ========================= -->
 
@@ -1185,6 +1250,8 @@
 	</bean>
 
 	<bean id="operationsDeptController" class="com.marklabs.web.controllers.OperationsDeptController">
+		<property name="operationsService" ref="operationsService"/>
+		<property name="teamService" ref="teamService"/>
 		<property name="methodNameResolver">
 			<bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
 				<property name="paramName"><value>do</value></property>
@@ -1194,6 +1261,8 @@
 	</bean>
 	
 	<bean id="financeDeptController" class="com.marklabs.web.controllers.FinanceDeptController">
+		<property name="financeService" ref="financeService"/>
+		<property name="teamService" ref="teamService"/>
 		<property name="methodNameResolver">
 			<bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
 				<property name="paramName"><value>do</value></property>
@@ -1203,6 +1272,8 @@
 	</bean>
 	
 	<bean id="humanResourcesDeptController" class="com.marklabs.web.controllers.HumanResourcesDeptController">
+		<property name="hrService" ref="hrService"/>
+		<property name="teamService" ref="teamService"/>
 		<property name="methodNameResolver">
 			<bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
 				<property name="paramName"><value>do</value></property>

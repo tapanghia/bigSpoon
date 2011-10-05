@@ -65,6 +65,14 @@ public class Constants {
 	
 	public static final String REPORT_TEAM_PURCHASE_MAP_LISTING = "reportTeamPurchaseMapListing";
 	
+	// Team Finances
+	public static final String TEAM_FINANCES = "teamFinancesForThisPeriod";
 	
+	// Team Operations
+	public static final String TEAM_OPERATIONS = "teamOperationsForThisPeriod";
+	
+	// Team Human Resources
+	public static final String TEAM_HUMAN_RESOURCES = "teamHumanResForThisPeriod";
+	public static final String TEAM_HUMAN_RESOURCES_PREVIOUS = "teamHumanResForPreviousPeriod";
 	
 }

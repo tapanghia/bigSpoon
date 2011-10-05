@@ -16,7 +16,7 @@
 <html lang="en">
 <head>
 
-	<title>MarkLabs: Marketing Simulation by Biziga Labs</title>
+	<title>BizLabs: Business Strategy Simulation by Biziga Labs</title>
 	<meta charset="utf-8">
 	
 	<!-- Global stylesheets -->
@@ -67,7 +67,7 @@
 	<!-- Server status -->
 	<header><div class="container_12">
 <div class="server-info2"><a href="login.htm?do=logout" class="button red" title="Logout">Logout</a> </div>
-<div class="server-info"><img src="images/logo1.jpg"></div>
+<div class="server-info"><img src="images/logo1.jpg" width="95%"></div>
 
 		
 	</div></header>
@@ -92,7 +92,7 @@
 					<li><a href="researchProject.htm?do=addResearchProject" title="Add Research Project">Add Research Project</a></li>
 					<li><a href="researchProject.htm?do=getResearchProjectsForTeam" title="View/Edit Research Projects">View/Edit Research Projects</a></li>
 				</ul>
-			</li-->
+			</li>-->
 			<li class="write <%= (currentLink.equalsIgnoreCase("FinanceDept"))?"current":"" %>">
 				<a href="" title="Finances">Finances</a>
 				<ul>
@@ -108,14 +108,14 @@
 					<li><a href="brandAdvertisement.htm" title="Advertisement">Advertisement</a></li>
 				</ul>
 			</li>
-			<li class="write <%= (currentLink.equalsIgnoreCase("OperationsDept"))?"current":"" %>">
+			<li class="backup <%= (currentLink.equalsIgnoreCase("OperationsDept"))?"current":"" %>">
 				<a href="" title="Operations">Finances</a>
 				<ul>
 					<li><a href="operationsDept.htm" title="Operations Team Home">Operations Team Home</a></li>
 					<li><a href="operationsDept.htm?do=manageTeamOperations" title="Operations">Operations</a></li>
 				</ul>
 			</li>
-			<li class="write <%= (currentLink.equalsIgnoreCase("HumanResourcesDept"))?"current":"" %>">
+			<li class="users <%= (currentLink.equalsIgnoreCase("HumanResourcesDept"))?"current":"" %>">
 				<a href="" title="Human Resources">HumanResources</a>
 				<ul>
 					<li><a href="humanResourcesDept.htm" title="Human Resource Team Home">Human Resource Team Home</a></li>
@@ -129,7 +129,7 @@
 					<li><a href="salesTeam.htm?do=getSalesForceMgmt" title="Sales Force Management">Sales Force Management</a></li>
 				</ul>
 			</li>
-			<li class="users <%= (currentLink.equalsIgnoreCase("intelligence"))?"current":"" %>"><a href="intelligenceTeam.htm" title="Intelligence Team">IntelligenceTeam</a>
+			<li class="settings <%= (currentLink.equalsIgnoreCase("intelligence"))?"current":"" %>"><a href="intelligenceTeam.htm" title="Intelligence Team">IntelligenceTeam</a>
 				<ul>
 					<li><a href="intelligenceTeam.htm" title="Intelligence Team">Intelligence Team</a></li>
 					<li><a href="intelligenceTeam.htm?do=displayMarketResearch" title="Conduct Market Research">Conduct Market Research</a></li>

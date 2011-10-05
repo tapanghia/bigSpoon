@@ -12,6 +12,10 @@ import com.marklabs.teams.Team;
 
 public class ResearchProject implements java.io.Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -752905460656479478L;
 	private long id;
 	private String projectName;
 	private int design;

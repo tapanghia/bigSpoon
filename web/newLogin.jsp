@@ -45,7 +45,7 @@ var win = window.open(url,"win",prop);
 
 <table align="center" border="0" cellpadding="0" cellspacing="0">
     <tr>
-        <td><img src="images/header.jpg" width="955" height="95"></td>
+        <td><img src="images/bizlabsheader.jpg" width="955" height="95"></td>
     </tr>
     <tr>
         <td style="height:15px;" class="tdTopBorder"><img src="images/spacer.gif" /></td>

@@ -1,13 +1,21 @@
 <%@ include file="header.jsp" %>
+<%@page import="com.marklabs.HRDept.TeamHR"%>
+
+<%
+	TeamHR thisPeriodTeamHR = (TeamHR) request.getAttribute(Constants.TEAM_HUMAN_RESOURCES);
+	TeamHR previousPeriodTeamHR = (TeamHR) request.getAttribute(Constants.TEAM_HUMAN_RESOURCES_PREVIOUS);
+%>
 
 
 <script type="text/javascript">
 $(document).ready(function(){
   $("#teamHumanResourcesForm").submit(function(){
+  	var thisForm = document.teamHumanResourcesForm;
+  	thisForm.todo.value = 'saveTeamHumanResources';
     return true;
   });
   $("#teamHumanResourcesForm input.cancel").click(function(){
-    window.location = "<%=CONTEXTPATH%>/marketingTeam.htm";
+    window.location = "<%=CONTEXTPATH%>/humanResourcesDept.htm";
   });
 });
 </script>
@@ -23,39 +31,18 @@ $.validator.setDefaults({
 
 $(document).ready(function() {
 	
-$("#teamHumanResourcesForm").validate({
-		rules: {
-			ppBaseRnd: "required",
-			tpBaseRnd: "required",
-			ppProdLevel: {
-				required: true,
-				number: true
-			},
-			thisPeriodBrandProdLevel: {
-				required: true,
-				number: true,
-				range: [0, 10000000]
-			},
-			ppInventorySold: {
-				required: true,
-				number: true
-			},
-			tpInventorySold: {
-				required: true,
-				number: true
-			},
-			ppPrice: {
-				required: true,
-				number: true
-			},
-			thisPeriodBrandRetailPrice: {
-				required: true,
-				number: true,
-				range: [1, 700]
-			}
-		}
+	$("#teamHumanResourcesForm").validate({
+	
 	});
-
+	
+	$("input.generate").click(function(){
+		alert("Generate");
+	});	
+	
+	$("input.generateTraining").click(function(){
+		alert("Generate For Training");
+	});	
+	
 });
 
 </script>
@@ -111,122 +98,151 @@ $("#teamHumanResourcesForm").validate({
 			<div class="block-border">
 				<form class="block-content form" name="teamHumanResourcesForm" id="teamHumanResourcesForm" method="post" 
 					action="humanResourcesDept.htm?do=manageTeamHumanResources">
+				<input type="hidden" name="todo" id="todo"/>
 				<h1>Human Resources</h1>
 
 					<fieldset>
 					<legend>Human Resource Management</legend>					
 					<div class="columns">
-	        			<div class="colx3-left">
+	        			<div class="colx4-left">
 						<span class="label"></span>
 						</div>
-						<div class="colx3-center">
+						<div class="colx4-center1">
 							<span class="label">Period (n-1)</span>	
 						</div>
-						<div class="colx3-right">
+						<div class="colx4-center2">
 							<span class="label">Period (n)</span>
+						</div>
+						<div class="colx4-right">
+							<span class="label"></span>
 						</div>
 					</div>
 
 					<div class="columns">
-	        			<div class="colx3-left">
+	        			<div class="colx4-left">
 							<span class="label"></span>
 							<strong>Level 3 Sales Force</strong>
 						</div>
-						<div class="colx3-center">
+						<div class="colx4-center1">
 							<span class="label"></span><p><span class="relative">	
-							<input type="text" name="ppBaseRnd" id="ppBaseRnd" disabled 
-								value = "" class="past"><span class="check-past"></span></span></p>
+							<input type="text" name="ppLevel3SalesForce" id="ppLevel3SalesForce" disabled 
+								value = "<%= ((previousPeriodTeamHR != null)?previousPeriodTeamHR.getLevel3SalesForce():0)%>" 
+								class="past"><span class="check-past"></span></span></p>
 						</div>
-						<div class="colx3-right">
+						<div class="colx4-center2">
 							<span class="label"></span>
-							<input type="text" name="tpBaseRnd" id="tpBaseRnd" disabled 
-								value = "" class="past">
+							<input type="text" name="level3SalesForce" id="level3SalesForce"
+								value = "<%= ((thisPeriodTeamHR != null)?thisPeriodTeamHR.getLevel3SalesForce():0)%>">
+						</div>
+						<div class="colx4-right">
+							<span class="label"></span>
 						</div>
 					</div>
 
 					<div class="columns">
-	        			<div class="colx3-left">
+	        			<div class="colx4-left">
 							<span class="label"></span>
 							<strong>Level 2 Sales Force</strong>
 						</div>
-						<div class="colx3-center">
+						<div class="colx4-center1">
 							<span class="label"></span><p><span class="relative">	
-							<input type="text" name="ppBaseRnd" id="ppBaseRnd" disabled 
-								value = "" class="past"><span class="check-past"></span></span></p>
+							<input type="text" name="ppLevel2SalesForce" id="ppLevel2SalesForce" disabled 
+								value = "<%= ((previousPeriodTeamHR != null)?previousPeriodTeamHR.getLevel2SalesForce():0)%>" 
+								class="past"><span class="check-past"></span></span></p>
 						</div>
-						<div class="colx3-right">
+						<div class="colx4-center2">
 							<span class="label"></span>
-							<input type="text" name="tpBaseRnd" id="tpBaseRnd" disabled 
-								value = "" class="past">
+							<input type="text" name="level2SalesForce" id="level2SalesForce"
+								value = "<%= ((thisPeriodTeamHR != null)?thisPeriodTeamHR.getLevel2SalesForce():0)%>">
+						</div>
+						<div class="colx4-right">
+							<span class="label"></span>
 						</div>
 					</div>						
 
 					<div class="columns">
-	        			<div class="colx3-left">
+	        			<div class="colx4-left">
 							<span class="label"></span>
 							<strong>Level 1 Sales Force</strong>
 						</div>
-						<div class="colx3-center">
+						<div class="colx4-center1">
 							<span class="label"></span><p><span class="relative">	
-							<input type="text" name="ppBaseRnd" id="ppBaseRnd" disabled 
-								value = "" class="past"><span class="check-past"></span></span></p>
+							<input type="text" name="ppLevel1SalesForce" id="ppLevel1SalesForce" disabled 
+								value = "<%= ((previousPeriodTeamHR != null)?previousPeriodTeamHR.getLevel1SalesForce():0)%>" 
+								class="past"><span class="check-past"></span></span></p>
 						</div>
-						<div class="colx3-right">
+						<div class="colx4-center2">
 							<span class="label"></span>
-							<input type="text" name="tpBaseRnd" id="tpBaseRnd" disabled 
-								value = "" class="past">
+							<input type="text" name="level1SalesForce" id="level1SalesForce"
+								value = "<%= ((thisPeriodTeamHR != null)?thisPeriodTeamHR.getLevel1SalesForce():0)%>">
+						</div>
+						<div class="colx4-right">
+							<span class="label"></span>
 						</div>
 					</div>
 					
 					
 					<div class="columns">
-	        			<div class="colx3-left">
+	        			<div class="colx4-left">
 							<span class="label"></span>
 							<strong>Total Sales Force</strong>
 						</div>
-						<div class="colx3-center">
+						<div class="colx4-center1">
 							<span class="label"></span><p><span class="relative">	
-							<input type="text" name="ppBaseRnd" id="ppBaseRnd" disabled 
-								value = "" class="past"><span class="check-past"></span></span></p>
+							<input type="text" name="ppTotalSalesForce" id="ppTotalSalesForce" disabled 
+								value = "<%= ((previousPeriodTeamHR != null)?previousPeriodTeamHR.getTotalSalesForce():0)%>" 
+								class="past"><span class="check-past"></span></span></p>
 						</div>
-						<div class="colx3-right">
+						<div class="colx4-center2">
 							<span class="label"></span>
-							<input type="text" name="tpBaseRnd" id="tpBaseRnd" disabled 
-								value = "" class="past">
+							<input type="text" name="totalSalesForce" id="totalSalesForce" 
+								class="past" disabled>
+						</div>
+						<div class="colx4-right">
+							<span class="label"></span>
+							<input type="button" class="button generate" value="Generate" onClick="">
 						</div>
 					</div>
 					
 					<div class="columns">
-	        			<div class="colx3-left">
+	        			<div class="colx4-left">
 							<span class="label"></span>
 							<strong>Hiring/Firing Cost (Rs.)</strong>
 						</div>
-						<div class="colx3-center">
+						<div class="colx4-center1">
 							<span class="label"></span><p><span class="relative">	
-							<input type="text" name="ppBaseRnd" id="ppBaseRnd" disabled 
-								value = "" class="past"><span class="check-past"></span></span></p>
+							<input type="text" name="ppHiringFiringCost" id="ppHiringFiringCost" disabled 
+								value = "<%= ((previousPeriodTeamHR != null)?previousPeriodTeamHR.getHiringFiringCost():0)%>" 
+								class="past"><span class="check-past"></span></span></p>
 						</div>
-						<div class="colx3-right">
+						<div class="colx4-center2">
 							<span class="label"></span>
-							<input type="text" name="tpBaseRnd" id="tpBaseRnd" disabled 
-								value = "" class="past">
+							<input type="text" name="hiringFiringCost" id="hiringFiringCost" 
+								class="past" disabled>
+						</div>
+						<div class="colx4-right">
+							<span class="label"></span>
 						</div>
 					</div>
 					
 					<div class="columns">
-	        			<div class="colx3-left">
+	        			<div class="colx4-left">
 							<span class="label"></span>
 							<strong>Total Sales Cost (Rs.)</strong>
 						</div>
-						<div class="colx3-center">
+						<div class="colx4-center1">
 							<span class="label"></span><p><span class="relative">	
-							<input type="text" name="ppBaseRnd" id="ppBaseRnd" disabled 
-								value = "" class="past"><span class="check-past"></span></span></p>
+							<input type="text" name="ppTotalSalesCost" id="ppTotalSalesCost" disabled 
+								value = "<%= ((previousPeriodTeamHR != null)?previousPeriodTeamHR.getTotalSalesCost():0)%>" 
+								class="past"><span class="check-past"></span></span></p>
 						</div>
-						<div class="colx3-right">
+						<div class="colx4-center2">
 							<span class="label"></span>
-							<input type="text" name="tpBaseRnd" id="tpBaseRnd" disabled 
-								value = "" class="past">
+							<input type="text" name="totalSalesCost" id="totalSalesCost"
+								class="past" disabled>
+						</div>
+						<div class="colx4-right">
+							<span class="label"></span>
 						</div>
 					</div>
 					
@@ -236,66 +252,82 @@ $("#teamHumanResourcesForm").validate({
 					<legend>Training</legend>					
 
 					<div class="columns">
-	        			<div class="colx3-left">
+	        			<div class="colx4-left">
 						<span class="label"></span>
 						</div>
-						<div class="colx3-center">
+						<div class="colx4-center1">
 							<span class="label">Total Number Available</span>	
 						</div>
-						<div class="colx3-right">
+						<div class="colx4-center2">
 							<span class="label">Upgrade to next level</span>
+						</div>
+						<div class="colx4-right">
+							<span class="label"></span>
 						</div>
 					</div>
 					
 					
 					<div class="columns">
-	        			<div class="colx3-left">
+	        			<div class="colx4-left">
 							<span class="label"></span>
 							<strong>Level 2 Sales Force</strong>
 						</div>
-						<div class="colx3-center">
+						<div class="colx4-center1">
 							<span class="label"></span><p><span class="relative">	
-							<input type="text" name="ppBaseRnd" id="ppBaseRnd" disabled 
-								value = "" class="past"><span class="check-past"></span></span></p>
+							<input type="text" name="ppLevel2SalesForce_training" id="ppLevel2SalesForce_training" disabled 
+								value = "<%= ((previousPeriodTeamHR != null)?previousPeriodTeamHR.getTrainingLevel2SalesForce():0)%>" 
+								class="past"><span class="check-past"></span></span></p>
 						</div>
-						<div class="colx3-right">
+						<div class="colx4-center2">
 							<span class="label"></span>
-							<input type="text" name="tpBaseRnd" id="tpBaseRnd" disabled 
-								value = "" class="past">
+							<input type="text" name="level2SalesForce_training" id="level2SalesForce_training"
+								value = "<%= ((thisPeriodTeamHR != null)?thisPeriodTeamHR.getTrainingLevel2SalesForce():0)%>">
+						</div>
+						<div class="colx4-right">
+							<span class="label"></span>
 						</div>
 					</div>
 					
 					<div class="columns">
-	        			<div class="colx3-left">
+	        			<div class="colx4-left">
 							<span class="label"></span>
 							<strong>Level 1 Sales Force</strong>
 						</div>
-						<div class="colx3-center">
+						<div class="colx4-center1">
 							<span class="label"></span><p><span class="relative">	
-							<input type="text" name="ppBaseRnd" id="ppBaseRnd" disabled 
-								value = "" class="past"><span class="check-past"></span></span></p>
+							<input type="text" name="ppLevel1SalesForce_training" id="ppLevel1SalesForce_training" disabled 
+								value = "<%= ((previousPeriodTeamHR != null)?previousPeriodTeamHR.getTrainingLevel1SalesForce():0)%>" 
+								class="past"><span class="check-past"></span></span></p>
 						</div>
-						<div class="colx3-right">
+						<div class="colx4-center2">
 							<span class="label"></span>
-							<input type="text" name="tpBaseRnd" id="tpBaseRnd" disabled 
-								value = "" class="past">
+							<input type="text" name="level1SalesForce_training" id="level1SalesForce_training" 
+								value = "<%= ((thisPeriodTeamHR != null)?thisPeriodTeamHR.getTrainingLevel1SalesForce():0)%>">
+						</div>
+						<div class="colx4-right">
+							<span class="label"></span>
 						</div>
 					</div>
 					
 					<div class="columns">
-	        			<div class="colx3-left">
+	        			<div class="colx4-left">
 							<span class="label"></span>
 							<strong>Training Costs (Rs.)</strong>
 						</div>
-						<div class="colx3-center">
+						<div class="colx4-center1">
 							<span class="label"></span><p><span class="relative">	
-							<input type="text" name="ppBaseRnd" id="ppBaseRnd" disabled 
-								value = "" class="past"><span class="check-past"></span></span></p>
+							<input type="text" name="ppTrainingCost" id=""ppTrainingCost"" disabled 
+								value = "<%= ((previousPeriodTeamHR != null)?previousPeriodTeamHR.getTrainingCost():0)%>" 
+								class="past"><span class="check-past"></span></span></p>
 						</div>
-						<div class="colx3-right">
+						<div class="colx4-center2">
 							<span class="label"></span>
-							<input type="text" name="tpBaseRnd" id="tpBaseRnd" disabled 
-								value = "" class="past">
+							<input type="text" name="trainingCost" id="trainingCost"
+								class="past" disabled>
+						</div>
+						<div class="colx4-right">
+							<span class="label"></span>
+							<input type="button" class="button generateTraining" value="Generate" onClick="">
 						</div>
 					</div>
 					

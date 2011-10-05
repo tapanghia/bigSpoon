@@ -1,59 +1,30 @@
 <%@ include file="header.jsp" %>
+<%@page import="com.marklabs.operationsDept.TeamOperations"%>
 
+<%
+	TeamOperations teamOperations = (TeamOperations) request.getAttribute(Constants.TEAM_OPERATIONS);
+%>
 
 <script type="text/javascript">
 $(document).ready(function(){
   $("#teamOperationsForm").submit(function(){
+  	var thisForm = document.teamOperationsForm;
+  	thisForm.todo.value = 'saveTeamOperations';
     return true;
   });
   $("#teamOperationsForm input.cancel").click(function(){
-    window.location = "<%=CONTEXTPATH%>/marketingTeam.htm";
+    window.location = "<%=CONTEXTPATH%>/operationsDept.htm";
   });
 });
 </script>
 <script type="text/javascript"> 
 $.validator.setDefaults({
-	highlight: function(input) {
-		$(input).addClass("error");
-	},
-	unhighlight: function(input) {
-		$(input).removeClass("error");
-	}
 });
 
 $(document).ready(function() {
 	
-$("#teamOperationsForm").validate({
-		rules: {
-			ppBaseRnd: "required",
-			tpBaseRnd: "required",
-			ppProdLevel: {
-				required: true,
-				number: true
-			},
-			thisPeriodBrandProdLevel: {
-				required: true,
-				number: true,
-				range: [0, 10000000]
-			},
-			ppInventorySold: {
-				required: true,
-				number: true
-			},
-			tpInventorySold: {
-				required: true,
-				number: true
-			},
-			ppPrice: {
-				required: true,
-				number: true
-			},
-			thisPeriodBrandRetailPrice: {
-				required: true,
-				number: true,
-				range: [1, 700]
-			}
-		}
+	$("#teamOperationsForm").validate({
+
 	});
 
 });
@@ -111,6 +82,7 @@ $("#teamOperationsForm").validate({
 			<div class="block-border">
 				<form class="block-content form" name="teamOperationsForm" id="teamOperationsForm" method="post" 
 					action="operationsDept.htm?do=manageTeamOperations">
+				<input type="hidden" name="todo" id="todo"/>	
 				<h1>Operations</h1>
 
 					<fieldset>
@@ -122,8 +94,9 @@ $("#teamOperationsForm").validate({
 							<strong>Current Max Production Capacity</strong>
 						</div>
 						<div class="colx3-center">
-							<span class="label"></span><p><span class="relative">	
-							<input type="text" name="currentDebt" id="currentDebt" value = "">
+							<span class="label"></span>	
+							<input type="text" name="currentDebt" id="currentDebt" class="past" disabled
+							value = "<%= ((teamOperations != null)?teamOperations.getMaximumCapacity():0)%>">
 						</div>
 						<div class="colx3-right">
 							<span class="label"></span>
@@ -133,8 +106,29 @@ $("#teamOperationsForm").validate({
 					<div class="columns">
 	        			<div class="colx3-left">
 							<span class="label"></span>
-							<a href="#">Choose the following options: </a>
-						</div>
+							<strong>Choose from the following options:</strong>
+					</div>
+					</div>
+					<div class="columns">
+	        			<div class="colx1">
+							<span class="label"></span>
+							<input type="radio" name="capacityIncreaseSelection" value="0:0" id="capacity1" checked> Continue with the same capacity
+					</div>
+	        			<div class="colx1">
+							<span class="label"></span>
+							<input type="radio" name="capacityIncreaseSelection" value="50000:3000000" id="capacity2"> 
+								Capacity Increase : 50,000 units Cost : Rs. 30,00,000
+					</div>
+	        			<div class="colx1">
+							<span class="label"></span>
+							<input type="radio" name="capacityIncreaseSelection" value="100000:4000000" id="capacity3"> 
+								Capacity Increase : 100,000 units  Cost : Rs. 40,00,000
+					</div>
+	        			<div class="colx1">
+							<span class="label"></span>
+							<input type="radio" name="capacityIncreaseSelection" value="150000:4500000" id="capacity4"> 
+								Capacity Increase : 150,000 units Cost : Rs. 45,00,000
+					</div>							
 					</div>
 					
 				</fieldset>

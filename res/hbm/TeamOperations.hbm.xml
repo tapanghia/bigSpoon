@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+     <class name="com.marklabs.operationsDept.TeamOperations" table="operations">
+        <id name="id" column="id">
+            <generator class="identity"/>
+        </id>
+        
+        <property name="period" type="integer"/>
+		<property name="maximumCapacity" column="max_capacity" type="integer"/>
+		<property name="capacityIncreasedBy" column="capacity_increase" type="integer"/>
+		<property name="expansionCost" column="expansion_cost" type="integer"/>
+			
+		<many-to-one name="team" column="team_ID" 
+			class="com.marklabs.teams.Team" not-null="true"/>
+
+     </class>
+</hibernate-mapping>
+
+

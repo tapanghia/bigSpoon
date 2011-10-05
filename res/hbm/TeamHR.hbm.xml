@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+     <class name="com.marklabs.HRDept.TeamHR" table="human_Resources">
+        <id name="id" column="id">
+            <generator class="identity"/>
+        </id>
+        
+		<property name="period" type="integer"/>
+		<property name="level3SalesForce" column="level3_salesforce" type="integer"/>
+		<property name="level2SalesForce" column="level2_salesforce" type="integer"/>
+		<property name="level1SalesForce" column="level1_salesforce" type="integer"/>
+		<property name="totalSalesForce" column="total_salesforce" type="integer"/>
+		<property name="hiringFiringCost" column="hiring_firing_cost" type="integer"/>
+		<property name="totalSalesCost" column="total_sales_cost" type="integer"/>
+		<property name="trainingLevel2SalesForce" column="level2_salesforce_training" type="integer"/>
+		<property name="trainingLevel1SalesForce" column="level1_salesforce_training" type="integer"/>
+		<property name="trainingCost" column="training_cost" type="integer"/>
+		
+			
+		<many-to-one name="team" column="team_ID" 
+			class="com.marklabs.teams.Team" not-null="true"/>
+		
+     </class>
+</hibernate-mapping>
+
+

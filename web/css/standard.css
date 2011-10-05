@@ -74,6 +74,30 @@ h2.big, h3.big {
 	margin-bottom: 0;
 }
 
+/* 4 columns */
+.colx4-left {
+	width: 24%;
+	float: left;
+	margin-bottom: 0;
+}
+.colx4-center1 {
+	width: 24%;
+	float: left;
+	margin-left: 2%;
+	margin-bottom: 0;
+}
+.colx4-center2 {
+	width: 24%;
+	float: left;
+	margin-left: 2%;
+	margin-bottom: 0;
+}
+.colx4-right {
+	width: 24%;
+	float: right;
+	margin-bottom: 0;
+}
+
 /* 5 columns */
 .colx5-left {
 	width: 19%;

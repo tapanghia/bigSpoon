@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+     <class name="com.marklabs.financeDept.TeamFinance" table="finances">
+        <id name="id" column="id">
+            <generator class="identity"/>
+        </id>
+        
+		<property name="period" type="integer"/>
+		<property name="debt" type="integer"/>
+		<property name="equity" type="integer"/>
+		<property name="debtEquityRatio" column="debt_equity_ratio" type="double"/>
+		<property name="rateOfInterest" column="roi" type="double"/>
+		<property name="interestPayable" column="interest" type="integer"/>
+			
+		<many-to-one name="team" column="team_id" 
+			class="com.marklabs.teams.Team" not-null="true"/>
+     </class>
+</hibernate-mapping>
+
+
