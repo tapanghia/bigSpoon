@@ -3,6 +3,12 @@
 
 <%
 	TeamOperations teamOperations = (TeamOperations) request.getAttribute(Constants.TEAM_OPERATIONS);
+	String dbValue = "0:0";
+	if (teamOperations != null) {
+		int capacityIncreasedBy = teamOperations.getCapacityIncreasedBy();
+		int expansionCost = teamOperations.getExpansionCost();
+		dbValue = capacityIncreasedBy + ":" + expansionCost;
+	}
 %>
 
 <script type="text/javascript">
@@ -116,17 +122,32 @@ $(document).ready(function() {
 					</div>
 	        			<div class="colx1">
 							<span class="label"></span>
-							<input type="radio" name="capacityIncreaseSelection" value="50000:3000000" id="capacity2"> 
-								Capacity Increase : 50,000 units Cost : Rs. 30,00,000
+							<input type="radio" name="capacityIncreaseSelection" value="50000:3000000" id="capacity2"
+							<%
+								if (dbValue.equals("50000:3000000")) { %>
+									checked	
+							<%	}
+							%> > 
+								Capacity Increase : 50,000 units Cost : Rs. 30,00,000 
 					</div>
 	        			<div class="colx1">
 							<span class="label"></span>
-							<input type="radio" name="capacityIncreaseSelection" value="100000:4000000" id="capacity3"> 
+							<input type="radio" name="capacityIncreaseSelection" value="100000:4000000" id="capacity3"
+							<%
+								if (dbValue.equals("100000:4000000")) { %>
+									checked	
+							<%	}
+							%> >  
 								Capacity Increase : 100,000 units  Cost : Rs. 40,00,000
 					</div>
 	        			<div class="colx1">
 							<span class="label"></span>
-							<input type="radio" name="capacityIncreaseSelection" value="150000:4500000" id="capacity4"> 
+							<input type="radio" name="capacityIncreaseSelection" value="150000:4500000" id="capacity4" 
+							<%
+								if (dbValue.equals("150000:4500000")) { %>
+									checked	
+							<%	}
+							%> >  
 								Capacity Increase : 150,000 units Cost : Rs. 45,00,000
 					</div>							
 					</div>
