@@ -42,9 +42,9 @@ $(document).ready(function() {
 		var l2SalesForce = $("#level2SalesForce").val();
 		var l1SalesForce = $("#level1SalesForce").val();
 		
-		var ppL3SalesForce = $("#pplevel3SalesForce").val();
-		var ppL2SalesForce = $("#pplevel2SalesForce").val();
-		var ppL1SalesForce = $("#pplevel1SalesForce").val();
+		var ppL3SalesForce = $("#ppLevel3SalesForce").val();
+		var ppL2SalesForce = $("#ppLevel2SalesForce").val();
+		var ppL1SalesForce = $("#ppLevel1SalesForce").val();
 		
 		var currentPeriod = <%= currentPeriod %>;
 		var totalSalesForce = parseInt(l3SalesForce) + parseInt(l2SalesForce) + parseInt(l1SalesForce);
