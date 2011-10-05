@@ -55,18 +55,21 @@ public class FinanceDeptController extends MultiActionController {
 				if (existingTeamFinances != null && existingTeamFinances.getEquity() > 0) {
 					updateTeamFinancesBasedOnNewDebtApplied(existingTeamFinances, debtAppliedFor);
 					
-					// saving the updated TeamFinances
-					financeService.updateTeamFinance(existingTeamFinances);
-					
-					// Now updating the budget.
-					// The debt applied for has been approved and hence needs to be added to the budget
-					long updatedTeamBudget = teamCurrentBudget + debtAppliedFor;
-					
-					request.getSession().removeAttribute(Constants.CURRENT_BUDGET);
-					request.getSession().setAttribute(Constants.CURRENT_BUDGET, updatedTeamBudget);
-								
-					loggedInTeam.setTeamCurrentPeriodBudget(updatedTeamBudget);
-					teamService.updateTeam(loggedInTeam);
+					// Team Finances should not be updated, if new debt equity ratio is > 1
+					if (existingTeamFinances.getDebtEquityRatio() <= 1) {
+						// saving the updated TeamFinances
+						financeService.updateTeamFinance(existingTeamFinances);
+						
+						// Now updating the budget.
+						// The debt applied for has been approved and hence needs to be added to the budget
+						long updatedTeamBudget = teamCurrentBudget + debtAppliedFor;
+						
+						request.getSession().removeAttribute(Constants.CURRENT_BUDGET);
+						request.getSession().setAttribute(Constants.CURRENT_BUDGET, updatedTeamBudget);
+									
+						loggedInTeam.setTeamCurrentPeriodBudget(updatedTeamBudget);
+						teamService.updateTeam(loggedInTeam);
+					}
 				}
 			}
 		}

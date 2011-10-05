@@ -52,8 +52,14 @@ public class HumanResourcesDeptController extends MultiActionController{
 			int trainingLevel2SF = Integer.parseInt(request.getParameter("level2SalesForce_training"));
 			int trainingLevel1SF = Integer.parseInt(request.getParameter("level1SalesForce_training"));
 			
+			// previous period data for calculating hiring firing costs
+			int ppLevel3SalesForce = Integer.parseInt(request.getParameter("ppLevel3SalesForce"));
+			int ppLevel2SalesForce = Integer.parseInt(request.getParameter("ppLevel2SalesForce"));
+			int ppLevel1SalesForce = Integer.parseInt(request.getParameter("ppLevel1SalesForce"));
 			
-			int updatedHiringFiringCost = calculateHiringFiringCos(level3SalesForce, level2SalesForce, level1SalesForce, currPeriod);
+			
+			int updatedHiringFiringCost = calculateHiringFiringCos(level3SalesForce, level2SalesForce, level1SalesForce, 
+					ppLevel3SalesForce, ppLevel2SalesForce, ppLevel1SalesForce);
 			int updatedTotalSalesCost = calculateTotalSalesCost(level3SalesForce,level2SalesForce, level1SalesForce);
 			int updatedTrainingCost = calculateTrainingCost(trainingLevel2SF, trainingLevel1SF);
 			
@@ -144,14 +150,13 @@ public class HumanResourcesDeptController extends MultiActionController{
 	}
 
 	private int calculateHiringFiringCos(int level3SalesForce,
-			int level2SalesForce, int level1SalesForce, int currentPeriod) {
+			int level2SalesForce, int level1SalesForce, int ppLevel3SalesForce, int ppLevel2SalesForce, int ppLevel1SalesForce) {
 		int hiringFiringCost = 0;
-		if (currentPeriod > 0) {
-			hiringFiringCost = (level3SalesForce * (currentPeriod - (currentPeriod - 1)) * 26000) 
-				+ (level2SalesForce * (currentPeriod - (currentPeriod - 1)) * 12000)
-				+ (level1SalesForce * (currentPeriod - (currentPeriod - 1)) * 7000);
-			
-		}
+		
+		hiringFiringCost = (Math.abs(level3SalesForce - ppLevel3SalesForce) * 26000) + 
+			(Math.abs(level2SalesForce - ppLevel2SalesForce) * 12000) +
+			(Math.abs(level1SalesForce - ppLevel1SalesForce) * 7000); 
+		
 		return hiringFiringCost;
 	}
 

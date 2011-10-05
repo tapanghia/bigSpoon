@@ -42,11 +42,15 @@ $(document).ready(function() {
 		var l2SalesForce = $("#level2SalesForce").val();
 		var l1SalesForce = $("#level1SalesForce").val();
 		
+		var ppL3SalesForce = $("#pplevel3SalesForce").val();
+		var ppL2SalesForce = $("#pplevel2SalesForce").val();
+		var ppL1SalesForce = $("#pplevel1SalesForce").val();
+		
 		var currentPeriod = <%= currentPeriod %>;
 		var totalSalesForce = parseInt(l3SalesForce) + parseInt(l2SalesForce) + parseInt(l1SalesForce);
-		var hiringFiringCost = (l3SalesForce * (currentPeriod - (currentPeriod - 1)) * 26000) 
-				+ (l2SalesForce * (currentPeriod - (currentPeriod - 1)) * 12000)
-				+ (l1SalesForce * (currentPeriod - (currentPeriod - 1)) * 7000);
+		var hiringFiringCost = (Math.abs(l3SalesForce - ppL3SalesForce) * 26000) + 
+			(Math.abs(l2SalesForce - ppL2SalesForce) * 12000) +
+			(Math.abs(l1SalesForce - ppL1SalesForce) * 7000); 
 		
 		var totalSalesCost = ((l3SalesForce * 26000) + (l2SalesForce * 12000) + (l1SalesForce * 7000));
 		
@@ -297,7 +301,7 @@ $(document).ready(function() {
 						<div class="colx4-center1">
 							<span class="label"></span><p><span class="relative">	
 							<input type="text" name="ppLevel2SalesForce_training" id="ppLevel2SalesForce_training" disabled 
-								value = "<%= ((previousPeriodTeamHR != null)?previousPeriodTeamHR.getTrainingLevel2SalesForce():0)%>" 
+								value = "<%= ((previousPeriodTeamHR != null)?previousPeriodTeamHR.getLevel2SalesForce():0)%>" 
 								class="past"><span class="check-past"></span></span></p>
 						</div>
 						<div class="colx4-center2">
@@ -318,7 +322,7 @@ $(document).ready(function() {
 						<div class="colx4-center1">
 							<span class="label"></span><p><span class="relative">	
 							<input type="text" name="ppLevel1SalesForce_training" id="ppLevel1SalesForce_training" disabled 
-								value = "<%= ((previousPeriodTeamHR != null)?previousPeriodTeamHR.getTrainingLevel1SalesForce():0)%>" 
+								value = "<%= ((previousPeriodTeamHR != null)?previousPeriodTeamHR.getLevel1SalesForce():0)%>" 
 								class="past"><span class="check-past"></span></span></p>
 						</div>
 						<div class="colx4-center2">
