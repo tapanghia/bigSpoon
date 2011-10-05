@@ -121,7 +121,7 @@ from rep_brand_pi WHERE period = $P{period}]]></queryString>
 						mode="Opaque"
 						x="0"
 						y="0"
-						width="120"
+						width="140"
 						height="50"
 						forecolor="#FFFFFF"
 						backcolor="#70A9C6"
@@ -136,9 +136,9 @@ from rep_brand_pi WHERE period = $P{period}]]></queryString>
 				<staticText>
 					<reportElement
 						mode="Opaque"
-						x="120"
+						x="140"
 						y="0"
-						width="580"
+						width="560"
 						height="25"
 						forecolor="#FFFFFF"
 						backcolor="#70A9C6"
@@ -153,26 +153,9 @@ from rep_brand_pi WHERE period = $P{period}]]></queryString>
 				<staticText>
 					<reportElement
 						mode="Opaque"
-						x="120"
+						x="140"
 						y="25"
-						width="120"
-						height="25"
-						forecolor="#FFFFFF"
-						backcolor="#70A9C6"
-						key="staticText-5"
-						isPrintInFirstWholeBand="true"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="Thin" rightBorderColor="#FFFFFF" bottomBorder="Thin" bottomBorderColor="#FFFFFF"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Arial" size="13" isBold="true"/>
-					</textElement>
-				<text><![CDATA[Blue Bloods]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Opaque"
-						x="240"
-						y="25"
-						width="115"
+						width="140"
 						height="25"
 						forecolor="#FFFFFF"
 						backcolor="#70A9C6"
@@ -187,9 +170,9 @@ from rep_brand_pi WHERE period = $P{period}]]></queryString>
 				<staticText>
 					<reportElement
 						mode="Opaque"
-						x="355"
+						x="280"
 						y="25"
-						width="115"
+						width="140"
 						height="25"
 						forecolor="#FFFFFF"
 						backcolor="#70A9C6"
@@ -204,9 +187,9 @@ from rep_brand_pi WHERE period = $P{period}]]></queryString>
 				<staticText>
 					<reportElement
 						mode="Opaque"
-						x="470"
+						x="420"
 						y="25"
-						width="115"
+						width="140"
 						height="25"
 						forecolor="#FFFFFF"
 						backcolor="#70A9C6"
@@ -221,9 +204,9 @@ from rep_brand_pi WHERE period = $P{period}]]></queryString>
 				<staticText>
 					<reportElement
 						mode="Opaque"
-						x="585"
+						x="560"
 						y="25"
-						width="115"
+						width="140"
 						height="25"
 						forecolor="#FFFFFF"
 						backcolor="#70A9C6"
@@ -243,7 +226,7 @@ from rep_brand_pi WHERE period = $P{period}]]></queryString>
 					<reportElement
 						x="0"
 						y="0"
-						width="120"
+						width="140"
 						height="25"
 						key="textField-7"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -254,22 +237,9 @@ from rep_brand_pi WHERE period = $P{period}]]></queryString>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="120"
+						x="140"
 						y="0"
-						width="120"
-						height="25"
-						key="textField-8"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Arial" size="12" isBold="true"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[(new DecimalFormat("###0.0").format($F{blueblood})) + " %"]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="240"
-						y="0"
-						width="115"
+						width="140"
 						height="25"
 						key="textField-9"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -280,9 +250,9 @@ from rep_brand_pi WHERE period = $P{period}]]></queryString>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="355"
+						x="280"
 						y="0"
-						width="115"
+						width="140"
 						height="25"
 						key="textField-10"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -293,9 +263,9 @@ from rep_brand_pi WHERE period = $P{period}]]></queryString>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="470"
+						x="420"
 						y="0"
-						width="115"
+						width="140"
 						height="25"
 						key="textField-11"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -306,9 +276,9 @@ from rep_brand_pi WHERE period = $P{period}]]></queryString>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="585"
+						x="560"
 						y="0"
-						width="115"
+						width="140"
 						height="25"
 						key="textField-12"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>

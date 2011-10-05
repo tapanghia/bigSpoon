@@ -170,53 +170,19 @@
 		</pageFooter>
 		<summary>
 			<band height="450"  isSplitAllowed="true" >
-				<rectangle>
-					<reportElement
-						x="30"
-						y="0"
-						width="334"
-						height="205"
-						key="rectangle-1"/>
-					<graphicElement stretchType="NoStretch"/>
-				</rectangle>
-				<rectangle>
-					<reportElement
-						x="364"
-						y="0"
-						width="333"
-						height="205"
-						key="rectangle-2"/>
-					<graphicElement stretchType="NoStretch"/>
-				</rectangle>
-				<rectangle>
-					<reportElement
-						x="30"
-						y="205"
-						width="334"
-						height="205"
-						key="rectangle-3"/>
-					<graphicElement stretchType="NoStretch"/>
-				</rectangle>
-				<rectangle>
-					<reportElement
-						x="364"
-						y="205"
-						width="333"
-						height="205"
-						key="rectangle-4"/>
-					<graphicElement stretchType="NoStretch"/>
-				</rectangle>
 				<elementGroup><!--  Start: 1 !-->
 				<scatterChart>
 					<chart  hyperlinkTarget="Self" >
 					<reportElement
-						x="0"
-						y="0"
-						width="700"
-						height="450"
+						mode="Opaque"
+						x="24"
+						y="25"
+						width="662"
+						height="391"
 						key="element-1"
-						positionType="FixRelativeToBottom"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+						positionType="FixRelativeToBottom"
+						isRemoveLineWhenBlank="true"/>
+					<box topBorder="Thin" topBorderColor="#000000" leftBorder="Thin" leftBorderColor="#000000" rightBorder="Thin" rightBorderColor="#000000" bottomBorder="Thin" bottomBorderColor="#000000"/>
 						<chartLegend textColor="#000000" backgroundColor="#FFFFFF" >
 					</chartLegend>
 					</chart>
@@ -273,7 +239,7 @@
 				</elementGroup><!-- End 1 !-->
 				<staticText>
 					<reportElement
-						x="30"
+						x="21"
 						y="0"
 						width="89"
 						height="23"
@@ -287,8 +253,8 @@
 				</staticText>
 				<staticText>
 					<reportElement
-						x="30"
-						y="385"
+						x="19"
+						y="421"
 						width="98"
 						height="25"
 						forecolor="#333333"
@@ -301,8 +267,8 @@
 				</staticText>
 				<staticText>
 					<reportElement
-						x="661"
-						y="385"
+						x="653"
+						y="421"
 						width="36"
 						height="25"
 						forecolor="#333333"
@@ -315,10 +281,10 @@
 				</staticText>
 				<staticText>
 					<reportElement
-						x="605"
+						x="599"
 						y="0"
 						width="92"
-						height="25"
+						height="23"
 						forecolor="#333333"
 						key="staticText-5"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>

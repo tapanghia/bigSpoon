@@ -122,7 +122,7 @@
 						mode="Opaque"
 						x="0"
 						y="0"
-						width="95"
+						width="125"
 						height="50"
 						forecolor="#FFFFFF"
 						backcolor="#70A9C6"
@@ -137,9 +137,9 @@
 				<staticText>
 					<reportElement
 						mode="Opaque"
-						x="95"
+						x="125"
 						y="0"
-						width="500"
+						width="460"
 						height="25"
 						forecolor="#FFFFFF"
 						backcolor="#70A9C6"
@@ -154,9 +154,9 @@
 				<staticText>
 					<reportElement
 						mode="Opaque"
-						x="595"
+						x="585"
 						y="0"
-						width="105"
+						width="115"
 						height="50"
 						forecolor="#FFFFFF"
 						backcolor="#70A9C6"
@@ -171,26 +171,9 @@
 				<staticText>
 					<reportElement
 						mode="Opaque"
-						x="95"
+						x="125"
 						y="25"
-						width="100"
-						height="25"
-						forecolor="#FFFFFF"
-						backcolor="#70A9C6"
-						key="staticText-5"
-						isPrintInFirstWholeBand="true"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="Thin" rightBorderColor="#FFFFFF" bottomBorder="Thin" bottomBorderColor="#FFFFFF"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Arial" size="13" isBold="true"/>
-					</textElement>
-				<text><![CDATA[Blue Bloods]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Opaque"
-						x="195"
-						y="25"
-						width="100"
+						width="115"
 						height="25"
 						forecolor="#FFFFFF"
 						backcolor="#70A9C6"
@@ -205,9 +188,9 @@
 				<staticText>
 					<reportElement
 						mode="Opaque"
-						x="295"
+						x="240"
 						y="25"
-						width="100"
+						width="115"
 						height="25"
 						forecolor="#FFFFFF"
 						backcolor="#70A9C6"
@@ -222,9 +205,9 @@
 				<staticText>
 					<reportElement
 						mode="Opaque"
-						x="395"
+						x="355"
 						y="25"
-						width="100"
+						width="115"
 						height="25"
 						forecolor="#FFFFFF"
 						backcolor="#70A9C6"
@@ -239,9 +222,9 @@
 				<staticText>
 					<reportElement
 						mode="Opaque"
-						x="495"
+						x="470"
 						y="25"
-						width="100"
+						width="115"
 						height="25"
 						forecolor="#FFFFFF"
 						backcolor="#70A9C6"
@@ -261,7 +244,7 @@
 					<reportElement
 						x="0"
 						y="0"
-						width="95"
+						width="125"
 						height="25"
 						key="textField-7"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -272,22 +255,9 @@
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="95"
+						x="125"
 						y="0"
-						width="100"
-						height="25"
-						key="textField-8"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Arial" size="12" isBold="true"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{team}.equalsIgnoreCase("Total Sales(units)")? (new DecimalFormat("###0").format($F{blueblood})) : (new DecimalFormat("###0.0").format($F{blueblood})) + " %"]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="195"
-						y="0"
-						width="100"
+						width="115"
 						height="25"
 						key="textField-9"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -298,9 +268,9 @@
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="295"
+						x="240"
 						y="0"
-						width="100"
+						width="115"
 						height="25"
 						key="textField-10"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -311,9 +281,9 @@
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="395"
+						x="355"
 						y="0"
-						width="100"
+						width="115"
 						height="25"
 						key="textField-11"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -324,9 +294,9 @@
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="495"
+						x="470"
 						y="0"
-						width="100"
+						width="115"
 						height="25"
 						key="textField-12"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -337,9 +307,9 @@
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="595"
+						x="585"
 						y="0"
-						width="105"
+						width="115"
 						height="25"
 						key="textField-13"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
