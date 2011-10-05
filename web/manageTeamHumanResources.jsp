@@ -4,6 +4,7 @@
 <%
 	TeamHR thisPeriodTeamHR = (TeamHR) request.getAttribute(Constants.TEAM_HUMAN_RESOURCES);
 	TeamHR previousPeriodTeamHR = (TeamHR) request.getAttribute(Constants.TEAM_HUMAN_RESOURCES_PREVIOUS);
+	int currentPeriod = (Integer)request.getSession().getAttribute(Constants.CURRENT_PERIOD);
 %>
 
 
@@ -36,11 +37,32 @@ $(document).ready(function() {
 	});
 	
 	$("input.generate").click(function(){
-		alert("Generate");
+		
+		var l3SalesForce = $("#level3SalesForce").val();
+		var l2SalesForce = $("#level2SalesForce").val();
+		var l1SalesForce = $("#level1SalesForce").val();
+		
+		var currentPeriod = <%= currentPeriod %>;
+		var totalSalesForce = parseInt(l3SalesForce) + parseInt(l2SalesForce) + parseInt(l1SalesForce);
+		var hiringFiringCost = (l3SalesForce * (currentPeriod - (currentPeriod - 1)) * 26000) 
+				+ (l2SalesForce * (currentPeriod - (currentPeriod - 1)) * 12000)
+				+ (l1SalesForce * (currentPeriod - (currentPeriod - 1)) * 7000);
+		
+		var totalSalesCost = ((l3SalesForce * 26000) + (l2SalesForce * 12000) + (l1SalesForce * 7000));
+		
+		 $("#totalSalesForce").val(totalSalesForce);
+		 $("#hiringFiringCost").val(hiringFiringCost);
+		 $("#totalSalesCost").val(totalSalesCost);
+		
 	});	
 	
 	$("input.generateTraining").click(function(){
-		alert("Generate For Training");
+	
+		var trainingL2SalesForce = $("#level2SalesForce_training").val(); 
+		var trainingL1SalesForce = $("#level1SalesForce_training").val(); 
+		var totalTrainingCost = (trainingL2SalesForce * 10000) + (trainingL1SalesForce * 7000);
+		
+		$("#trainingCost").val(totalTrainingCost);
 	});	
 	
 });
@@ -108,10 +130,10 @@ $(document).ready(function() {
 						<span class="label"></span>
 						</div>
 						<div class="colx4-center1">
-							<span class="label">Period (n-1)</span>	
+							<span class="label">Period <%= (currentPeriod - 1) %></span>	
 						</div>
 						<div class="colx4-center2">
-							<span class="label">Period (n)</span>
+							<span class="label">Period <%= (currentPeriod) %></span>
 						</div>
 						<div class="colx4-right">
 							<span class="label"></span>
