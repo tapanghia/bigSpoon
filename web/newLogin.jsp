@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Welcome to MarkLabs - Marketing Simulations by Biziga Labs</title>
+	<title>Welcome to BizLabs - Business Simulation by Biziga Labs</title>
 	<meta http-equiv=Content-Type content="text/html; charset=iso-8859-1">
 	<link href="css/login.css" rel="stylesheet" type="text/css" />
 	<link rel="shortcut icon" href="images/favicon.ico">
