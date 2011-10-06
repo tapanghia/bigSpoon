@@ -151,7 +151,7 @@ $(document).ready(function() {
 						</div>
 						<div class="colx4-center1">
 							<span class="label"></span><p><span class="relative">	
-							<input type="text" name="ppLevel3SalesForce" id="ppLevel3SalesForce" disabled 
+							<input type="text" name="ppLevel3SalesForce" id="ppLevel3SalesForce" readonly 
 								value = "<%= ((previousPeriodTeamHR != null)?previousPeriodTeamHR.getLevel3SalesForce():0)%>" 
 								class="past"><span class="check-past"></span></span></p>
 						</div>
@@ -172,7 +172,7 @@ $(document).ready(function() {
 						</div>
 						<div class="colx4-center1">
 							<span class="label"></span><p><span class="relative">	
-							<input type="text" name="ppLevel2SalesForce" id="ppLevel2SalesForce" disabled 
+							<input type="text" name="ppLevel2SalesForce" id="ppLevel2SalesForce" readonly 
 								value = "<%= ((previousPeriodTeamHR != null)?previousPeriodTeamHR.getLevel2SalesForce():0)%>" 
 								class="past"><span class="check-past"></span></span></p>
 						</div>
@@ -193,7 +193,7 @@ $(document).ready(function() {
 						</div>
 						<div class="colx4-center1">
 							<span class="label"></span><p><span class="relative">	
-							<input type="text" name="ppLevel1SalesForce" id="ppLevel1SalesForce" disabled 
+							<input type="text" name="ppLevel1SalesForce" id="ppLevel1SalesForce" readonly 
 								value = "<%= ((previousPeriodTeamHR != null)?previousPeriodTeamHR.getLevel1SalesForce():0)%>" 
 								class="past"><span class="check-past"></span></span></p>
 						</div>
