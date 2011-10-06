@@ -72,6 +72,7 @@ public class HumanResourcesDeptController extends MultiActionController{
 				long updatedBudget = teamCurrentBudget + currentHRExpensesRecorded - 
 					(updatedHiringFiringCost + updatedTotalSalesCost + updatedTrainingCost);
 				
+				
 				if (updatedBudget > 0) {
 					
 					teamHR.setLevel1SalesForce(level1SalesForce);
@@ -79,7 +80,7 @@ public class HumanResourcesDeptController extends MultiActionController{
 					teamHR.setLevel3SalesForce(level3SalesForce);
 					teamHR.setTotalSalesForce(level1SalesForce + level2SalesForce + level3SalesForce);
 					teamHR.setHiringFiringCost(updatedHiringFiringCost);
-					teamHR.setTotalSalesCost(updatedTrainingCost);
+					teamHR.setTotalSalesCost(updatedTotalSalesCost);
 					
 					teamHR.setTrainingLevel1SalesForce(trainingLevel1SF);
 					teamHR.setTrainingLevel2SalesForce(trainingLevel2SF);
