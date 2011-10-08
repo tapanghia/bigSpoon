@@ -136,7 +136,7 @@ public class BrandAdvController extends MultiActionController{
 			request.getSession().removeAttribute(Constants.SELECTED_BRAND_ADV);
 			request.getSession().removeAttribute(Constants.PREVIOUSPERIOD_BRANDADV);
 			request.getSession().removeAttribute(Constants.THISPERIOD_BRANDADV);
-			request.getSession().getAttribute(Constants.BRAND_PERCEPTUALOBJECTIVE);
+			request.getSession().removeAttribute(Constants.BRAND_PERCEPTUALOBJECTIVE);
 			
 			request.getSession().setAttribute(Constants.SELECTED_BRAND_ADV, thisBrand);
 			request.getSession().setAttribute(Constants.PREVIOUSPERIOD_BRANDADV, previousPeriodBrandAdv);
@@ -161,20 +161,21 @@ public class BrandAdvController extends MultiActionController{
 		
 		
 		long advMediaBudget = Long.parseLong(request.getParameter("advMediaBudget"));
-		long advResearchBudget = Long.parseLong(request.getParameter("advResearchBudget"));
+		//long advResearchBudget = Long.parseLong(request.getParameter("advResearchBudget"));
 		
-		int blueblood_targetSeg = Integer.parseInt(request.getParameter("bluebloods_targetSeg"));
+		//int blueblood_targetSeg = Integer.parseInt(request.getParameter("bluebloods_targetSeg"));
 		int raffles_targetSeg = Integer.parseInt(request.getParameter("raffles_targetSeg"));
 		int wannabes_targetSeg = Integer.parseInt(request.getParameter("wannabes_targetSeg"));
 		int strugglers_targetSeg = Integer.parseInt(request.getParameter("strugglers_targetSeg"));
 		int deprived_targetSeg = Integer.parseInt(request.getParameter("deprived_targetSeg"));
 		
-		int print_medium = Integer.parseInt(request.getParameter("print_medium"));
+		/*int print_medium = Integer.parseInt(request.getParameter("print_medium"));
 		int television_medium = Integer.parseInt(request.getParameter("television_medium"));
 		int radio_medium = Integer.parseInt(request.getParameter("radio_medium"));
 		int internet_medium = Integer.parseInt(request.getParameter("internet_medium"));
+		*/
 		
-		// Processing Perceptual Objective
+	/*	// Processing Perceptual Objective
 		String perceptualObjSelected = request.getParameter("perceptualObj");
 		
 		String semanticScaleDim1 = request.getParameter("semanticScaleDim1");
@@ -185,7 +186,7 @@ public class BrandAdvController extends MultiActionController{
 		String mdsDimen1 = request.getParameter("mdsDimen1");
 		String mdsDimen2 = request.getParameter("mdsDimen2");
 		String mdsDimen1Obj = request.getParameter("mdsDimen1Obj");
-		String mdsDimen2Obj = request.getParameter("mdsDimen2Obj");
+		String mdsDimen2Obj = request.getParameter("mdsDimen2Obj");*/
 		
 		
 		
@@ -196,62 +197,36 @@ public class BrandAdvController extends MultiActionController{
 			
 			
 			// Tracking the old media budget and research budget for period budget tracking purposes
-			long oldAdvMediaBudget = 0, oldAdvResearchBudget = 0;
+			long oldAdvMediaBudget = 0;
 			if (thisPeriodBrandAdv != null) {
 				oldAdvMediaBudget = thisPeriodBrandAdv.getAdvMediabudget();
-				oldAdvResearchBudget = thisPeriodBrandAdv.getAdvResearchBudget();
 			}
 			
 			
 			thisPeriodBrandAdv.setAdvMediabudget(advMediaBudget);
-			thisPeriodBrandAdv.setAdvResearchBudget(advResearchBudget);
+			thisPeriodBrandAdv.setAdvResearchBudget(0);
 			
-			thisPeriodBrandAdv.setSegBlueBloods(blueblood_targetSeg);
+			thisPeriodBrandAdv.setSegBlueBloods(0);
 			thisPeriodBrandAdv.setSegRaffles(raffles_targetSeg);
 			thisPeriodBrandAdv.setSegWannabees(wannabes_targetSeg);
 			thisPeriodBrandAdv.setSegStrugglers(strugglers_targetSeg);
 			thisPeriodBrandAdv.setSegDeprived(deprived_targetSeg);
 			
-			thisPeriodBrandAdv.setMediumPrint(print_medium);
-			thisPeriodBrandAdv.setMediumInternet(internet_medium);
-			thisPeriodBrandAdv.setMediumRadio(radio_medium);
-			thisPeriodBrandAdv.setMediumTelevision(television_medium);
+			thisPeriodBrandAdv.setMediumPrint(0);
+			thisPeriodBrandAdv.setMediumInternet(0);
+			thisPeriodBrandAdv.setMediumRadio(0);
+			thisPeriodBrandAdv.setMediumTelevision(0);
 			
 			// updating the Brand Advertisement expenditures, only if the budget is positive
-			long updatedBudget = teamCurrentBudget - (advMediaBudget - oldAdvMediaBudget) - (advResearchBudget - oldAdvResearchBudget);
+			long updatedBudget = teamCurrentBudget - (advMediaBudget - oldAdvMediaBudget);
 			if (updatedBudget > 0) {
 			
 				brandAdvertisementService.updateBrandAdvertisement(thisPeriodBrandAdv);
 				
 				PerceptualObj thisPeriodBrandPerceptualObj = null;
 				
-				if (perceptualObjSelected.equalsIgnoreCase("semanticScales")) {
-					
-					if (((semanticScaleDim1 != null && !(semanticScaleDim1.equalsIgnoreCase("")) &&
-							semanticScaleDim1Obj != null && !(semanticScaleDim1Obj.equalsIgnoreCase(""))) || 
-							(semanticScaleDim2 != null && !(semanticScaleDim2.equalsIgnoreCase("")) &&
-									semanticScaleDim2Obj != null && !(semanticScaleDim2Obj.equalsIgnoreCase("")))) 
-							&& (Brand)request.getSession().getAttribute(Constants.SELECTED_BRAND_ADV) != null) {
-					
-						thisPeriodBrandPerceptualObj = addPerceptualObj((Brand)request.getSession().getAttribute(Constants.SELECTED_BRAND_ADV), 
-								semanticScaleDim1, semanticScaleDim1Obj, semanticScaleDim2, semanticScaleDim2Obj, 
-								PerceptualObjectiveScales.SEMANTIC_SCALE.getPerceptualObjScale()); 
-					}
-				}
-				else if (perceptualObjSelected.equalsIgnoreCase("mdsDimension")) {
-					
-					if (((mdsDimen1 != null && !(mdsDimen1.equalsIgnoreCase("")) &&
-							mdsDimen1Obj != null && !(mdsDimen1Obj.equalsIgnoreCase(""))) || 
-							(mdsDimen2 != null && !(mdsDimen2.equalsIgnoreCase("")) &&
-									mdsDimen2Obj != null && !(mdsDimen2Obj.equalsIgnoreCase("")))) 
-							&& (Brand)request.getSession().getAttribute(Constants.SELECTED_BRAND_ADV) != null) {
-					
-						thisPeriodBrandPerceptualObj = addPerceptualObj((Brand)request.getSession().getAttribute(Constants.SELECTED_BRAND_ADV), 
-								mdsDimen1, mdsDimen1Obj,mdsDimen2, mdsDimen2Obj, 
-								PerceptualObjectiveScales.MDS_DIMENSION.getPerceptualObjScale()); 
-					}
-				}
-				else if (perceptualObjSelected.equalsIgnoreCase("noObjective")) {
+				String perceptualObjSelected = "noObjective";
+				if (perceptualObjSelected.equalsIgnoreCase("noObjective")) {
 					if ((Brand)request.getSession().getAttribute(Constants.SELECTED_BRAND_ADV) != null) {
 							deleteExisitingPerceptualObjective((Brand)request.getSession().getAttribute(Constants.SELECTED_BRAND_ADV));
 							
@@ -302,7 +277,20 @@ public class BrandAdvController extends MultiActionController{
 		}
 		
 	}
+
 	
+	/**
+	 * Method not being used in bizlabs
+	 * 
+	 * @param thisBrand
+	 * @param perceptualObjScaleDim1
+	 * @param perceptualObjScaleDim1Obj
+	 * @param perceptualObjScaleDim2
+	 * @param perceptualObjScaleDim2Obj
+	 * @param perceptualObjScale
+	 * @return
+	 */
+	@SuppressWarnings("unused")
 	private PerceptualObj addPerceptualObj(Brand thisBrand,
 			String perceptualObjScaleDim1, String perceptualObjScaleDim1Obj,String perceptualObjScaleDim2, 
 			String perceptualObjScaleDim2Obj, String perceptualObjScale) {
