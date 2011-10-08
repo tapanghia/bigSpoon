@@ -75,7 +75,6 @@ public class HumanResourcesDeptController extends MultiActionController{
 			
 			TeamHR teamHR = hrService.getTeamHR(loggedInTeam, currPeriod);
 			boolean isSalesForceUpdated = checkIfSalesForceIsUpdated(teamHR, level3SalesForce, level2SalesForce, level1SalesForce);
-			System.out.println("isSalesForceUpdated: " +isSalesForceUpdated);
 			
 			if (teamHR != null) {
 				int currentHRExpensesRecorded = teamHR.getHiringFiringCost() + 
@@ -108,9 +107,6 @@ public class HumanResourcesDeptController extends MultiActionController{
 								Iterator<Map.Entry<Brand, SalesForce>> mapItr = brandSalesForceMap.entrySet().iterator();
 								while (mapItr.hasNext()) {
 									Map.Entry<Brand, SalesForce> entry = (Map.Entry<Brand, SalesForce>) mapItr.next();
-									System.out.println("deleting SalesForce, for Brand, " + entry.getKey().getBrandName());
-									System.out.println("salesForce details: " + entry.getValue().getSupermarket_sf() + 
-											", " + entry.getValue().getGeneralStore_sf() + ", " + entry.getValue().getKiranaStore_sf());
 									
 									SalesForce brandSalesForce = entry.getValue();
 									brandSalesForce.setSupermarket_sf(0);
