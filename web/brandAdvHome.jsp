@@ -24,8 +24,6 @@
   }
   Brand selectedBrand = (Brand) request.getSession().getAttribute(Constants.SELECTED_BRAND_ADV);
   
-  PerceptualObj thisBrandPerceptualObj = (PerceptualObj)request.getSession().getAttribute(Constants.BRAND_PERCEPTUALOBJECTIVE);
- 
 %>
 <style>
 	#raffles, #wannabes, #deprived, #strugglers {
