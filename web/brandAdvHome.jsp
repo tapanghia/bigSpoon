@@ -24,6 +24,7 @@
   }
   Brand selectedBrand = (Brand) request.getSession().getAttribute(Constants.SELECTED_BRAND_ADV);
   
+  PerceptualObj thisBrandPerceptualObj = (PerceptualObj)request.getSession().getAttribute(Constants.BRAND_PERCEPTUALOBJECTIVE);
  
 %>
 <style>
@@ -102,7 +103,7 @@ $("#brandAdvHomeForm").validate({
 	$(function() {
 		$( "#raffles").slider({
 			range: "min",
-			value: <%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getSegRaffles():"")%>,
+			value: <%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getSegRaffles():"0")%>,
 			min: 0,
 			max: 100,
 			slide: function( event, ui ) {
@@ -119,7 +120,7 @@ $("#brandAdvHomeForm").validate({
 	$(function() {
 		$( "#wannabes").slider({
 			range: "min",
-			value: <%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getSegWannabees():"")%>,
+			value: <%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getSegWannabees():"0")%>,
 			min: 0,
 			max: 100,
 			slide: function( event, ui ) {
@@ -136,7 +137,7 @@ $("#brandAdvHomeForm").validate({
 	$(function() {
 		$( "#deprived").slider({
 			range: "min",
-			value: <%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getSegDeprived():"")%>,
+			value: <%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getSegDeprived():"0")%>,
 			min: 0,
 			max: 100,
 			slide: function( event, ui ) {
@@ -153,7 +154,7 @@ $("#brandAdvHomeForm").validate({
 	$(function() {
 		$( "#strugglers").slider({
 			range: "min",
-			value: <%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getSegStrugglers():"")%>,
+			value: <%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getSegStrugglers():"0")%>,
 			min: 0,
 			max: 100,
 			slide: function( event, ui ) {
