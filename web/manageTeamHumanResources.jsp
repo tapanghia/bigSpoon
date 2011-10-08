@@ -12,8 +12,13 @@
 $(document).ready(function(){
   $("#teamHumanResourcesForm").submit(function(){
   	var thisForm = document.teamHumanResourcesForm;
+  	var confirmMessage = "Modifying the Sales Force, will reset the sales force allocations done to different Brands. Please visit Sales Team Page and reallocate sales force.";
   	thisForm.todo.value = 'saveTeamHumanResources';
-    return true;
+  	if(window.confirm(confirmMessage))
+    	return true;
+    else 
+    	return false;
+
   });
   $("#teamHumanResourcesForm input.cancel").click(function(){
     window.location = "<%=CONTEXTPATH%>/humanResourcesDept.htm";

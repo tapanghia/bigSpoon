@@ -1,5 +1,9 @@
 package com.marklabs.web.controllers;
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -9,6 +13,10 @@ import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
 import com.marklabs.HRDept.IHRService;
 import com.marklabs.HRDept.TeamHR;
+import com.marklabs.brands.Brand;
+import com.marklabs.brands.IBrandService;
+import com.marklabs.distributionCoverage.ISalesForceService;
+import com.marklabs.distributionCoverage.SalesForce;
 import com.marklabs.teams.ITeamService;
 import com.marklabs.teams.Team;
 
@@ -16,6 +24,8 @@ public class HumanResourcesDeptController extends MultiActionController{
 	
 	private IHRService hrService;
 	private ITeamService teamService;
+	private ISalesForceService salesForceService;
+	private IBrandService brandService;
 	
 	/**
 	 * Default method, If the action is not passed, when the control is passed to this controller, 
@@ -64,6 +74,8 @@ public class HumanResourcesDeptController extends MultiActionController{
 			int updatedTrainingCost = calculateTrainingCost(trainingLevel2SF, trainingLevel1SF);
 			
 			TeamHR teamHR = hrService.getTeamHR(loggedInTeam, currPeriod);
+			boolean isSalesForceUpdated = checkIfSalesForceIsUpdated(teamHR, level3SalesForce, level2SalesForce, level1SalesForce);
+			System.out.println("isSalesForceUpdated: " +isSalesForceUpdated);
 			
 			if (teamHR != null) {
 				int currentHRExpensesRecorded = teamHR.getHiringFiringCost() + 
@@ -86,6 +98,30 @@ public class HumanResourcesDeptController extends MultiActionController{
 					teamHR.setTrainingLevel2SalesForce(trainingLevel2SF);
 					teamHR.setTrainingCost(updatedTrainingCost);
 					hrService.updateTeamHR(teamHR);
+					
+					// Checking if Sales Force is updated. If Sales Force is updated, delete all Sales Force allocations done to different channels
+					if (isSalesForceUpdated) {
+						List<Brand> thisPeriodBrands = brandService.getAllBrandsForTeamCurrentPeriod(loggedInTeam, currPeriod);
+						if (thisPeriodBrands != null && thisPeriodBrands.size() > 0) {
+							Map<Brand, SalesForce> brandSalesForceMap = salesForceService.getSalesForceForBrands(thisPeriodBrands);
+							if (brandSalesForceMap != null && brandSalesForceMap.size() > 0) {
+								Iterator<Map.Entry<Brand, SalesForce>> mapItr = brandSalesForceMap.entrySet().iterator();
+								while (mapItr.hasNext()) {
+									Map.Entry<Brand, SalesForce> entry = (Map.Entry<Brand, SalesForce>) mapItr.next();
+									System.out.println("deleting SalesForce, for Brand, " + entry.getKey().getBrandName());
+									System.out.println("salesForce details: " + entry.getValue().getSupermarket_sf() + 
+											", " + entry.getValue().getGeneralStore_sf() + ", " + entry.getValue().getKiranaStore_sf());
+									
+									SalesForce brandSalesForce = entry.getValue();
+									brandSalesForce.setSupermarket_sf(0);
+									brandSalesForce.setGeneralStore_sf(0);
+									brandSalesForce.setKiranaStore_sf(0);
+									
+									salesForceService.saveOrUpdateSalesForce(brandSalesForce);
+								}
+							}
+						}
+					}
 					
 					
 					// update team budget
@@ -141,6 +177,14 @@ public class HumanResourcesDeptController extends MultiActionController{
 		return mav;
 	}
 
+	private boolean checkIfSalesForceIsUpdated(TeamHR teamHR,
+			int level3SalesForce, int level2SalesForce, int level1SalesForce) {
+		if (teamHR != null && teamHR.getTotalSalesForce() < (level1SalesForce + level2SalesForce + level3SalesForce))
+			return false;
+
+		return true;
+	}
+
 	private int calculateTrainingCost(int trainingLevel2SF, int trainingLevel1SF) {
 		return (trainingLevel2SF * 10000) + (trainingLevel1SF * 7000);
 	}
@@ -176,7 +220,21 @@ public class HumanResourcesDeptController extends MultiActionController{
 	public void setTeamService(ITeamService teamService) {
 		this.teamService = teamService;
 	}
-	
-	
+
+	public ISalesForceService getSalesForceService() {
+		return salesForceService;
+	}
+
+	public void setSalesForceService(ISalesForceService salesForceService) {
+		this.salesForceService = salesForceService;
+	}
+
+	public IBrandService getBrandService() {
+		return brandService;
+	}
+
+	public void setBrandService(IBrandService brandService) {
+		this.brandService = brandService;
+	}
 	
 }

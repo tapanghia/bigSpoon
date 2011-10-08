@@ -2,6 +2,10 @@ package com.marklabs.web.controllers;
 
 public class Constants {
 	
+	// User Notification
+	public final static String USER_NOTIFICATION = "userNotificationMessage";
+	
+	
 	// Team related constants
 	public final static String TEAM_ID = "teamId";
 	public final static String TEAM_USERNAME = "teamUserName";
@@ -64,6 +68,11 @@ public class Constants {
 	public static final String TOTAL_KIRANASTORESALESFORCE = "totalKiranaStoreSalesForce";
 	
 	public static final String REPORT_TEAM_PURCHASE_MAP_LISTING = "reportTeamPurchaseMapListing";
+	
+	// Sales Force
+	public static final String PREVIOUS_PERIOD_BRANDS_FOR_SALES_FORCE = "previousPeriodBrandsForSalesForce";
+	public static final String PREVIOUS_PERIOD_BRAND_SALES_FORCE_MAP = "previousPeriodBrandSalesForceMap";
+	public static final String TOTAL_AVAILABLE_SALES_FORCE_TO_ALLOCATE = "totalAvailabeSalesForceForThisPeriod";
 	
 	// Team Finances
 	public static final String TEAM_FINANCES = "teamFinancesForThisPeriod";

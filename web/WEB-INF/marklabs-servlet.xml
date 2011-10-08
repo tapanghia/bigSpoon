@@ -1170,7 +1170,7 @@
 		<property name="brandService" ref="brandService"/>
 		<property name="marginOfferedService" ref="marginOfferedService"/>
 		<property name="salesForceService" ref="salesForceService"/>
-		<property name="teamService" ref="teamService"/>
+		<property name="hrService" ref="hrService"/>
 		<property name="methodNameResolver">
 			<bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
 				<property name="paramName"><value>do</value></property>
@@ -1274,6 +1274,8 @@
 	<bean id="humanResourcesDeptController" class="com.marklabs.web.controllers.HumanResourcesDeptController">
 		<property name="hrService" ref="hrService"/>
 		<property name="teamService" ref="teamService"/>
+		<property name="salesForceService" ref="salesForceService"/>
+		<property name="brandService" ref="brandService"/>
 		<property name="methodNameResolver">
 			<bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
 				<property name="paramName"><value>do</value></property>

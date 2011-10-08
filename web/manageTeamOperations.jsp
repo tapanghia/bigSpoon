@@ -113,7 +113,7 @@ $(document).ready(function() {
 	        			<div class="colx3-left">
 							<span class="label"></span>
 							<strong>Choose from the following options:</strong>
-					</div>
+						</div>
 					</div>
 					<div class="columns">
 	        			<div class="colx1">
