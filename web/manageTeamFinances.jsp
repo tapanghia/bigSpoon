@@ -16,6 +16,26 @@ $(document).ready(function(){
   $("#teamFinancesForm input.cancel").click(function(){
     window.location = "<%=CONTEXTPATH%>/financeDept.htm";
   });
+  $('#debtAppliedFor').keyup(function () {
+        if ($.trim(this.value) == "") {
+          $('#generatedebt').attr("disabled", true);
+          $('#generatedCurrentEquity').val("");
+          $('#generatedNewDebt_equityRatio').val("");
+          $('#generatedROI').val("");
+          $('#generatedQuarterlyInterestPayable').val("");
+        }
+      else {
+            $('#generatedebt').removeAttr("disabled");
+      }
+    });
+  $('#generatedebt').click(function () {
+	  if($('#generatedNewDebt_equityRatio').val > 1) {
+	    $('#submit').attr("disabled", true);
+	  }
+	else {
+	    $('#submit').removeAttr("disabled");
+	  }
+    });
 });
 </script>
 <script type="text/javascript"> 
@@ -34,7 +54,8 @@ $("#teamFinancesForm").validate({
 		rules: {
 			debtAppliedFor: {
 				required: true,
-				number: true
+				number: true,
+				digits: true
 			}
 		}
 	});
@@ -184,7 +205,7 @@ $("#teamFinancesForm").validate({
 						</div>
 						<div class="colx3-right">
 							<span class="label"></span>
-							<input type="button" class="button generate" value="Generate">
+							<input type="button" class="button generate" value="Generate" id="generatedebt" disabled>
 						</div>
 					</div>
 					
@@ -248,7 +269,7 @@ $("#teamFinancesForm").validate({
 
 				
 				<div class="columns">
-					<button type="submit" class="red" name="submit">Save</button>
+					<button type="submit" class="red" name="submit" id="submit" disabled>Save</button>
 					<button type="button" class="red" name="cancel">Cancel</button>
 				</div>	
 

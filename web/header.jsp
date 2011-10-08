@@ -94,10 +94,10 @@
 				</ul>
 			</li>-->
 			<li class="write <%= (currentLink.equalsIgnoreCase("FinanceDept"))?"current":"" %>">
-				<a href="" title="Finances">Finances</a>
+				<a href="financeDept.htm" title="Finances">Finances</a>
 				<ul>
 					<li><a href="financeDept.htm" title="Finance Team Home">Finance Team Home</a></li>
-					<li><a href="financeDept.htm?do=manageTeamFinances" title="Finances">Finances</a></li>
+					<li><a href="financeDept.htm?do=manageTeamFinances" title="Finances">Manage Finances</a></li>
 				</ul>
 			</li>
 			<li class="comments <%= (currentLink.equalsIgnoreCase("marketing"))?"current":"" %>"><a href="marketingTeam.htm" title="Marketing Team">MarketingTeam</a>
@@ -109,17 +109,17 @@
 				</ul>
 			</li>
 			<li class="backup <%= (currentLink.equalsIgnoreCase("OperationsDept"))?"current":"" %>">
-				<a href="" title="Operations">Finances</a>
+				<a href="operationsDept.htm" title="Operations">Operations</a>
 				<ul>
 					<li><a href="operationsDept.htm" title="Operations Team Home">Operations Team Home</a></li>
-					<li><a href="operationsDept.htm?do=manageTeamOperations" title="Operations">Operations</a></li>
+					<li><a href="operationsDept.htm?do=manageTeamOperations" title="Operations">Manage Operations</a></li>
 				</ul>
 			</li>
 			<li class="users <%= (currentLink.equalsIgnoreCase("HumanResourcesDept"))?"current":"" %>">
-				<a href="" title="Human Resources">HumanResources</a>
+				<a href="humanResourcesDept.htm" title="Human Resources">HumanResources</a>
 				<ul>
 					<li><a href="humanResourcesDept.htm" title="Human Resource Team Home">Human Resource Team Home</a></li>
-					<li><a href="humanResourcesDept.htm?do=manageTeamHumanResources" title="Human Resources">Human Resources</a></li>
+					<li><a href="humanResourcesDept.htm?do=manageTeamHumanResources" title="Human Resources">Manage Human Resources</a></li>
 				</ul>
 			</li>
 			<li class="medias <%= (currentLink.equalsIgnoreCase("sales"))?"current":"" %>">

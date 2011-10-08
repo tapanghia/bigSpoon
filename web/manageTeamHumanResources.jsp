@@ -18,6 +18,55 @@ $(document).ready(function(){
   $("#teamHumanResourcesForm input.cancel").click(function(){
     window.location = "<%=CONTEXTPATH%>/humanResourcesDept.htm";
   });
+$('#level3SalesForce').keyup(function () {
+        if ($('#level3SalesForce').val + $('#level2SalesForce').val + $('#level1SalesForce').val == 0) {
+          $('#generate1').attr("disabled", true);
+        }
+      else {
+            $('#generate1').removeAttr("disabled");
+      }
+    });
+$('#level2SalesForce').keyup(function () {
+        if ($('#level3SalesForce').val + $('#level2SalesForce').val + $('#level1SalesForce').val == 0) {
+          $('#generate1').attr("disabled", true);
+        }
+      else {
+            $('#generate1').removeAttr("disabled");
+      }
+    });
+$('#level1SalesForce').keyup(function () {
+        if ($('#level3SalesForce').val + $('#level2SalesForce').val + $('#level1SalesForce').val == 0) {
+          $('#generate1').attr("disabled", true);
+        }
+      else {
+            $('#generate1').removeAttr("disabled");
+      }
+    });
+
+$('#level2SalesForce_training').keyup(function () {
+if ($('#level1SalesForce_training').val == 0) {
+          $('#generate2').attr("disabled", true);
+        }
+      else {
+            $('#generate2').removeAttr("disabled");
+      }
+    });
+$('#level1SalesForce_training').keyup(function () {
+if ($('#level2SalesForce_training').val == 0) {
+          $('#generate2').attr("disabled", true);
+        }
+      else {
+            $('#generate2').removeAttr("disabled");
+      }
+    });
+$('#generate2').click(function () {
+	  if($('#totalSalesCost').val == 0 || $('#trainingCost').val == 0) {
+	    $('#submit').attr("disabled", true);
+	  }
+	else {
+	    $('#submit').removeAttr("disabled");
+	  }
+    });
 });
 </script>
 <script type="text/javascript"> 
@@ -33,7 +82,20 @@ $.validator.setDefaults({
 $(document).ready(function() {
 	
 	$("#teamHumanResourcesForm").validate({
-	
+	rules: {
+			level1SalesForce_training: {
+				required: true,
+				number: true,
+				digits: true,
+				min: 1
+			},
+			level2SalesForce_training: {
+				required: true,
+				number: true,
+				digits: true,
+				min: 1
+			}
+		}
 	});
 	
 	$("input.generate").click(function(){
@@ -226,7 +288,7 @@ $(document).ready(function() {
 						</div>
 						<div class="colx4-right">
 							<span class="label"></span>
-							<input type="button" class="button generate" value="Generate" onClick="">
+							<input type="button" class="button generate" value="Generate" onClick="" id="generate1" disabled>
 						</div>
 					</div>
 					
@@ -353,7 +415,7 @@ $(document).ready(function() {
 						</div>
 						<div class="colx4-right">
 							<span class="label"></span>
-							<input type="button" class="button generateTraining" value="Generate" onClick="">
+							<input type="button" class="button generateTraining" value="Generate" onClick="" id="generate2" disabled>
 						</div>
 					</div>
 					
@@ -361,7 +423,7 @@ $(document).ready(function() {
 					
 				
 				<div class="columns">
-					<button type="submit" class="red" name="submit">Save</button>
+					<button type="submit" class="red" name="submit" id="submit" disabled>Save</button>
 					<button type="button" class="red" name="cancel">Cancel</button>
 				</div>	
 
