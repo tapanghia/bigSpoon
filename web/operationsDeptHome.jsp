@@ -49,27 +49,14 @@
 				<h1>Operations Department</h1>
 
 
-						<span style="color:#0083C3">Welcome to the R&amp;D Department</span>.
-						<p style="text-align: justify;">We constitute a team of fight 
-						hundred people headed by <span style="color:#0083C3"><i>Dr. Alex Jordan</i>.</span></p>
-						<p style="text-align: justify;">As consumer preferences evolve, the company has to <span style="color:#0083C3"><i>keep on innovating</i></span> 
-						to stay ahead of competition. Onus for this falls on the shoulders of 
-						the scientists at R&amp;D department who are always involved in cutting 
-						edge research projects. We have a strong research team and state of art 
-						equipments capable of delivering the products with the exact 
-						specifications as desired. </p>
-						<p style="text-align: justify;">This department has <span style="color:#0083C3"><i>4 sections</i></span> as shown in the top menu:
-						<br><span style="color:#0083C3"><i><br>View R&amp;D Report</i></span>- Here you
-						can view reports of the projects that our department has researched so far. 
-						<br><span style="color:#0083C3"><i><br>Add Research Projects</i></span> - This 
-						section is where you can give instructions to our scientists to develop
-						new projects. You need to provide desired values for every attribute and
-						then request a base cost (higher or equal to the minimum base cost 
-						suggested by us) for the research to be conducted. 
-						<br><span style="color:#0083C3"><i><br>View/Edit Research Project</i></span>
-						- Projects added in this period can be viewed under this section. The projects can
-						be edited or deleted as desired.
-						<br><span style="color:#0083C3"><i><br>Intelligence reports</i></span> - We regularly monitor the developments of our competing brands and reverse engineer their products to find out their specifications. You can view all such classified reports here.</p>
+						<span style="color:#0083C3">Welcome to the Operations Department.</span><br><br>
+						<p style="text-align: justify;">This team is led by <span style="color:#0083C3"><i>Mr. Venkat Raghavan</i>.</span>Ours is the biggest team of the company.</p>
+						<p style="text-align: justify;">From procurement of raw materials to manufacturing to distribution is taken care of by the operations team. We take every measure to minimize errors in the process and ensure that all products are produced exactly as per specifications. We are six sigma compliant and regularly conduct quality checks so that we have negligible defective products.</p>
+						<p style="text-align: justify;">Initially the company has a plant of total capacity of 1 lac units. Both the brands of the company are produced from the same factory. A part of the cost is fixed and the remaining is variable. Therefore, unless the plant is running close to capacity, per unit cost of production maybe higher.</p>
+						<p style="text-align: justify;">When required the company can expand the plant to increase the capacity of the plant. Do keep in mind that bigger plants have higher fixed costs.</p>
+						<p style="text-align: justify;">On the Top menu you will find the Production Tab<br>
+<span style="color:#0083C3"><i>Manage Operations</i></span> - You may decide the additional plant capacity in this section.</p>
+
 					</div></div></section>
 <div class="clear"></div>
 		

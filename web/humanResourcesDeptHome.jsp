@@ -46,30 +46,15 @@
 		
 		<section class="grid_9">
 			<div class="block-border"><div class="block-content">
-				<h1>Human Resource Department</h1>
+				<h1>Human Resources Department</h1>
 
 
-						<span style="color:#0083C3">Welcome to the R&amp;D Department</span>.
-						<p style="text-align: justify;">We constitute a team of fight 
-						hundred people headed by <span style="color:#0083C3"><i>Dr. Alex Jordan</i>.</span></p>
-						<p style="text-align: justify;">As consumer preferences evolve, the company has to <span style="color:#0083C3"><i>keep on innovating</i></span> 
-						to stay ahead of competition. Onus for this falls on the shoulders of 
-						the scientists at R&amp;D department who are always involved in cutting 
-						edge research projects. We have a strong research team and state of art 
-						equipments capable of delivering the products with the exact 
-						specifications as desired. </p>
-						<p style="text-align: justify;">This department has <span style="color:#0083C3"><i>4 sections</i></span> as shown in the top menu:
-						<br><span style="color:#0083C3"><i><br>View R&amp;D Report</i></span>- Here you
-						can view reports of the projects that our department has researched so far. 
-						<br><span style="color:#0083C3"><i><br>Add Research Projects</i></span> - This 
-						section is where you can give instructions to our scientists to develop
-						new projects. You need to provide desired values for every attribute and
-						then request a base cost (higher or equal to the minimum base cost 
-						suggested by us) for the research to be conducted. 
-						<br><span style="color:#0083C3"><i><br>View/Edit Research Project</i></span>
-						- Projects added in this period can be viewed under this section. The projects can
-						be edited or deleted as desired.
-						<br><span style="color:#0083C3"><i><br>Intelligence reports</i></span> - We regularly monitor the developments of our competing brands and reverse engineer their products to find out their specifications. You can view all such classified reports here.</p>
+						<span style="color:#0083C3">Welcome to the Human Resources Department.</span><br><br>
+						<p style="text-align: justify;">The HR team operates under the leadership of <span style="color:#0083C3"><i>Ms. Shubha Murthy</i>.</span></p>
+						<p style="text-align: justify;">Employees are the biggest asset of any organization. Our job is to identify the right kind of talent required to take the company to newer heights. Sometimes though we also have to take some harsh calls and fire the unproductive employees. Apart from Hiring/Firing we also groom employees to make them more efficient. Employees can be of 3 skill levels based on the effectiveness of their sales pitches. Note that the costs associated wit hiring employees of various levels are different. Typically hiring employees at a lower skill level and training them is less costly compared to hiring highly skilled people. </p>
+						<p style="text-align: justify;">On the Top menu you will see the HR Management section:<br><br>
+<span style="color:#0083C3"><i>HR Management</i></span> - This has 2 subsections:<br><br><span style="color:#0083C3"><i>a) Hiring/Firing</i></span> - In this section you may decide how many employees to recruit/fire of each skill level.<br><span style="color:#0083C3"><i>b) Training</i></span> - Here you may train your employees to make them more skilled at sales.</p>
+
 					</div></div></section>
 <div class="clear"></div>
 		

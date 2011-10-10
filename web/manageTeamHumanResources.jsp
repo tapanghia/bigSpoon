@@ -49,19 +49,19 @@ $('#level1SalesForce').keyup(function () {
     });
 
 $('#level2SalesForce_training').keyup(function () {
-if ($('#level1SalesForce_training').val == 0) {
-          $('#generate2').attr("disabled", true);
+if (($('#level1SalesForce_training').val + $('#level2SalesForce_training').val) > ($('#pplevel1SalesForce_training').val + $('#pplevel2SalesForce_training').val)) {
+	    $('#submit').attr("disabled", true);
         }
       else {
-            $('#generate2').removeAttr("disabled");
+	    $('#submit').removeAttr("disabled");
       }
     });
 $('#level1SalesForce_training').keyup(function () {
-if ($('#level2SalesForce_training').val == 0) {
-          $('#generate2').attr("disabled", true);
+if (($('#level1SalesForce_training').val + $('#level2SalesForce_training').val) > ($('#pplevel1SalesForce_training').val + $('#pplevel2SalesForce_training').val)) {
+	    $('#submit').attr("disabled", true);
         }
       else {
-            $('#generate2').removeAttr("disabled");
+	    $('#submit').removeAttr("disabled");
       }
     });
 $('#generate2').click(function () {
@@ -282,14 +282,14 @@ $(document).ready(function() {
 						</div>
 						<div class="colx4-center1">
 							<span class="label"></span><p><span class="relative">	
-							<input type="text" name="ppTotalSalesForce" id="ppTotalSalesForce" disabled 
+							<input type="text" name="ppTotalSalesForce" id="ppTotalSalesForce" readonly 
 								value = "<%= ((previousPeriodTeamHR != null)?previousPeriodTeamHR.getTotalSalesForce():0)%>" 
 								class="past"><span class="check-past"></span></span></p>
 						</div>
 						<div class="colx4-center2">
 							<span class="label"></span>
 							<input type="text" name="totalSalesForce" id="totalSalesForce" 
-								class="past" disabled>
+								class="past" readonly>
 						</div>
 						<div class="colx4-right">
 							<span class="label"></span>
@@ -304,14 +304,14 @@ $(document).ready(function() {
 						</div>
 						<div class="colx4-center1">
 							<span class="label"></span><p><span class="relative">	
-							<input type="text" name="ppHiringFiringCost" id="ppHiringFiringCost" disabled 
+							<input type="text" name="ppHiringFiringCost" id="ppHiringFiringCost" readonly 
 								value = "<%= ((previousPeriodTeamHR != null)?previousPeriodTeamHR.getHiringFiringCost():0)%>" 
 								class="past"><span class="check-past"></span></span></p>
 						</div>
 						<div class="colx4-center2">
 							<span class="label"></span>
 							<input type="text" name="hiringFiringCost" id="hiringFiringCost" 
-								class="past" disabled>
+								class="past" readonly>
 						</div>
 						<div class="colx4-right">
 							<span class="label"></span>
@@ -325,14 +325,14 @@ $(document).ready(function() {
 						</div>
 						<div class="colx4-center1">
 							<span class="label"></span><p><span class="relative">	
-							<input type="text" name="ppTotalSalesCost" id="ppTotalSalesCost" disabled 
+							<input type="text" name="ppTotalSalesCost" id="ppTotalSalesCost" readonly 
 								value = "<%= ((previousPeriodTeamHR != null)?previousPeriodTeamHR.getTotalSalesCost():0)%>" 
 								class="past"><span class="check-past"></span></span></p>
 						</div>
 						<div class="colx4-center2">
 							<span class="label"></span>
 							<input type="text" name="totalSalesCost" id="totalSalesCost"
-								class="past" disabled>
+								class="past" readonly>
 						</div>
 						<div class="colx4-right">
 							<span class="label"></span>
@@ -367,7 +367,7 @@ $(document).ready(function() {
 						</div>
 						<div class="colx4-center1">
 							<span class="label"></span><p><span class="relative">	
-							<input type="text" name="ppLevel2SalesForce_training" id="ppLevel2SalesForce_training" disabled 
+							<input type="text" name="ppLevel2SalesForce_training" id="ppLevel2SalesForce_training" readonly 
 								value = "<%= ((previousPeriodTeamHR != null)?previousPeriodTeamHR.getLevel2SalesForce():0)%>" 
 								class="past"><span class="check-past"></span></span></p>
 						</div>
@@ -388,7 +388,7 @@ $(document).ready(function() {
 						</div>
 						<div class="colx4-center1">
 							<span class="label"></span><p><span class="relative">	
-							<input type="text" name="ppLevel1SalesForce_training" id="ppLevel1SalesForce_training" disabled 
+							<input type="text" name="ppLevel1SalesForce_training" id="ppLevel1SalesForce_training" readonly 
 								value = "<%= ((previousPeriodTeamHR != null)?previousPeriodTeamHR.getLevel1SalesForce():0)%>" 
 								class="past"><span class="check-past"></span></span></p>
 						</div>
@@ -409,14 +409,14 @@ $(document).ready(function() {
 						</div>
 						<div class="colx4-center1">
 							<span class="label"></span><p><span class="relative">	
-							<input type="text" name="ppTrainingCost" id=""ppTrainingCost"" disabled 
+							<input type="text" name="ppTrainingCost" id=""ppTrainingCost"" readonly 
 								value = "<%= ((previousPeriodTeamHR != null)?previousPeriodTeamHR.getTrainingCost():0)%>" 
 								class="past"><span class="check-past"></span></span></p>
 						</div>
 						<div class="colx4-center2">
 							<span class="label"></span>
 							<input type="text" name="trainingCost" id="trainingCost"
-								class="past" disabled>
+								class="past" readonly>
 						</div>
 						<div class="colx4-right">
 							<span class="label"></span>

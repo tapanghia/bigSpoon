@@ -18,14 +18,14 @@ $(document).ready(function(){
   });
   $('#debtAppliedFor').keyup(function () {
         if ($.trim(this.value) == "") {
-          $('#generatedebt').attr("disabled", true);
+          $('#generatedebt').attr("readonly", true);
           $('#generatedCurrentEquity').val("");
           $('#generatedNewDebt_equityRatio').val("");
           $('#generatedROI').val("");
           $('#generatedQuarterlyInterestPayable').val("");
         }
       else {
-            $('#generatedebt').removeAttr("disabled");
+            $('#generatedebt').removeAttr("readonly");
       }
     });
   $('#generatedebt').click(function () {
@@ -148,7 +148,7 @@ $("#teamFinancesForm").validate({
 							<span class="label"></span><p><span class="relative">	
 							<input type="text" name="currentDebt" id="currentDebt" 
 								value = "<%= ((teamFinances != null)?teamFinances.getDebt():0)%>" 
-								disabled class="past">
+								readonly class="past">
 						</div>
 						<div class="colx3-right">
 							<span class="label"></span>
@@ -164,7 +164,7 @@ $("#teamFinancesForm").validate({
 							<span class="label"></span><p><span class="relative">	
 							<input type="text" name="currentEquity" id="currentEquity" 
 								value = "<%= ((teamFinances != null)?teamFinances.getEquity():0)%>" 
-								disabled class="past">
+								readonly class="past">
 						</div>
 						<div class="colx3-right">
 							<span class="label"></span>
@@ -180,7 +180,7 @@ $("#teamFinancesForm").validate({
 							<span class="label"></span><p><span class="relative">	
 							<input type="text" name="currentDebt_equityRatio" id="currentDebt_equityRatio" 
 								value = "<%= ((teamFinances != null)?df.format(teamFinances.getDebtEquityRatio()):0)%>" 
-								disabled class="past">
+								readonly class="past">
 						</div>
 						<div class="colx3-right">
 							<span class="label"></span>
@@ -216,7 +216,7 @@ $("#teamFinancesForm").validate({
 						</div>
 						<div class="colx3-center">
 							<span class="label"></span><p><span class="relative">	
-							<input type="text" name="generatedCurrentEquity" id="generatedCurrentEquity" disabled class="past">
+							<input type="text" name="generatedCurrentEquity" id="generatedCurrentEquity" readonly class="past">
 						</div>
 						<div class="colx3-right">
 							<span class="label"></span>
@@ -230,7 +230,7 @@ $("#teamFinancesForm").validate({
 						</div>
 						<div class="colx3-center">
 							<span class="label"></span><p><span class="relative">	
-							<input type="text" name="generatedNewDebt_equityRatio" id="generatedNewDebt_equityRatio" disabled class="past">
+							<input type="text" name="generatedNewDebt_equityRatio" id="generatedNewDebt_equityRatio" readonly class="past">
 						</div>
 						<div class="colx3-right">
 							<span class="label"></span>
@@ -244,7 +244,7 @@ $("#teamFinancesForm").validate({
 						</div>
 						<div class="colx3-center">
 							<span class="label"></span><p><span class="relative">	
-							<input type="text" name="generatedROI" id="generatedROI" disabled class="past">
+							<input type="text" name="generatedROI" id="generatedROI" readonly class="past">
 						</div>
 						<div class="colx3-right">
 							<span class="label"></span>
@@ -259,7 +259,7 @@ $("#teamFinancesForm").validate({
 						<div class="colx3-center">
 							<span class="label"></span><p><span class="relative">	
 							<input type="text" name="generatedQuarterlyInterestPayable" id="generatedQuarterlyInterestPayable" 
-								disabled class="past">
+								readonly class="past">
 						</div>
 						<div class="colx3-right">
 							<span class="label"></span>
