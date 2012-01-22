@@ -23,16 +23,18 @@
 	<import value="net.sf.jasperreports.engine.*" />
 	<import value="net.sf.jasperreports.engine.data.*" />
 
-	<parameter name="period" isForPrompting="false" class="java.lang.String"/>
+	<parameter name="period" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["0"]]></defaultValueExpression>
+	</parameter>
 	<queryString><![CDATA[select * from rep_stock_market WHERE period = $P{period} ORDER by spi desc, team_name asc]]></queryString>
 
 	<field name="id" class="java.lang.Integer"/>
 	<field name="period" class="java.lang.Integer"/>
 	<field name="team_name" class="java.lang.String"/>
 	<field name="spi" class="java.lang.Integer"/>
-	<field name="market_capitalization" class="java.lang.Integer"/>
+	<field name="market_share" class="java.lang.Float"/>
+	<field name="net_profit_margin" class="java.lang.Float"/>
 	<field name="current_net_contribution" class="java.lang.Integer"/>
-	<field name="cum_net_contribution" class="java.lang.Integer"/>
 
 		<background>
 			<band height="0"  isSplitAllowed="true" >
@@ -114,7 +116,7 @@
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Arial" size="14" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Net Contribution - Cummulative]]></text>
+				<text><![CDATA[Net Contribution - Current]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -148,8 +150,7 @@
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Arial" size="14" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Market 
-Capitalization]]></text>
+				<text><![CDATA[Market Share]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -166,7 +167,7 @@ Capitalization]]></text>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Arial" size="14" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Net Contribution - Current]]></text>
+				<text><![CDATA[Net Proft Margin]]></text>
 				</staticText>
 			</band>
 		</columnHeader>
@@ -209,7 +210,7 @@ Capitalization]]></text>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Arial" size="12" isBold="true"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{market_capitalization}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[new DecimalFormat("#,##0").format(new java.lang.Double(  ($F{market_share}.doubleValue()) /(new Double(100).doubleValue()) )) + " % "]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -222,7 +223,7 @@ Capitalization]]></text>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Arial" size="12" isBold="true"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{current_net_contribution}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[new DecimalFormat("#,##0").format(new java.lang.Double(  ($F{net_profit_margin}.doubleValue()) /(new Double(100).doubleValue()) )) + " % "]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -235,7 +236,7 @@ Capitalization]]></text>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Arial" size="12" isBold="true"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{cum_net_contribution}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{current_net_contribution}]]></textFieldExpression>
 				</textField>
 				<line direction="TopDown">
 					<reportElement
