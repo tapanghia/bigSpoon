@@ -49,6 +49,7 @@ $(document).ready(function(){
     var brandSalesEffortInputData = '';
     var count = 0;
     var textInputArray = salesForceIframeForm.getElementsByTagName("input");
+    var totalSalesForceCount = 0;
     
     for (var i=0; i<textInputArray.length; i++) {
       if (textInputArray[i].type == 'text') {
@@ -57,25 +58,32 @@ $(document).ready(function(){
         if ((textInputArray[i].name).indexOf("SuperMarket_MarginOffered_") != -1) {
           var temp = (textInputArray[i].name).lastIndexOf("_"); 
           var brandId = (textInputArray[i].name).substring(temp+1, (textInputArray[i].name).length);
+          if (isNaN(parseInt(textInputArray[i].value))) 
+          	textInputArray[i].value = 0;
           brandMarginOfferedInputData = 
-          brandMarginOfferedInputData + brandId + '_' + 'SuperMarketMarginOffered' + '_' + textInputArray[i].value + ';;';  
+          	brandMarginOfferedInputData + brandId + '_' + 'SuperMarketMarginOffered' + '_' + textInputArray[i].value + ';;';  
         }
           
         // Margin Offered for Brands in General Stores
         if ((textInputArray[i].name).indexOf("GeneralStore_MarginOffered_") != -1) {
           var temp = (textInputArray[i].name).lastIndexOf("_");
           var brandId = (textInputArray[i].name).substring(temp+1, (textInputArray[i].name).length);
-        
+          if (isNaN(parseInt(textInputArray[i].value))) 
+          	textInputArray[i].value = 0;
+
           brandMarginOfferedInputData = 
-          brandMarginOfferedInputData + brandId + '_' + 'GeneralStoreMarginOffered' + '_' + textInputArray[i].value + ';;';
+          	brandMarginOfferedInputData + brandId + '_' + 'GeneralStoreMarginOffered' + '_' + textInputArray[i].value + ';;';
         }
           
         // Margin Offered for Brands in Kirana Stores
         if ((textInputArray[i].name).indexOf("KiranaStore_MarginOffered_") != -1) {
           var temp = (textInputArray[i].name).lastIndexOf("_");
           var brandId = (textInputArray[i].name).substring(temp+1, (textInputArray[i].name).length);
+          if (isNaN(parseInt(textInputArray[i].value))) 
+          	textInputArray[i].value = 0;
+
           brandMarginOfferedInputData = 
-          brandMarginOfferedInputData + brandId + '_' + 'KiranaStoreMarginOffered' + '_' + textInputArray[i].value + ';;';  
+          	brandMarginOfferedInputData + brandId + '_' + 'KiranaStoreMarginOffered' + '_' + textInputArray[i].value + ';;';  
         }
           
         //Sales Force for Brands in Super Market
@@ -83,6 +91,11 @@ $(document).ready(function(){
           var temp = (textInputArray[i].name).lastIndexOf("_"); 
           var brandId = (textInputArray[i].name).substring(temp+1, (textInputArray[i].name).length);
           var superMarketSalesForceValue = textInputArray[i].value;
+          
+          if (isNaN(parseInt(superMarketSalesForceValue))) 
+          	superMarketSalesForceValue = 0;
+      
+      	  totalSalesForceCount = parseInt(totalSalesForceCount) + parseInt(superMarketSalesForceValue);    
           brandSalesEffortInputData = 
 	          brandSalesEffortInputData + brandId + '_' + 'SuperMarketSalesForce' + '_' + superMarketSalesForceValue + ';;';  
         }
@@ -92,6 +105,10 @@ $(document).ready(function(){
           var temp = (textInputArray[i].name).lastIndexOf("_");
           var brandId = (textInputArray[i].name).substring(temp+1, (textInputArray[i].name).length);
           var genStoreSalesForceValue = textInputArray[i].value;
+          if (isNaN(parseInt(genStoreSalesForceValue))) 
+          	genStoreSalesForceValue = 0;
+          
+          totalSalesForceCount = parseInt(totalSalesForceCount) + parseInt(genStoreSalesForceValue);
           brandSalesEffortInputData = 
             brandSalesEffortInputData + brandId + '_' + 'GeneralStoreSalesForce' + '_' + genStoreSalesForceValue + ';;';
         }
@@ -101,6 +118,11 @@ $(document).ready(function(){
           var temp = (textInputArray[i].name).lastIndexOf("_");
           var brandId = (textInputArray[i].name).substring(temp+1, (textInputArray[i].name).length);
           var kiranaStoreSalesForceValue = textInputArray[i].value;
+          
+          if (isNaN(parseInt(kiranaStoreSalesForceValue))) 
+          	kiranaStoreSalesForceValue = 0;
+          
+          totalSalesForceCount = parseInt(totalSalesForceCount) + parseInt(kiranaStoreSalesForceValue);
           brandSalesEffortInputData = 
 	          brandSalesEffortInputData + brandId + '_' + 'KiranaStoreSalesForce' + '_' + kiranaStoreSalesForceValue + ';;';
         }
@@ -115,8 +137,11 @@ $(document).ready(function(){
     thisForm.action = "<%=CONTEXTPATH%>/salesTeam.htm?do=getSalesForceMgmt";
 
 	//lets do some validation.
+	// validating if allocated Sales Force is not greater than available Sales Force
+	alert(totalSalesForceCount);
 
-	    thisForm.submit();
+
+    thisForm.submit();
   });
 
 $("input.generate").click(function(){
@@ -138,6 +163,21 @@ Iterator<Brand> itr3 = resultBrands.iterator();
 	a = $("#SuperMarket_SalesForce_<%=thisBrand.getId() %>").val();
 	b = $("#GeneralStore_SalesForce_<%=thisBrand.getId() %>").val();
 	c = $("#KiranaStore_SalesForce_<%=thisBrand.getId() %>").val();
+	
+	if (isNaN(parseInt(a))) {
+		a = 0;
+		$("#SuperMarket_SalesForce_<%=thisBrand.getId() %>").val(0);
+	}
+	
+	if (isNaN(parseInt(b))) {
+		b = 0;
+		$("#GeneralStore_SalesForce_<%=thisBrand.getId() %>").val(0);
+	}
+	
+	if (isNaN(parseInt(c))) {
+		c = 0;
+		$("#KiranaStore_SalesForce_<%=thisBrand.getId() %>").val(0);
+	}
 
 	d = parseInt(a)+parseInt(b)+parseInt(c);
 	$("#costSalesForce_<%=thisBrand.getId() %>").val(d);
@@ -154,6 +194,10 @@ Iterator<Brand> itr3 = resultBrands.iterator();
 	$("#kirStoreTotal").val(totalKiranaStoreSF);
 	$("#costTotal").val(costTotal);
 
+	// tapan here totalAvailableSalesForce
+	if (costTotal > <%= totalAvailableSalesForce%>)
+		alert("Allocated Sales Force can't be greater than available sales force. This sales force data couldn't be saved.");
+	
 
 });
 });
@@ -205,14 +249,17 @@ Iterator<Map.Entry<Brand, MarginOffered>> brandMarginItr2 = marginOfferedForBran
 				SuperMarket_SalesForce_<%=thisBrand.getId() %>: {
       			required: true,
       			digits: true,
+      			min: 0
     			},
 				GeneralStore_SalesForce_<%=thisBrand.getId() %>: {
       			required: true,
       			digits: true,
+      			min: 0
     			},
 				KiranaStore_SalesForce_<%=thisBrand.getId() %>: {
       			required: true,
       			digits: true,
+      			min: 0
     			},    			
 <% }%>
 

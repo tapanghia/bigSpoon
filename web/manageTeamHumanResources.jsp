@@ -23,55 +23,6 @@ $(document).ready(function(){
   $("#teamHumanResourcesForm input.cancel").click(function(){
     window.location = "<%=CONTEXTPATH%>/humanResourcesDept.htm";
   });
-$('#level3SalesForce').keyup(function () {
-        if ($('#level3SalesForce').val + $('#level2SalesForce').val + $('#level1SalesForce').val == 0) {
-          $('#generate1').attr("disabled", true);
-        }
-      else {
-            $('#generate1').removeAttr("disabled");
-      }
-    });
-$('#level2SalesForce').keyup(function () {
-        if ($('#level3SalesForce').val + $('#level2SalesForce').val + $('#level1SalesForce').val == 0) {
-          $('#generate1').attr("disabled", true);
-        }
-      else {
-            $('#generate1').removeAttr("disabled");
-      }
-    });
-$('#level1SalesForce').keyup(function () {
-        if ($('#level3SalesForce').val + $('#level2SalesForce').val + $('#level1SalesForce').val == 0) {
-          $('#generate1').attr("disabled", true);
-        }
-      else {
-            $('#generate1').removeAttr("disabled");
-      }
-    });
-
-$('#level2SalesForce_training').keyup(function () {
-if (($('#level1SalesForce_training').val + $('#level2SalesForce_training').val) > ($('#pplevel1SalesForce_training').val + $('#pplevel2SalesForce_training').val)) {
-	    $('#submit').attr("disabled", true);
-        }
-      else {
-	    $('#submit').removeAttr("disabled");
-      }
-    });
-$('#level1SalesForce_training').keyup(function () {
-if (($('#level1SalesForce_training').val + $('#level2SalesForce_training').val) > ($('#pplevel1SalesForce_training').val + $('#pplevel2SalesForce_training').val)) {
-	    $('#submit').attr("disabled", true);
-        }
-      else {
-	    $('#submit').removeAttr("disabled");
-      }
-    });
-$('#generate2').click(function () {
-	  if($('#totalSalesCost').val == 0 || $('#trainingCost').val == 0) {
-	    $('#submit').attr("disabled", true);
-	  }
-	else {
-	    $('#submit').removeAttr("disabled");
-	  }
-    });
 });
 </script>
 <script type="text/javascript"> 
@@ -84,6 +35,10 @@ $.validator.setDefaults({
 	}
 });
 
+$.validator.methods.equal = function(value, element, param) {
+	return value == param;
+};
+
 $(document).ready(function() {
 	
 	$("#teamHumanResourcesForm").validate({
@@ -95,6 +50,24 @@ $(document).ready(function() {
 				min: 1
 			},
 			level2SalesForce_training: {
+				required: true,
+				number: true,
+				digits: true,
+				min: 1
+			},
+			level1SalesForce: {
+				required: true,
+				number: true,
+				digits: true,
+				min: 1
+			},
+			level2SalesForce: {
+				required: true,
+				number: true,
+				digits: true,
+				min: 1
+			},
+			level3SalesForce: {
 				required: true,
 				number: true,
 				digits: true,
@@ -293,7 +266,7 @@ $(document).ready(function() {
 						</div>
 						<div class="colx4-right">
 							<span class="label"></span>
-							<input type="button" class="button generate" value="Generate" onClick="" id="generate1" disabled>
+							<input type="button" class="button generate" value="Generate" onClick="" id="generate1">
 						</div>
 					</div>
 					
@@ -420,7 +393,7 @@ $(document).ready(function() {
 						</div>
 						<div class="colx4-right">
 							<span class="label"></span>
-							<input type="button" class="button generateTraining" value="Generate" onClick="" id="generate2" disabled>
+							<input type="button" class="button generateTraining" value="Generate" onClick="" id="generate2">
 						</div>
 					</div>
 					
@@ -428,7 +401,7 @@ $(document).ready(function() {
 					
 				
 				<div class="columns">
-					<button type="submit" class="red" name="submit" id="submit" disabled>Save</button>
+					<button type="submit" class="red" name="submit" id="submit">Save</button>
 					<button type="button" class="red" name="cancel">Cancel</button>
 				</div>	
 

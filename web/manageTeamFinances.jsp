@@ -16,26 +16,7 @@ $(document).ready(function(){
   $("#teamFinancesForm input.cancel").click(function(){
     window.location = "<%=CONTEXTPATH%>/financeDept.htm";
   });
-  $('#debtAppliedFor').keyup(function () {
-        if ($.trim(this.value) == "") {
-          $('#generatedebt').attr("readonly", true);
-          $('#generatedCurrentEquity').val("");
-          $('#generatedNewDebt_equityRatio').val("");
-          $('#generatedROI').val("");
-          $('#generatedQuarterlyInterestPayable').val("");
-        }
-      else {
-            $('#generatedebt').removeAttr("readonly");
-      }
-    });
-  $('#generatedebt').click(function () {
-	  if($('#generatedNewDebt_equityRatio').val > 1) {
-	    $('#submit').attr("disabled", true);
-	  }
-	else {
-	    $('#submit').removeAttr("disabled");
-	  }
-    });
+  
 });
 </script>
 <script type="text/javascript"> 
@@ -48,6 +29,10 @@ $.validator.setDefaults({
 	}
 });
 
+$.validator.methods.equal = function(value, element, param) {
+	return value == param;
+};
+
 $(document).ready(function() {
 	
 $("#teamFinancesForm").validate({
@@ -55,8 +40,18 @@ $("#teamFinancesForm").validate({
 			debtAppliedFor: {
 				required: true,
 				number: true,
-				digits: true
+				digits: true,
+				min:1
+			},
+			generatedNewDebt_equityRatio: {
+				required: true,
+				number: true,
+				min:0,
+				max:1
 			}
+		},
+		messages: {
+			generatedNewDebt_equityRatio: "Debt/Equity ratio should be between 0 and 1."
 		}
 	});
 
@@ -205,7 +200,7 @@ $("#teamFinancesForm").validate({
 						</div>
 						<div class="colx3-right">
 							<span class="label"></span>
-							<input type="button" class="button generate" value="Generate" id="generatedebt" disabled>
+							<input type="button" class="button generate" value="Generate" id="generatedebt">
 						</div>
 					</div>
 					
@@ -269,7 +264,7 @@ $("#teamFinancesForm").validate({
 
 				
 				<div class="columns">
-					<button type="submit" class="red" name="submit" id="submit" disabled>Save</button>
+					<button type="submit" class="red" name="submit" id="submit">Save</button>
 					<button type="button" class="red" name="cancel">Cancel</button>
 				</div>	
 
