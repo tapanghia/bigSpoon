@@ -181,12 +181,12 @@ $("#teamFinancesForm").validate({
 						</div>
 					</div>
 					
-					<div class="columns">
+					<!--div class="columns">
 	        			<div class="colx1">
 							<span class="label"></span>
 							<a href="#">Click to see debt-equity ratio and rate of interest table.</a>
 						</div>
-					</div>
+					</div-->
 					
 					<div class="columns">
 	        			<div class="colx3-left">

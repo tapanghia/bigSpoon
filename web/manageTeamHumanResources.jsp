@@ -61,19 +61,19 @@ $(document).ready(function() {
 				required: true,
 				number: true,
 				digits: true,
-				min: 1
+				min: 0
 			},
 			level2SalesForce: {
 				required: true,
 				number: true,
 				digits: true,
-				min: 1
+				min: 0
 			},
 			level3SalesForce: {
 				required: true,
 				number: true,
 				digits: true,
-				min: 1
+				min: 0
 			}
 		}
 	});

@@ -138,7 +138,6 @@ $(document).ready(function(){
 
 	//lets do some validation.
 	// validating if allocated Sales Force is not greater than available Sales Force
-	alert(totalSalesForceCount);
 
 
     thisForm.submit();
