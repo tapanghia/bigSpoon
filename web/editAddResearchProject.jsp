@@ -253,7 +253,8 @@ function SetSliderValue(sliderId, textBoxControl) {
 						<b class="toggle"></b>
 						<span>Company Performance</span>
 						<ul class="with-icon icon-report">
-							<li><a href="reports.htm?reportName=TeamResult">Team Performance</a></li>
+							<li><a href="reports.htm?reportName=TeamBalanceSheet">Team Balance Sheet</a></li>
+							<li><a href="reports.htm?reportName=TeamProfitLossStatement">Team Profit & Loss</a></li>
 							<li><a href="reports.htm?reportName=BrandResult">Brand Performance</a></li>
 							<li><a href="reports.htm?reportName=StockMarketReport">Stock market</a></li>
 							<li><a href="reports.htm?reportName=RnDReport">R&D Report</a></li>
@@ -268,14 +269,12 @@ function SetSliderValue(sliderId, textBoxControl) {
 							<li><a href="reports.htm?reportName=BrandAwarenessReport">Brand Awareness</a></li>
 							<li><a href="reports.htm?reportName=BrandPurchaseIntentionReport">Brand Purchase Intention</a></li>
 							<li><a href="reports.htm?reportName=MarketShareReport">Market Share</a></li>
-							<li><a href="reports.htm?reportName=SemanticScaleReport">Semantic Scale</a></li>
 							<li><a href="reports.htm?reportName=MultiDimensionalScaleReport">Multi Dimensional Scale</a></li>
 							<li><a href="reports.htm?reportName=GrowthMatrixReport">Growth Matrix</a></li>
 							<li><a href="reports.htm?reportName=DemandForecastReport">Demand Forecast</a></li>
 							<li><a href="reports.htm?reportName=CompetitiveAdvExpenseReport">Competitive Advertising Expense</a></li>
 							<li><a href="reports.htm?reportName=ShoppingHabitsReport">Shopping Habits</a></li>
 							<li><a href="reports.htm?reportName=DistributionCoverageReport">Distribution Coverage</a></li>
-							<li><a href="reports.htm?reportName=DistributionMarketShareReport">Distribution Market Share</a></li>
 							<li><a href="reports.htm?reportName=CompetitiveSalesForceReport">Competitive Sales Force</a></li>
 							<li><a href="reports.htm?reportName=CompetitiveMarginReport">Competitive Margin</a></li>
 							<li><a href="reports.htm?reportName=ExpertAdviceReport">Expert Advice</a></li>
