@@ -1,8 +1,8 @@
 package com.marklabs.web.controllers;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,12 +14,15 @@ import com.marklabs.brandSpecifications.BrandSpecs;
 import com.marklabs.brandSpecifications.IBrandSpecsService;
 import com.marklabs.brands.Brand;
 import com.marklabs.brands.IBrandService;
+import com.marklabs.operationsDept.IOperationsService;
+import com.marklabs.operationsDept.TeamOperations;
 import com.marklabs.teams.Team;
 
 public class ProdPricingController extends MultiActionController {
 	
 	IBrandService brandService;
 	IBrandSpecsService brandSpecsService;
+	IOperationsService operationsService;
 	
 	/**
 	 * @return the brandSpecsService
@@ -49,7 +52,13 @@ public class ProdPricingController extends MultiActionController {
 		this.brandService = brandService;
 	}
 
+	public IOperationsService getOperationsService() {
+		return operationsService;
+	}
 
+	public void setOperationsService(IOperationsService operationsService) {
+		this.operationsService = operationsService;
+	}
 
 	/**
 	 * Default method of this controller. Will be invoked, when no action is passed.
@@ -65,6 +74,24 @@ public class ProdPricingController extends MultiActionController {
 		List<Brand> resultBrands = brandService.getAllBrandsForTeamCurrentPeriod(loggedInTeam, currPeriod);
 		
 		mav.addObject(Constants.EXISTING_BRANDS, resultBrands);
+		
+		// variables to compare each brand production level with the maximum production capacity allowed
+		
+		// Max production capacity
+		TeamOperations teamOperations = operationsService.getTeamOperations(loggedInTeam, currPeriod);
+		mav.addObject(Constants.TEAM_MAX_PRODUCTION_CAPACITY, teamOperations.getMaximumCapacity());
+		
+		long productionLevelsAchieved = 0;
+		// production levels already achieved
+		if (resultBrands != null && resultBrands.size() > 0) {
+			Iterator<Brand> resultBrandsItr = resultBrands.iterator();
+			while (resultBrandsItr.hasNext()) {
+				Brand brand = (Brand) resultBrandsItr.next();
+				BrandSpecs brandSpecs = brandSpecsService.getBrandSpecsOnBrandId(brand.getId());
+				productionLevelsAchieved = productionLevelsAchieved + brandSpecs.getProductionLevel();
+			}
+		}
+		mav.addObject(Constants.TEAM_PRODUCTION_CAPACITY_ALLOCATED, productionLevelsAchieved);
 		
 		if (request.getSession().getAttribute(Constants.SELECTED_BRAND) == null && 
 				resultBrands.size() > 0) {

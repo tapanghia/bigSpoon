@@ -84,4 +84,8 @@ public class Constants {
 	public static final String TEAM_HUMAN_RESOURCES = "teamHumanResForThisPeriod";
 	public static final String TEAM_HUMAN_RESOURCES_PREVIOUS = "teamHumanResForPreviousPeriod";
 	
+	// Team Production Pricing and Operations module intersection constants
+	public static final String TEAM_MAX_PRODUCTION_CAPACITY = "teamMaxProductionCapacityInThisPeriod";
+	public static final String TEAM_PRODUCTION_CAPACITY_ALLOCATED = "teamProductionCapacitiesUsed";
+	
 }

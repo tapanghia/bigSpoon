@@ -1219,6 +1219,7 @@
 	<bean id="prodPricingController" class="com.marklabs.web.controllers.ProdPricingController">
 		<property name="brandService" ref="brandService"/>
 		<property name="brandSpecsService" ref="brandSpecsService"/>
+		<property name="operationsService" ref="operationsService"/>
 		<property name="methodNameResolver">
 			<bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
 				<property name="paramName"><value>do</value></property>

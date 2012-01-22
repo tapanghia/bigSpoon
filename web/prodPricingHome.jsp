@@ -19,11 +19,29 @@
   
   Brand selectedBrand = 
     (Brand) request.getSession().getAttribute(Constants.SELECTED_BRAND);
+    
+  int teamMaxProductionCapacity = (Integer)request.getAttribute(Constants.TEAM_MAX_PRODUCTION_CAPACITY);
+  long achievedProductionLevels = (Long)request.getAttribute(Constants.TEAM_PRODUCTION_CAPACITY_ALLOCATED);  
+  
+  long initialBrandProductionLevel = ((thisPeriodBrandSpecs != null)?thisPeriodBrandSpecs.getProductionLevel():0);
+    
 %>
 
 <script type="text/javascript">
 $(document).ready(function(){
   $("#prodPricingForm").submit(function(){
+  
+  	var modifiedBrandProductionLevel = $("#thisPeriodBrandProdLevel").val();
+  	var initialBrandProductionLevelJS = <%=initialBrandProductionLevel%>;
+  	var teamMaxProductionCapacityJS = <%=teamMaxProductionCapacity%>;
+  	var achievedProductionLevelsJS = <%=achievedProductionLevels%>;
+  	var newAchievedProductionLevelsJS = parseInt(achievedProductionLevelsJS) - parseInt(initialBrandProductionLevelJS) + 
+  		parseInt(modifiedBrandProductionLevel); 
+  	
+  	if (newAchievedProductionLevelsJS > teamMaxProductionCapacityJS) {
+  		alert("Production capacity exceeded. Please reloacte production levels before increasing production level for this brand.");
+  		return false;
+  	}
     return true;
   });
   $("#prodPricingForm input.cancel").click(function(){
@@ -158,7 +176,19 @@ $("#prodPricingForm").validate({
 								<div id="tab-product1">
 
 					<fieldset>
-					<legend>Product Specifications</legend>					
+					<legend>Product Specifications</legend>		
+					<div>
+	        			<div class="colx1">
+							<strong>Maximum production capacity: <%= teamMaxProductionCapacity%></strong>
+						</div>
+					</div>
+					
+					<div class="columns">
+	        			<div class="colx1">
+							<strong>Total allocated production levels: <%= achievedProductionLevels%></strong>
+						</div>
+					</div>
+								
 					<div class="columns">
         				<div class="colx3-left">
 					<span class="label">Product Specifications</span>
@@ -197,7 +227,7 @@ $("#prodPricingForm").validate({
 					</div>
 					<div class="colx3-right">
 						<span class="label"></span>
-<input type="text" name="thisPeriodBrandProdLevel" id="tpProdLevel" value = "<%= ((thisPeriodBrandSpecs != null)?thisPeriodBrandSpecs.getProductionLevel():"")%>" />
+<input type="text" name="thisPeriodBrandProdLevel" id="thisPeriodBrandProdLevel" value = "<%= ((thisPeriodBrandSpecs != null)?thisPeriodBrandSpecs.getProductionLevel():"")%>" />
 					</div>
 					</div>
 

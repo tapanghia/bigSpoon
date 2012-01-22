@@ -47,13 +47,15 @@ $(document).ready(function() {
 				required: true,
 				number: true,
 				digits: true,
-				min: 1
+				min: 0,
+				max: $("#ppLevel1SalesForce_training").val()
 			},
 			level2SalesForce_training: {
 				required: true,
 				number: true,
 				digits: true,
-				min: 1
+				min: 0,
+				max: $("#ppLevel2SalesForce_training").val()
 			},
 			level1SalesForce: {
 				required: true,
