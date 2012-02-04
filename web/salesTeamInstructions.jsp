@@ -38,7 +38,7 @@
 						<br><p style="text-align: justify;">Distribution is important because it affects sales - 
 						<span style="color:#0083C3"><i>if it's not available it can't be sold</i></span>. However good the product may be, most customers won't wait.</p>
 						<p style="text-align: justify;">
-						<br><p style="text-align: justify;">The sales force in MarkLABS is a combination of two input parameters:</p>
+						<br><p style="text-align: justify;">The sales force in BizLabs is a combination of two input parameters:</p>
 						<br><p style="text-align: justify;"><span style="color:#0083C3"><i>Sales Force</i></span> - Every firm has to allocate sales 
 						force in each channel and then they input the Sales Force Effort % for every brand. A proper distribution requires ample
 						number of sales force. Every sales force carry same number of SKUs irrespective of the channel they cover, hence it is

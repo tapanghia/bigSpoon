@@ -46,8 +46,8 @@
 		<section class="grid_9">
 			<div class="block-border"><div class="block-content">
 				<h1>Team Home</h1>
-						<span style="color:#0083C3">Hi&nbsp;<i>Team,</i>&nbsp;&nbsp;Welcome to MarkLabs.</span><br><br>
-						<p style="text-align: justify;"><span style="color:#0083C3"><i>MarkLabs</span></i> is an emerging economy growing at breath-neck pace. 
+						<span style="color:#0083C3">Hi&nbsp;<i>Team,</i>&nbsp;&nbsp;Welcome to BizLabs.</span><br><br>
+						<p style="text-align: justify;"><span style="color:#0083C3"><i>BizLabs</span></i> is an emerging economy growing at breath-neck pace. 
 						The whole world has its eyes on this country and all the big brands are
 						eyeing a share of this lucrative pie. <span style="color:#0083C3"><i>Competition</i></span>, therefore, is as 
 						intense as you can imagine.</p>

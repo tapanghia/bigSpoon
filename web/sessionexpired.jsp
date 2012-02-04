@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-	<title>MarkLabs: Marketing Simulation by Biziga Labs</title>
+	<title>BizLabs: Business Simulation by Biziga Labs</title>
 	<meta charset="utf-8">
 	
 	<!-- Global stylesheets -->

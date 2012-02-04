@@ -32,12 +32,12 @@
 						<li><br><p style="text-align: justify";><span style="color:#EA463F"><i>&quot;&nbsp;R&D is the most expensive investment that any firm makes, 
 						so the investment done in R&D should be done very wisely.&nbsp;&quot;</i></span></p>
 						<li><br><p style="text-align: justify;">Product is one of the most important characteristics for any 
-						firm. There are five different segments in a region in MarkLABS and all of them have specific 
+						firm. There are five different segments in a region in BizLabs and all of them have specific 
 						needs. More details about the consumer segments and their specific perferences are detailed in the 
 						<span style="color:#0083C3">Basic Description</span> section shown in the left tab. Catering to all the segments with a single product can be
 						fruitless. One needs to provide an ideal product to each segment 
 						to achieve the maximum return.</p>
-						<li><br><p style="text-align: justify;"><span style="color:#0083C3">Every product in MarkLABS has six attributes of which five can 
+						<li><br><p style="text-align: justify;"><span style="color:#0083C3">Every product in BizLabs has six attributes of which five can 
 						be modified by conducting appropriate research projects </span><i> (the sixth is price which can be modified by the firms in any
 						period whenever desired)</i>. Every attribute <i>(except price)</i> can have a value from <span style="color:#0083C3"><i>
 						1-100</i></span> with 1 signifying the

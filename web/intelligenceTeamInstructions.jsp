@@ -48,7 +48,7 @@
 						<br><p style="text-align: justify;"><span style="color:#0083C3"><i>Make your marketing plan</i></span></p>
 						
 						<div id="Reports List">
-						<br><p style="text-align: justify;">The list of sample reports available in MarkLABS is shown below. You can click any one
+						<br><p style="text-align: justify;">The list of sample reports available in BizLabs is shown below. You can click any one
 						of them and get to see a sample report to understand more about it.</p>
 						<br><p style="text-align: justify;"><span style="color:#0083C3"><i>Project Characteristics</i></span></p>
 						<br><p style="text-align: justify;"><span style="color:#0083C3"><i>Brand Characteristics</i></span></p>
