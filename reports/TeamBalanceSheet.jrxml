@@ -73,12 +73,12 @@ UNION
 	</subDataset>
 
 	<parameter name="period" isForPrompting="false" class="java.lang.String">
-		<defaultValueExpression ><![CDATA["1"]]></defaultValueExpression>
+		<defaultValueExpression ><![CDATA["0"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="teamName" isForPrompting="false" class="java.lang.String">
 		<defaultValueExpression ><![CDATA["Alpha"]]></defaultValueExpression>
 	</parameter>
-	<queryString><![CDATA[select prev.id as prev_id, cur.id as cur_id, prev.period as prev_period, cur.period as cur_period, prev.team_name as prev_team_name, cur.team_name as cur_team_name, prev.team_id as prev_team_id, cur.team_id as cur_team_id, prev.turnover as prev_turnover, cur.turnover as cur_turnover, prev.fixed_cost as prev_fixed_cost, cur.fixed_cost as cur_fixed_cost, prev.variable_cost as prev_variable_cost, cur.variable_cost as cur_variable_cost, prev.inventory_cost as prev_inventory_cost, cur.inventory_cost as cur_inventory_cost, prev.disposal_loss as prev_disposal_loss, cur.disposal_loss as cur_disposal_loss, prev.ad_expense as prev_ad_expense, cur.ad_expense as cur_ad_expense, prev.sales_force_expense as prev_sales_force_expense, cur.sales_force_expense as cur_sales_force_expense, prev.market_research_expense as prev_market_research_expense, cur.market_research_expense as cur_market_research_expense, prev.rnd_expense as prev_rnd_expense, cur.rnd_expense as cur_rnd_expense, prev.admin_expense as prev_admin_expense, cur.admin_expense as cur_admin_expense, prev.depreciation as prev_depreciation, cur.depreciation as cur_depreciation, prev.interest as prev_interest, cur.interest as cur_interest, prev.pbt as prev_pbt, cur.pbt as cur_pbt, prev.tax as prev_tax, cur.tax as cur_tax, prev.pat as prev_pat, cur.pat as cur_pat from `team_pnl` as `prev` inner join `team_pnl` as `cur` on prev.team_id = cur.team_id where prev.period = $P{period}- 1 and cur.period = $P{period} and prev.team_name = $P{teamName} and cur.team_name = $P{teamName}]]></queryString>
+	<queryString><![CDATA[select prev.id as prev_id, cur.id as cur_id, prev.period as prev_period, cur.period as cur_period, prev.team_name as prev_team_name, cur.team_name as cur_team_name, prev.team_id as prev_team_id, cur.team_id as cur_team_id, prev.share_capital as prev_shareCapital, cur.share_capital as cur_shareCapital, prev.reserves as prev_reserves, cur.reserves as cur_reserves, prev.net_worth as prev_net_worth, cur.net_worth as cur_net_worth, prev.debt as prev_debt, cur.debt as cur_debt, prev.total_liabilities as prev_total_liabilities, cur.total_liabilities as cur_total_liabilities, prev.gross_block as prev_gross_block, cur.gross_block as cur_gross_block, prev.depreciation as prev_depreciation, cur.depreciation as cur_depreciation, prev.net_block as prev_net_block, cur.net_block as cur_net_block, prev.inventory as prev_inventory, cur.inventory as cur_inventory, prev.cash as prev_cash, cur.cash as cur_cash, prev.current_assets as prev_current_assets, cur.current_assets as cur_current_assets, prev.current_liabilities as prev_current_liabilities, cur.current_liabilities as cur_current_liabilities, prev.net_current_assets as prev_net_current_assets, cur.net_current_assets as cur_net_current_assets, prev.total_assets as prev_total_assets, cur.total_assets as cur_total_assets from `team_bs` as `prev` inner join `team_bs` as `cur` on prev.team_id = cur.team_id where cur.period = $P{period} and cur.team_name = $P{teamName} and prev.period = ( CASE WHEN $P{period}- 1 < 0 THEN cur.period ELSE prev.period END) ]]></queryString>
 
 	<field name="prev_id" class="java.lang.Integer"/>
 	<field name="cur_id" class="java.lang.Integer"/>
@@ -88,36 +88,34 @@ UNION
 	<field name="cur_team_name" class="java.lang.String"/>
 	<field name="prev_team_id" class="java.lang.Integer"/>
 	<field name="cur_team_id" class="java.lang.Integer"/>
-	<field name="prev_turnover" class="java.lang.Integer"/>
-	<field name="cur_turnover" class="java.lang.Integer"/>
-	<field name="prev_fixed_cost" class="java.lang.Integer"/>
-	<field name="cur_fixed_cost" class="java.lang.Integer"/>
-	<field name="prev_variable_cost" class="java.lang.Integer"/>
-	<field name="cur_variable_cost" class="java.lang.Integer"/>
-	<field name="prev_inventory_cost" class="java.lang.Integer"/>
-	<field name="cur_inventory_cost" class="java.lang.Integer"/>
-	<field name="prev_disposal_loss" class="java.lang.Integer"/>
-	<field name="cur_disposal_loss" class="java.lang.Integer"/>
-	<field name="prev_ad_expense" class="java.lang.Integer"/>
-	<field name="cur_ad_expense" class="java.lang.Integer"/>
-	<field name="prev_sales_force_expense" class="java.lang.Integer"/>
-	<field name="cur_sales_force_expense" class="java.lang.Integer"/>
-	<field name="prev_market_research_expense" class="java.lang.Integer"/>
-	<field name="cur_market_research_expense" class="java.lang.Integer"/>
-	<field name="prev_rnd_expense" class="java.lang.Integer"/>
-	<field name="cur_rnd_expense" class="java.lang.Integer"/>
-	<field name="prev_admin_expense" class="java.lang.Integer"/>
-	<field name="cur_admin_expense" class="java.lang.Integer"/>
+	<field name="prev_shareCapital" class="java.lang.Integer"/>
+	<field name="cur_shareCapital" class="java.lang.Integer"/>
+	<field name="prev_reserves" class="java.lang.Integer"/>
+	<field name="cur_reserves" class="java.lang.Integer"/>
+	<field name="prev_net_worth" class="java.lang.Integer"/>
+	<field name="cur_net_worth" class="java.lang.Integer"/>
+	<field name="prev_debt" class="java.lang.Integer"/>
+	<field name="cur_debt" class="java.lang.Integer"/>
+	<field name="prev_total_liabilities" class="java.lang.Integer"/>
+	<field name="cur_total_liabilities" class="java.lang.Integer"/>
+	<field name="prev_gross_block" class="java.lang.Integer"/>
+	<field name="cur_gross_block" class="java.lang.Integer"/>
 	<field name="prev_depreciation" class="java.lang.Integer"/>
 	<field name="cur_depreciation" class="java.lang.Integer"/>
-	<field name="prev_interest" class="java.lang.Integer"/>
-	<field name="cur_interest" class="java.lang.Integer"/>
-	<field name="prev_pbt" class="java.lang.Integer"/>
-	<field name="cur_pbt" class="java.lang.Integer"/>
-	<field name="prev_tax" class="java.lang.Integer"/>
-	<field name="cur_tax" class="java.lang.Integer"/>
-	<field name="prev_pat" class="java.lang.Integer"/>
-	<field name="cur_pat" class="java.lang.Integer"/>
+	<field name="prev_net_block" class="java.lang.Integer"/>
+	<field name="cur_net_block" class="java.lang.Integer"/>
+	<field name="prev_inventory" class="java.lang.Integer"/>
+	<field name="cur_inventory" class="java.lang.Integer"/>
+	<field name="prev_cash" class="java.lang.Integer"/>
+	<field name="cur_cash" class="java.lang.Integer"/>
+	<field name="prev_current_assets" class="java.lang.Integer"/>
+	<field name="cur_current_assets" class="java.lang.Integer"/>
+	<field name="prev_current_liabilities" class="java.lang.Integer"/>
+	<field name="cur_current_liabilities" class="java.lang.Integer"/>
+	<field name="prev_net_current_assets" class="java.lang.Integer"/>
+	<field name="cur_net_current_assets" class="java.lang.Integer"/>
+	<field name="prev_total_assets" class="java.lang.Integer"/>
+	<field name="cur_total_assets" class="java.lang.Integer"/>
 
 		<background>
 			<band height="0"  isSplitAllowed="true" >
@@ -492,7 +490,9 @@ UNION
 						forecolor="#333333"
 						backcolor="#FFFFFF"
 						key="textField-44"
-						isRemoveLineWhenBlank="true"/>
+						isRemoveLineWhenBlank="true">
+							<printWhenExpression><![CDATA[new Boolean(Integer.parseInt($P{period}) > 0)]]></printWhenExpression>
+						</reportElement>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="16" isBold="true" isItalic="false"/>
@@ -560,12 +560,14 @@ UNION
 						forecolor="#333333"
 						backcolor="#FFFFFF"
 						key="textField-49"
-						isRemoveLineWhenBlank="true"/>
+						isRemoveLineWhenBlank="true">
+							<printWhenExpression><![CDATA[new Boolean(Integer.parseInt($P{period}) > 0)]]></printWhenExpression>
+						</reportElement>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{prev_turnover}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{prev_shareCapital}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -582,7 +584,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{cur_turnover}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{cur_shareCapital}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -599,7 +601,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[($F{prev_turnover}.doubleValue() != 0)?(new DecimalFormat("###0.0").format((100*( ($F{cur_turnover}.doubleValue()) -($F{prev_turnover}.doubleValue())) )/($F{prev_turnover}.doubleValue()))+ " % "):"-"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{prev_shareCapital}.doubleValue() != 0)?(new DecimalFormat("###0.0").format((100*( ($F{cur_shareCapital}.doubleValue()) -($F{prev_shareCapital}.doubleValue())) )/($F{prev_shareCapital}.doubleValue()))+ " % "):"-"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -713,12 +715,14 @@ UNION
 						forecolor="#333333"
 						backcolor="#FFFFFF"
 						key="textField-70"
-						isRemoveLineWhenBlank="true"/>
+						isRemoveLineWhenBlank="true">
+							<printWhenExpression><![CDATA[new Boolean(Integer.parseInt($P{period}) > 0)]]></printWhenExpression>
+						</reportElement>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{prev_fixed_cost}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{prev_debt}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -730,12 +734,14 @@ UNION
 						forecolor="#333333"
 						backcolor="#FFFFFF"
 						key="textField-71"
-						isRemoveLineWhenBlank="true"/>
+						isRemoveLineWhenBlank="true">
+							<printWhenExpression><![CDATA[new Boolean(Integer.parseInt($P{period}) > 0)]]></printWhenExpression>
+						</reportElement>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{prev_variable_cost}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{prev_total_liabilities}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -747,12 +753,14 @@ UNION
 						forecolor="#333333"
 						backcolor="#FFFFFF"
 						key="textField-73"
-						isRemoveLineWhenBlank="true"/>
+						isRemoveLineWhenBlank="true">
+							<printWhenExpression><![CDATA[new Boolean(Integer.parseInt($P{period}) > 0)]]></printWhenExpression>
+						</reportElement>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{prev_sales_force_expense}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{prev_gross_block}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -764,12 +772,14 @@ UNION
 						forecolor="#333333"
 						backcolor="#FFFFFF"
 						key="textField-74"
-						isRemoveLineWhenBlank="true"/>
+						isRemoveLineWhenBlank="true">
+							<printWhenExpression><![CDATA[new Boolean(Integer.parseInt($P{period}) > 0)]]></printWhenExpression>
+						</reportElement>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{prev_sales_force_expense}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{prev_depreciation}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -781,12 +791,14 @@ UNION
 						forecolor="#333333"
 						backcolor="#FFFFFF"
 						key="textField-75"
-						isRemoveLineWhenBlank="true"/>
+						isRemoveLineWhenBlank="true">
+							<printWhenExpression><![CDATA[new Boolean(Integer.parseInt($P{period}) > 0)]]></printWhenExpression>
+						</reportElement>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{prev_ad_expense}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{prev_net_block}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -798,12 +810,14 @@ UNION
 						forecolor="#333333"
 						backcolor="#FFFFFF"
 						key="textField-76"
-						isRemoveLineWhenBlank="true"/>
+						isRemoveLineWhenBlank="true">
+							<printWhenExpression><![CDATA[new Boolean(Integer.parseInt($P{period}) > 0)]]></printWhenExpression>
+						</reportElement>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[new java.lang.Integer($F{prev_variable_cost}.intValue()+$F{prev_fixed_cost}.intValue())]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{prev_net_worth}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -815,12 +829,14 @@ UNION
 						forecolor="#333333"
 						backcolor="#FFFFFF"
 						key="textField-77"
-						isRemoveLineWhenBlank="true"/>
+						isRemoveLineWhenBlank="true">
+							<printWhenExpression><![CDATA[new Boolean(Integer.parseInt($P{period}) > 0)]]></printWhenExpression>
+						</reportElement>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{prev_rnd_expense}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{prev_inventory}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -832,12 +848,14 @@ UNION
 						forecolor="#333333"
 						backcolor="#FFFFFF"
 						key="textField-79"
-						isRemoveLineWhenBlank="true"/>
+						isRemoveLineWhenBlank="true">
+							<printWhenExpression><![CDATA[new Boolean(Integer.parseInt($P{period}) > 0)]]></printWhenExpression>
+						</reportElement>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{prev_market_research_expense}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{prev_cash}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -849,12 +867,14 @@ UNION
 						forecolor="#333333"
 						backcolor="#FFFFFF"
 						key="textField-80"
-						isRemoveLineWhenBlank="true"/>
+						isRemoveLineWhenBlank="true">
+							<printWhenExpression><![CDATA[new Boolean(Integer.parseInt($P{period}) > 0)]]></printWhenExpression>
+						</reportElement>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{prev_admin_expense}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{prev_current_assets}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -866,12 +886,14 @@ UNION
 						forecolor="#333333"
 						backcolor="#FFFFFF"
 						key="textField-81"
-						isRemoveLineWhenBlank="true"/>
+						isRemoveLineWhenBlank="true">
+							<printWhenExpression><![CDATA[new Boolean(Integer.parseInt($P{period}) > 0)]]></printWhenExpression>
+						</reportElement>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{prev_depreciation}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{prev_current_liabilities}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -883,12 +905,14 @@ UNION
 						forecolor="#333333"
 						backcolor="#FFFFFF"
 						key="textField-82"
-						isRemoveLineWhenBlank="true"/>
+						isRemoveLineWhenBlank="true">
+							<printWhenExpression><![CDATA[new Boolean(Integer.parseInt($P{period}) > 0)]]></printWhenExpression>
+						</reportElement>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{prev_interest}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{prev_net_current_assets}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -900,12 +924,14 @@ UNION
 						forecolor="#333333"
 						backcolor="#FFFFFF"
 						key="textField-83"
-						isRemoveLineWhenBlank="true"/>
+						isRemoveLineWhenBlank="true">
+							<printWhenExpression><![CDATA[new Boolean(Integer.parseInt($P{period}) > 0)]]></printWhenExpression>
+						</reportElement>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{prev_pbt}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{prev_total_assets}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -922,7 +948,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[new java.lang.Integer($F{cur_variable_cost}.intValue()+$F{cur_fixed_cost}.intValue())]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{cur_net_worth}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -939,7 +965,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{cur_fixed_cost}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{cur_debt}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -956,7 +982,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{cur_variable_cost}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{cur_total_liabilities}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -973,7 +999,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{cur_sales_force_expense}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{cur_gross_block}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -990,7 +1016,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{cur_sales_force_expense}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{cur_depreciation}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -1007,7 +1033,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{cur_ad_expense}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{cur_net_block}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -1024,7 +1050,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{cur_rnd_expense}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{cur_inventory}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -1041,7 +1067,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{cur_market_research_expense}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{cur_cash}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -1058,7 +1084,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{cur_admin_expense}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{cur_current_assets}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -1075,7 +1101,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{cur_depreciation}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{cur_current_liabilities}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -1092,7 +1118,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{cur_interest}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{cur_net_current_assets}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -1109,7 +1135,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{cur_pbt}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{cur_total_assets}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -1126,7 +1152,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[(($F{prev_fixed_cost}.doubleValue()+$F{prev_variable_cost}.doubleValue()) != 0)? (new DecimalFormat("###0.0").format((100*( ($F{cur_fixed_cost}.doubleValue()+$F{cur_variable_cost}.doubleValue()) -($F{prev_fixed_cost}.doubleValue()+$F{prev_variable_cost}.doubleValue())) )/($F{prev_fixed_cost}.doubleValue()+$F{prev_variable_cost}.doubleValue()))+ " % "):"-"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{prev_net_worth}.doubleValue() != 0)?(new DecimalFormat("###0.0").format((100*( ($F{cur_net_worth}.doubleValue()) -($F{prev_net_worth}.doubleValue())) )/($F{prev_net_worth}.doubleValue()))+ " % "):"-"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -1143,7 +1169,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[($F{prev_fixed_cost}.doubleValue() != 0)?(new DecimalFormat("###0.0").format((( ($F{cur_fixed_cost}.doubleValue()*100) -($F{prev_fixed_cost}.doubleValue()*100)) )/($F{prev_fixed_cost}.doubleValue()))+ " % "):"-"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{prev_debt}.doubleValue() != 0)?(new DecimalFormat("###0.0").format((100*( ($F{cur_debt}.doubleValue()) -($F{prev_debt}.doubleValue())) )/($F{prev_debt}.doubleValue()))+ " % "):"-"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -1160,7 +1186,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[($F{prev_variable_cost}.doubleValue() != 0)?(new DecimalFormat("###0.0").format((( ($F{cur_variable_cost}.doubleValue()*100) -($F{prev_variable_cost}.doubleValue()*100)) )/($F{prev_variable_cost}.doubleValue()))+ " % "):"-"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{prev_total_liabilities}.doubleValue() != 0)?(new DecimalFormat("###0.0").format((( ($F{cur_total_liabilities}.doubleValue()*100) -($F{prev_total_liabilities}.doubleValue()*100)) )/($F{prev_total_liabilities}.doubleValue()))+ " % "):"-"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -1177,7 +1203,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[($F{prev_variable_cost}.intValue() != 0)?(new DecimalFormat().format(100*(( ($F{cur_variable_cost}.intValue()) -($F{prev_variable_cost}.intValue()) )/$F{prev_variable_cost}.intValue()))+ " % "):"-"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{prev_gross_block}.intValue() != 0)?(new DecimalFormat().format(100*(( ($F{cur_gross_block}.intValue()) -($F{prev_gross_block}.intValue()) )/$F{prev_gross_block}.intValue()))+ " % "):"-"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -1194,7 +1220,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[($F{prev_fixed_cost}.intValue() != 0)?(new DecimalFormat("###0.0").format(100*(( ($F{cur_fixed_cost}.intValue()) -($F{prev_fixed_cost}.intValue()) )/$F{prev_fixed_cost}.intValue()))+ " % "):"-"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{prev_depreciation}.intValue() != 0)?(new DecimalFormat("###0.0").format(100*(( ($F{cur_depreciation}.intValue()) -($F{prev_depreciation}.intValue()) )/$F{prev_depreciation}.intValue()))+ " % "):"-"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -1211,7 +1237,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[($F{prev_ad_expense}.doubleValue() != 0)?(new DecimalFormat("###0.0").format(100*(( ($F{cur_ad_expense}.doubleValue()) -($F{prev_ad_expense}.doubleValue()) )/$F{prev_ad_expense}.doubleValue()))+ " % "):"-"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{prev_net_block}.doubleValue() != 0)?(new DecimalFormat("###0.0").format(100*(( ($F{cur_net_block}.doubleValue()) -($F{prev_net_block}.doubleValue()) )/$F{prev_net_block}.doubleValue()))+ " % "):"-"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -1228,7 +1254,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[($F{prev_rnd_expense}.doubleValue() != 0)?(new DecimalFormat("###0.0").format(100*(( ($F{cur_rnd_expense}.doubleValue()) -($F{prev_rnd_expense}.doubleValue()) )/$F{prev_rnd_expense}.doubleValue()))+ " % "):"-"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{prev_inventory}.doubleValue() != 0)?(new DecimalFormat("###0.0").format(100*(( ($F{cur_inventory}.doubleValue()) -($F{prev_inventory}.doubleValue()) )/$F{prev_inventory}.doubleValue()))+ " % "):"-"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -1245,7 +1271,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[($F{prev_market_research_expense}.doubleValue() != 0)?(new DecimalFormat("###0.0").format(100*(( ($F{cur_market_research_expense}.doubleValue()) -($F{prev_market_research_expense}.doubleValue()) )/$F{prev_market_research_expense}.doubleValue()))+ " % "):"-"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{prev_cash}.doubleValue() != 0)?(new DecimalFormat("###0.0").format(100*(( ($F{cur_cash}.doubleValue()) -($F{prev_cash}.doubleValue()) )/$F{prev_cash}.doubleValue()))+ " % "):"-"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -1262,7 +1288,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[($F{prev_admin_expense}.doubleValue() != 0)?(new DecimalFormat("###0.0").format(100*(( ($F{cur_admin_expense}.doubleValue()) -($F{prev_admin_expense}.doubleValue()) )/$F{prev_admin_expense}.doubleValue()))+ " % "):"-"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{prev_current_assets}.doubleValue() != 0)?(new DecimalFormat("###0.0").format(100*(( ($F{cur_current_assets}.doubleValue()) -($F{prev_current_assets}.doubleValue()) )/$F{prev_current_assets}.doubleValue()))+ " % "):"-"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -1279,7 +1305,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[($F{prev_depreciation}.doubleValue() != 0)?(new DecimalFormat("###0.0").format(100*(( ($F{cur_depreciation}.doubleValue()) -($F{prev_depreciation}.doubleValue()) )/$F{prev_depreciation}.doubleValue()))+ " % "):"-"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{prev_current_liabilities}.doubleValue() != 0)?(new DecimalFormat("###0.0").format(100*(( ($F{cur_current_liabilities}.doubleValue()) -($F{prev_current_liabilities}.doubleValue()) )/$F{prev_current_liabilities}.doubleValue()))+ " % "):"-"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -1296,7 +1322,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[($F{prev_interest}.doubleValue() != 0)?(new DecimalFormat("###0.0").format(100*(( ($F{cur_interest}.doubleValue()) -($F{prev_interest}.doubleValue()) )/$F{prev_interest}.doubleValue()))+ " % "):"-"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{prev_net_current_assets}.doubleValue() != 0)?(new DecimalFormat("###0.0").format(100*(( ($F{cur_net_current_assets}.doubleValue()) -($F{prev_net_current_assets}.doubleValue()) )/$F{prev_net_current_assets}.doubleValue()))+ " % "):"-"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -1313,7 +1339,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[($F{prev_pbt}.doubleValue() != 0)?(new DecimalFormat("###0.0").format(100*(( ($F{cur_pbt}.doubleValue()) -($F{prev_pbt}.doubleValue()) )/$F{prev_pbt}.doubleValue()))+ " % "):"-"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{prev_total_assets}.doubleValue() != 0)?(new DecimalFormat("###0.0").format(100*(( ($F{cur_total_assets}.doubleValue()) -($F{prev_total_assets}.doubleValue()) )/$F{prev_total_assets}.doubleValue()))+ " % "):"-"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -1325,12 +1351,14 @@ UNION
 						forecolor="#333333"
 						backcolor="#FFFFFF"
 						key="textField-118"
-						isRemoveLineWhenBlank="true"/>
+						isRemoveLineWhenBlank="true">
+							<printWhenExpression><![CDATA[new Boolean(Integer.parseInt($P{period}) > 0)]]></printWhenExpression>
+						</reportElement>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[new java.lang.Integer($F{prev_turnover}.intValue()-$F{prev_pat}.intValue())]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{prev_reserves}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -1347,7 +1375,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[new java.lang.Integer($F{cur_turnover}.intValue()-$F{cur_pat}.intValue())]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{cur_reserves}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -1364,7 +1392,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[((($F{prev_turnover}.doubleValue())-($F{prev_pat}.doubleValue())) != 0)?(new DecimalFormat("###0.0").format((100*( (($F{cur_turnover}.doubleValue())- ($F{cur_pat}.doubleValue())) -(($F{prev_turnover}.doubleValue())- ($F{prev_pat}.doubleValue()) )))/(($F{prev_turnover}.doubleValue())-($F{prev_pat}.doubleValue())))+ " % "):"-"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{prev_reserves}.doubleValue() != 0)?(new DecimalFormat("###0.0").format((100*( ($F{cur_reserves}.doubleValue()) -($F{prev_reserves}.doubleValue())) )/($F{prev_reserves}.doubleValue()))+ " % "):"-"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement

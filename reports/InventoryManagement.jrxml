@@ -2,13 +2,13 @@
 <!-- Created with iReport - A designer for JasperReports -->
 <!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
 <jasperReport
-		 name="StockMarketReport"
+		 name="InventoryManagementReport"
 		 columnCount="1"
 		 printOrder="Vertical"
 		 orientation="Portrait"
 		 pageWidth="740"
 		 pageHeight="2500"
-		 columnWidth="700"
+		 columnWidth="680"
 		 columnSpacing="0"
 		 leftMargin="20"
 		 rightMargin="20"
@@ -26,16 +26,45 @@
 	<parameter name="period" isForPrompting="false" class="java.lang.String">
 		<defaultValueExpression ><![CDATA["0"]]></defaultValueExpression>
 	</parameter>
-	<queryString><![CDATA[select * from rep_stock_market WHERE period = $P{period} ORDER by spi desc, team_name asc]]></queryString>
+	<queryString><![CDATA[select * FROM rep_inventory_management WHERE period = $P{period}]]></queryString>
 
 	<field name="id" class="java.lang.Integer"/>
 	<field name="period" class="java.lang.Integer"/>
-	<field name="team_name" class="java.lang.String"/>
-	<field name="spi" class="java.lang.Integer"/>
-	<field name="market_share" class="java.lang.Float"/>
-	<field name="net_profit_margin" class="java.lang.Float"/>
-	<field name="current_net_contribution" class="java.lang.Integer"/>
+	<field name="team" class="java.lang.String"/>
+	<field name="brand" class="java.lang.String"/>
+	<field name="supermarket" class="java.lang.Float"/>
+	<field name="general" class="java.lang.Float"/>
+	<field name="kirana" class="java.lang.Float"/>
+	<field name="total" class="java.lang.Float"/>
 
+
+		<group  name="Team" >
+			<groupExpression><![CDATA[$F{team}]]></groupExpression>
+			<groupHeader>
+			<band height="35"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Opaque"
+						x="0"
+						y="10"
+						width="700"
+						height="25"
+						forecolor="#FFFFFF"
+						backcolor="#688B9D"
+						key="textField-2"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" size="14" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["    Team: "+$F{team}]]></textFieldExpression>
+				</textField>
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+			</groupFooter>
+		</group>
 		<background>
 			<band height="0"  isSplitAllowed="true" >
 			</band>
@@ -57,7 +86,7 @@
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="24" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Stock Market Report   ]]></text>
+				<text><![CDATA[Inventory Management Report    ]]></text>
 				</staticText>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -83,13 +112,13 @@
 			</band>
 		</pageHeader>
 		<columnHeader>
-			<band height="65"  isSplitAllowed="true" >
+			<band height="50"  isSplitAllowed="true" >
 				<staticText>
 					<reportElement
 						mode="Opaque"
 						x="0"
 						y="0"
-						width="100"
+						width="140"
 						height="50"
 						forecolor="#FFFFFF"
 						backcolor="#70A9C6"
@@ -97,146 +126,163 @@
 						isPrintInFirstWholeBand="true"/>
 					<box topBorder="Thin" topBorderColor="#FFFFFF" leftBorder="Thin" leftBorderColor="#FFFFFF" rightBorder="Thin" rightBorderColor="#FFFFFF" bottomBorder="Thin" bottomBorderColor="#FFFFFF"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Arial" size="14" isBold="true"/>
+						<font fontName="Arial" size="16" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Team]]></text>
+				<text><![CDATA[Brand]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
 						mode="Opaque"
-						x="550"
+						x="140"
 						y="0"
-						width="150"
-						height="50"
+						width="420"
+						height="25"
 						forecolor="#FFFFFF"
 						backcolor="#70A9C6"
-						key="staticText-4"
+						key="staticText-3"
 						isPrintInFirstWholeBand="true"/>
-					<box topBorder="Thin" topBorderColor="#FFFFFF" leftBorder="None" leftBorderColor="#000000" rightBorder="Thin" rightBorderColor="#FFFFFF" bottomBorder="Thin" bottomBorderColor="#FFFFFF"/>
+					<box topBorder="Thin" topBorderColor="#FFFFFF" leftBorder="None" leftBorderColor="#FFFFFF" rightBorder="Thin" rightBorderColor="#FFFFFF" bottomBorder="Thin" bottomBorderColor="#FFFFFF"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Arial" size="14" isBold="true"/>
+						<font fontName="Arial" size="16" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Net Contribution - Current]]></text>
+				<text><![CDATA[Distribution Channels]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
 						mode="Opaque"
-						x="100"
-						y="0"
-						width="150"
-						height="50"
-						forecolor="#FFFFFF"
-						backcolor="#70A9C6"
-						key="staticText-5"
-						isPrintInFirstWholeBand="true"/>
-					<box topBorder="Thin" topBorderColor="#FFFFFF" leftBorder="None" leftBorderColor="#000000" rightBorder="Thin" rightBorderColor="#FFFFFF" bottomBorder="Thin" bottomBorderColor="#FFFFFF"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Arial" size="14" isBold="true"/>
-					</textElement>
-				<text><![CDATA[Stock Price]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						mode="Opaque"
-						x="250"
-						y="0"
-						width="150"
-						height="50"
+						x="140"
+						y="25"
+						width="140"
+						height="25"
 						forecolor="#FFFFFF"
 						backcolor="#70A9C6"
 						key="staticText-6"
 						isPrintInFirstWholeBand="true"/>
-					<box topBorder="Thin" topBorderColor="#FFFFFF" leftBorder="None" leftBorderColor="#000000" rightBorder="Thin" rightBorderColor="#FFFFFF" bottomBorder="Thin" bottomBorderColor="#FFFFFF"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="Thin" rightBorderColor="#FFFFFF" bottomBorder="Thin" bottomBorderColor="#FFFFFF"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Arial" size="14" isBold="true"/>
+						<font fontName="Arial" size="13" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Market Share]]></text>
+				<text><![CDATA[Super Markets]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
 						mode="Opaque"
-						x="400"
-						y="0"
-						width="150"
-						height="50"
+						x="280"
+						y="25"
+						width="140"
+						height="25"
 						forecolor="#FFFFFF"
 						backcolor="#70A9C6"
 						key="staticText-7"
 						isPrintInFirstWholeBand="true"/>
-					<box topBorder="Thin" topBorderColor="#FFFFFF" leftBorder="None" leftBorderColor="#000000" rightBorder="Thin" rightBorderColor="#FFFFFF" bottomBorder="Thin" bottomBorderColor="#FFFFFF"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="Thin" rightBorderColor="#FFFFFF" bottomBorder="Thin" bottomBorderColor="#FFFFFF"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Arial" size="14" isBold="true"/>
+						<font fontName="Arial" size="13" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Net Proft Margin]]></text>
+				<text><![CDATA[General Stores]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						mode="Opaque"
+						x="420"
+						y="25"
+						width="140"
+						height="25"
+						forecolor="#FFFFFF"
+						backcolor="#70A9C6"
+						key="staticText-8"
+						isPrintInFirstWholeBand="true"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="Thin" rightBorderColor="#FFFFFF" bottomBorder="Thin" bottomBorderColor="#FFFFFF"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="13" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Kirana Stores]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						mode="Opaque"
+						x="560"
+						y="0"
+						width="140"
+						height="50"
+						forecolor="#FFFFFF"
+						backcolor="#70A9C6"
+						key="staticText-9"
+						isPrintInFirstWholeBand="true"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="Thin" rightBorderColor="#FFFFFF" bottomBorder="Thin" bottomBorderColor="#FFFFFF"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="16" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Total]]></text>
 				</staticText>
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="30"  isSplitAllowed="true" >
+			<band height="29"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="0"
 						y="0"
-						width="100"
+						width="140"
 						height="25"
 						key="textField-7"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Arial" size="12" isBold="true"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{team_name}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{brand}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="100"
+						x="140"
 						y="0"
-						width="150"
-						height="25"
-						key="textField-8"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Arial" size="12" isBold="true"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{spi}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="250"
-						y="0"
-						width="150"
+						width="140"
 						height="25"
 						key="textField-9"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Arial" size="12" isBold="true"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[new DecimalFormat("#,##0").format(new java.lang.Double(  ($F{market_share}.doubleValue()) *(new Double(100).doubleValue()) )) + " % "]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Float"><![CDATA[$F{supermarket}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="400"
+						x="280"
 						y="0"
-						width="150"
+						width="140"
 						height="25"
 						key="textField-10"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Arial" size="12" isBold="true"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[new DecimalFormat("#,##0").format(new java.lang.Double(  ($F{net_profit_margin}.doubleValue()) *(new Double(100).doubleValue()) )) + " % "]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Float"><![CDATA[$F{general}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="550"
+						x="420"
 						y="0"
-						width="150"
+						width="140"
 						height="25"
-						key="textField-13"/>
+						key="textField-11"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Arial" size="12" isBold="true"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{current_net_contribution}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.Float"><![CDATA[$F{kirana}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="560"
+						y="0"
+						width="140"
+						height="25"
+						key="textField-12"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Float"><![CDATA[$F{total}]]></textFieldExpression>
 				</textField>
 				<line direction="TopDown">
 					<reportElement
