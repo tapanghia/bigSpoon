@@ -468,9 +468,9 @@ UNION
 				<rectangle>
 					<reportElement
 						x="-20"
-						y="1"
-						width="740"
-						height="30"
+						y="0"
+						width="214"
+						height="31"
 						backcolor="#CCCCFF"
 						key="rectangle-40"
 						positionType="Float"/>
@@ -478,32 +478,30 @@ UNION
 				</rectangle>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						mode="Transparent"
+						mode="Opaque"
 						x="194"
-						y="1"
-						width="185"
-						height="28"
+						y="0"
+						width="186"
+						height="31"
 						forecolor="#333333"
-						backcolor="#FFFFFF"
+						backcolor="#CCCCFF"
 						key="textField-44"
-						isRemoveLineWhenBlank="true">
-							<printWhenExpression><![CDATA[new Boolean(Integer.parseInt($P{period}) > 0)]]></printWhenExpression>
-						</reportElement>
+						isRemoveLineWhenBlank="true"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="16" isBold="true" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Period: " + $F{prev_period}+ "       "]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Period: " + (Integer.parseInt($P{period}) - 1)+ "       "]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						mode="Transparent"
+						mode="Opaque"
 						x="380"
-						y="1"
-						width="185"
-						height="28"
+						y="0"
+						width="179"
+						height="31"
 						forecolor="#333333"
-						backcolor="#70A9C6"
+						backcolor="#CCCCFF"
 						key="textField-45"
 						isRemoveLineWhenBlank="true"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -514,13 +512,13 @@ UNION
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						mode="Transparent"
-						x="565"
-						y="1"
-						width="154"
-						height="28"
+						mode="Opaque"
+						x="559"
+						y="0"
+						width="161"
+						height="31"
 						forecolor="#333333"
-						backcolor="#70A9C6"
+						backcolor="#CCCCFF"
 						key="textField-46"
 						isRemoveLineWhenBlank="true"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -690,7 +688,7 @@ UNION
 						x="-20"
 						y="481"
 						width="214"
-						height="30"
+						height="28"
 						forecolor="#FFFFFF"
 						backcolor="#8C949E"
 						key="textField-65"
