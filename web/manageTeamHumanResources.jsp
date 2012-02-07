@@ -89,7 +89,7 @@ $(document).ready(function() {
 		var ppL1SalesForce = $("#ppLevel1SalesForce").val();
 		
 		var currentPeriod = <%= currentPeriod %>;
-		var totalSalesForce = parseInt(l3SalesForce) + parseInt(l2SalesForce) + parseInt(l1SalesForce);
+		var totalSalesForce = parseInt(l3SalesForce, 10) + parseInt(l2SalesForce, 10) + parseInt(l1SalesForce, 10);
 		var hiringFiringCost = (Math.abs(l3SalesForce - ppL3SalesForce) * 26000) + 
 			(Math.abs(l2SalesForce - ppL2SalesForce) * 12000) +
 			(Math.abs(l1SalesForce - ppL1SalesForce) * 7000); 
