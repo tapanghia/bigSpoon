@@ -60,7 +60,7 @@
 						<p style="text-align: justify;">Scaling-up the business often requires capital infusion. We ensure that debt is always available when you need it. We liaison with various banks to get the best possible rates for all the loans. We also take care of the day-to-day cash flow management of the company.</p>
 						<p style="text-align: justify;">However, there is one catch - as you take more and more loan, the interest cost rises. Also, as a matter of policy, the debt-to-equity ratio of the company cannot exceed 1. So it would be advisable to take loan only when it is required and utilize the amount effectively.</p>
 						<p style="text-align: justify;">On the top menu you will see the Loan Management section.<br>
-						<span style="color:#0083C3"><i>Loan Management</i></span> - here you can see the interest rate chart for a given amount of loan. Then you can decide how much loan to apply for based on need and target Debt-to-Equity ratio.</p>
+						<span style="color:#0083C3"><i>Manage Finances</i></span> - here you can see the interest rate chart for a given amount of loan. Then you can decide how much loan to apply for based on need and target Debt-to-Equity ratio.</p>
 					</div></div></section>
 <div class="clear"></div>
 		

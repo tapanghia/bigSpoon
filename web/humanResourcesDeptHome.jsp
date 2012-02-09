@@ -52,8 +52,8 @@
 						<span style="color:#0083C3">Welcome to the Human Resources Department.</span><br><br>
 						<p style="text-align: justify;">The HR team operates under the leadership of <span style="color:#0083C3"><i>Ms. Shubha Murthy</i>.</span></p>
 						<p style="text-align: justify;">Employees are the biggest asset of any organization. Our job is to identify the right kind of talent required to take the company to newer heights. Sometimes though we also have to take some harsh calls and fire the unproductive employees. Apart from Hiring/Firing we also groom employees to make them more efficient. Employees can be of 3 skill levels based on the effectiveness of their sales pitches. Note that the costs associated wit hiring employees of various levels are different. Typically hiring employees at a lower skill level and training them is less costly compared to hiring highly skilled people. </p>
-						<p style="text-align: justify;">On the Top menu you will see the HR Management section:<br><br>
-<span style="color:#0083C3"><i>HR Management</i></span> - This has 2 subsections:<br><br><span style="color:#0083C3"><i>a) Hiring/Firing</i></span> - In this section you may decide how many employees to recruit/fire of each skill level.<br><span style="color:#0083C3"><i>b) Training</i></span> - Here you may train your employees to make them more skilled at sales.</p>
+						<p style="text-align: justify;">On the Top menu you will see the Manage Human Resources section:<br><br>
+<span style="color:#0083C3"><i>Manage Human Resources</i></span> - This has 2 subsections:<br><br><span style="color:#0083C3"><i>a) Hiring/Firing</i></span> - In this section you may decide how many employees to recruit/fire of each skill level.<br><span style="color:#0083C3"><i>b) Training</i></span> - Here you may train your employees to make them more skilled at sales.</p>
 
 					</div></div></section>
 <div class="clear"></div>

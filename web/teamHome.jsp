@@ -57,16 +57,13 @@
 						customer preferences and strategic moves of competing companies.</p>
 						<p style="text-align: justify;">The company has been organized into different departments that you 
 						must visit to take the relevant decisions. The inputs that you take are 
-						specific to <span style="color:#0083C3"><i>4</i> key departments i.e. Research and Development, Marketing,
-						Sales and Market Intelligence</span>. The <span style="color:#0083C3">Board Room</span> is the most sophisticated room of the firm where your decisions
+						specific to <span style="color:#0083C3"><i>6</i> key departments i.e. Finance, Operations, Marketing, Sales, HR and Market Intelligence</span>. The <span style="color:#0083C3">Board Room</span> is the most sophisticated room of the firm where your decisions
 				   		shall be evaluated and scrutinized. The tab <span style="color:#0083C3">Basic Description </span>gives 
 						you a detailed analysis of the region, their consumers, distribution 
 						channels, etc.</p>
 						<p style="text-align: justify;">The very first step in marketing your products is to <span style="color:#0083C3"><i>know your target 
 						segment</i></span>. You need to choose segment or segments you want to cater to 
 						from among the five segments explained under the tab Basic Description.
-						Once the segments are chosen, you must <span style="color:#0083C3"><i>develop appropriate products</i></span> for 
-						each of the segments using the help of R&D Department. 
 						<br><br>Secondly, you 
 						need to <span style="color:#0083C3"><i>use proper communication channel mix</i></span> and effective advertisement
 						budget on the segment/segments you have targeted using the help of the

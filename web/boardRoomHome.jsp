@@ -59,8 +59,9 @@
 						<br><p style="text-align: justify;">So, <span style="color:#0083C3"><i>learn fast from 
 						your mistakes</i></span> and gear up for the challenges because the stakes are 
 						really high.</p>
-						<br><p style="text-align: justify;">There are  <span style="color:#0083C3"><i>4 important reports</span></i> which are presented to the board as shown in the left panel under company performance:
-						<span style="color:#0083C3"><i><br>Team Performance</span></i> -  This gives the snapshot of the revenue and profit numbers of your company.
+						<br><p style="text-align: justify;">There are  <span style="color:#0083C3"><i>5 important reports</span></i> which are presented to the board as shown in the left panel under company performance:
+						<span style="color:#0083C3"><i><br>Team Balance Sheet</span></i> -  This gives the asset and liability status of the company which helps in understanding its financial strength.
+						<span style="color:#0083C3"><i><br>Team Profit & Loss</span></i> -  This provides the snapshot of last period's performance of the company. 
 						<span style="color:#0083C3"><i><br>Brand Performance</span></i> -  This provides more detailed information to show how individual brands are performing.
 						<span style="color:#0083C3"><i><br>Stock Market</span></i> -  The ultimate indicator of your performance.
 						<span style="color:#0083C3"><i><br>R&D Report</span></i> -  The future potential of the company is gauged by the quality of research projects completed. This report provides the required information.
