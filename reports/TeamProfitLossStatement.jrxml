@@ -1960,7 +1960,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[(($F{prev_inventory_cost}.intValue() + $F{prev_disposal_loss}.intValue()) != 0)?(new DecimalFormat("###0.0").format((( (($F{cur_inventory_cost}.intValue() + $F{cur_disposal_loss}.intValue())*100) -(($F{prev_inventory_cost}.intValue() + $F{prev_disposal_loss}.intValue())*100) ))/(($F{prev_inventory_cost}.intValue() + $F{prev_disposal_loss}.intValue())))+ " % "):"-"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[(($F{prev_inventory_cost}.doubleValue() + $F{prev_disposal_loss}.doubleValue()) != 0)?(new DecimalFormat("###0.0").format((( (($F{cur_inventory_cost}.doubleValue() + $F{cur_disposal_loss}.doubleValue())*100) -(($F{prev_inventory_cost}.doubleValue() + $F{prev_disposal_loss}.doubleValue())*100) ))/(($F{prev_inventory_cost}.doubleValue() + $F{prev_disposal_loss}.doubleValue())))+ " % "):"-"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -1977,7 +1977,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[($F{prev_inventory_cost}.intValue() != 0)?(new DecimalFormat("###0.0").format(100*(( ($F{cur_inventory_cost}.intValue())-($F{prev_inventory_cost}.intValue()) )/$F{prev_inventory_cost}.intValue()))+ " % "):"-"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{prev_inventory_cost}.doubleValue() != 0)?(new DecimalFormat("###0.0").format(100*(( ($F{cur_inventory_cost}.doubleValue())-($F{prev_inventory_cost}.doubleValue()) )/$F{prev_inventory_cost}.doubleValue()))+ " % "):"-"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -1994,7 +1994,7 @@ UNION
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" pdfFontName="Helvetica-Bold" size="14" isBold="false" isItalic="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[($F{prev_disposal_loss}.intValue() != 0) ? (new DecimalFormat("###0.0").format(100*(( ($F{cur_disposal_loss}.intValue()) -($F{prev_disposal_loss}.intValue()) )/$F{prev_disposal_loss}.intValue()))+ " % "):"-"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{prev_disposal_loss}.doubleValue() != 0) ? (new DecimalFormat("###0.0").format(100*(( ($F{cur_disposal_loss}.doubleValue()) -($F{prev_disposal_loss}.doubleValue()) )/$F{prev_disposal_loss}.doubleValue()))+ " % "):"-"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="#,##0" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
