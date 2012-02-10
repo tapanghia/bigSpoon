@@ -52,7 +52,7 @@
 						<span style="color:#0083C3">Welcome to the Operations Department.</span><br><br>
 						<p style="text-align: justify;">This team is led by <span style="color:#0083C3"><i>Mr. Venkat Raghavan</i>.</span>Ours is the biggest team of the company.</p>
 						<p style="text-align: justify;">From procurement of raw materials to manufacturing to distribution is taken care of by the operations team. We take every measure to minimize errors in the process and ensure that all products are produced exactly as per specifications. We are six sigma compliant and regularly conduct quality checks so that we have negligible defective products.</p>
-						<p style="text-align: justify;">Initially the company has a plant of total capacity of 1 lac units. Both the brands of the company are produced from the same factory. A part of the cost is fixed and the remaining is variable. Therefore, unless the plant is running close to capacity, per unit cost of production maybe higher.</p>
+						<p style="text-align: justify;">Initially the company has a plant of total capacity of 1.5 lac units. Both the brands of the company are produced from the same factory. A part of the cost is fixed and the remaining is variable. Therefore, unless the plant is running close to capacity, per unit cost of production maybe higher.</p>
 						<p style="text-align: justify;">When required the company can expand the plant to increase the capacity of the plant. Do keep in mind that bigger plants have higher fixed costs.</p>
 						<p style="text-align: justify;">On the Top menu you will find the Production Tab<br>
 <span style="color:#0083C3"><i>Manage Operations</i></span> - You may decide the additional plant capacity in this section.</p>
