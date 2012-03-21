@@ -1,6 +1,7 @@
 package com.marklabs.web.controllers;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,6 +11,8 @@ import org.apache.log4j.Logger;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
+import com.marklabs.tabSelector.ITabConfiguratorService;
+import com.marklabs.tabSelector.TabConstants;
 import com.marklabs.teams.ITeamService;
 import com.marklabs.teams.Team;
 import com.marklabs.user.IUserService;
@@ -28,7 +31,18 @@ public class LoginController extends MultiActionController {
 	ITeamService teamService;
 	IUserService userService;
 	IGlobalConstantsService globalConstantsService;
+	ITabConfiguratorService tabConfiguratorService;
 	
+
+	
+	public ITabConfiguratorService getTabConfiguratorService() {
+		return tabConfiguratorService;
+	}
+
+	public void setTabConfiguratorService(
+			ITabConfiguratorService tabConfiguratorService) {
+		this.tabConfiguratorService = tabConfiguratorService;
+	}
 
 	/**
 	 * @return the globalConstantsService
@@ -104,7 +118,6 @@ public class LoginController extends MultiActionController {
 			}
 			else {
 				//Populating the session with the Team Details
-				
 				Team team = teamService.getTeamDetails(teamUserName, teamPassword);
 				session.setAttribute(Constants.TEAM_ID, team.getId()+"");
 				session.setAttribute(Constants.TEAM_NAME, team.getTeamName());
@@ -112,6 +125,11 @@ public class LoginController extends MultiActionController {
 				session.setAttribute(Constants.CURRENT_PERIOD, new Integer(team.getCurrentTeamPeriod()));
 				session.setAttribute(Constants.CURRENT_BUDGET, team.getTeamCurrentPeriodBudget());
 				session.setAttribute(Constants.TEAM_OBJECT, team);
+				
+				// populating the tab configurator Map
+				Map<TabConstants, Boolean> tabConfMap = tabConfiguratorService.fetchTabConfiguration();
+				session.setAttribute(Constants.TAB_CONFIGURATOR, tabConfMap);
+				
 				response.sendRedirect("teamHome.htm");
 				
 				//return new ModelAndView("dashBoard");

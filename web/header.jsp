@@ -5,12 +5,15 @@
 <%@ page import="java.util.Iterator"%>
 <%@ page import="java.util.Collection"%>
 <%@ page import="com.marklabs.web.controllers.Constants" %>
+<%@ page import="com.marklabs.tabSelector.TabConstants" %>
 <% 
   String currentLink = null;
   if (null !=  session.getAttribute("CURRENT_LINK")){
     currentLink = (String)session.getAttribute("CURRENT_LINK");
     currentLink = currentLink.toLowerCase();
   }
+  
+  Map<TabConstants, Boolean> tabConfMap = (Map<TabConstants, Boolean>)session.getAttribute(Constants.TAB_CONFIGURATOR);
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,12 +80,18 @@
 	<nav id="main-nav">
 		
 		<ul class="container_12">
+		<% if (tabConfMap != null && tabConfMap.containsKey(TabConstants.HOME) && tabConfMap.get(TabConstants.HOME)) {%>
 			<li class="home <%= (currentLink.equalsIgnoreCase("home"))?"current":"" %>"><a href="teamHome.htm" title="Home">Home</a>
 				<ul>
+					<%if (tabConfMap != null && tabConfMap.containsKey(TabConstants.HOME_DASHBOARD) && tabConfMap.get(TabConstants.HOME_DASHBOARD)) {%>
 					<li><a href="teamHome.htm" title="Dashboard">Dashboard</a></li>
+					<%}%>
+					<% if (tabConfMap != null && tabConfMap.containsKey(TabConstants.HOME_BASIC_DESCRIPTION) && tabConfMap.get(TabConstants.HOME_BASIC_DESCRIPTION)) {%>					
 					<li><a href="javascript:window.open('basicDescription.jsp?', 'resizable=no, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no');" title="Help">Basic Description</a></li>
+					<%}%>
 				</ul>
 			</li>
+		<%}%>	
 			<!-- R&D Projects functionality is removed from bizLABS -->
 			<!-- li class="write <%= (currentLink.equalsIgnoreCase("researchproject"))?"current":"" %>">
 				<a href="researchProject.htm" title="R&D Team">R&DTeam</a>
@@ -93,55 +102,108 @@
 					<li><a href="researchProject.htm?do=getResearchProjectsForTeam" title="View/Edit Research Projects">View/Edit Research Projects</a></li>
 				</ul>
 			</li>-->
+	
+			<%if (tabConfMap != null && tabConfMap.containsKey(TabConstants.FINANCES) && tabConfMap.get(TabConstants.FINANCES)) {%>
 			<li class="write <%= (currentLink.equalsIgnoreCase("FinanceDept"))?"current":"" %>">
 				<a href="financeDept.htm" title="Finances">Finances</a>
 				<ul>
+					<%if (tabConfMap != null && tabConfMap.containsKey(TabConstants.FINANCES_TEAM_HOME) && tabConfMap.get(TabConstants.FINANCES_TEAM_HOME)) {%>
 					<li><a href="financeDept.htm" title="Finance Team Home">Finance Team Home</a></li>
+					<%}%>
+					<%if (tabConfMap != null && tabConfMap.containsKey(TabConstants.FINANCES_MANAGE_FINANCES) && tabConfMap.get(TabConstants.FINANCES_MANAGE_FINANCES)) { %>
 					<li><a href="financeDept.htm?do=manageTeamFinances" title="Finances">Manage Finances</a></li>
+					<%}%>
 				</ul>
 			</li>
+			<%}%>
+			
+			<%if (tabConfMap != null && tabConfMap.containsKey(TabConstants.MARKETING) && tabConfMap.get(TabConstants.MARKETING)) {%>
 			<li class="comments <%= (currentLink.equalsIgnoreCase("marketing"))?"current":"" %>"><a href="marketingTeam.htm" title="Marketing Team">MarketingTeam</a>
 				<ul>
+					<%if (tabConfMap != null && tabConfMap.containsKey(TabConstants.MARKETING_TEAM_HOME) && tabConfMap.get(TabConstants.MARKETING_TEAM_HOME)) {%>
 					<li><a href="marketingTeam.htm" title="MarketingTeam">Marketing Team</a></li>
+					<%}%>
+					<%if (tabConfMap != null && tabConfMap.containsKey(TabConstants.MARKETING_BRAND_MANAGEMENT) && tabConfMap.get(TabConstants.MARKETING_BRAND_MANAGEMENT)) {%>
 					<li><a href="brandManagement.htm" title="Brand Management">Brand Management</a></li>
+					<%}%>
+					<%if (tabConfMap != null && tabConfMap.containsKey(TabConstants.MARKETING_PRODUCTION_AND_PRICING) && tabConfMap.get(TabConstants.MARKETING_PRODUCTION_AND_PRICING)) {%>
 					<li><a href="productionPricing.htm" title="Production & Pricing">Production & Pricing</a></li>
+					<%}%>
+					<%if (tabConfMap != null && tabConfMap.containsKey(TabConstants.MARKETING_ADVERTISEMENT) && tabConfMap.get(TabConstants.MARKETING_ADVERTISEMENT)) {%>
 					<li><a href="brandAdvertisement.htm" title="Advertisement">Advertisement</a></li>
+					<%}%>
 				</ul>
 			</li>
+			<%}%>
+			
+			<%if (tabConfMap != null && tabConfMap.containsKey(TabConstants.OPERATIONS) && tabConfMap.get(TabConstants.OPERATIONS)) {%>
 			<li class="backup <%= (currentLink.equalsIgnoreCase("OperationsDept"))?"current":"" %>">
 				<a href="operationsDept.htm" title="Operations">Operations</a>
 				<ul>
+					<%if (tabConfMap != null && tabConfMap.containsKey(TabConstants.OPERATIONS_TEAM_HOME) && tabConfMap.get(TabConstants.OPERATIONS_TEAM_HOME)) {%>
 					<li><a href="operationsDept.htm" title="Operations Team Home">Operations Team Home</a></li>
+					<%}%>
+					<%if (tabConfMap != null && tabConfMap.containsKey(TabConstants.OPERATIONS_MANAGE_OPERATIONS) && tabConfMap.get(TabConstants.OPERATIONS_MANAGE_OPERATIONS)) {%>
 					<li><a href="operationsDept.htm?do=manageTeamOperations" title="Operations">Manage Operations</a></li>
+					<%}%>
 				</ul>
 			</li>
+			<%}%>
+			
+			<%if (tabConfMap != null && tabConfMap.containsKey(TabConstants.HUMAN_RESOURCES) && tabConfMap.get(TabConstants.HUMAN_RESOURCES)) {%>
 			<li class="users <%= (currentLink.equalsIgnoreCase("HumanResourcesDept"))?"current":"" %>">
 				<a href="humanResourcesDept.htm" title="Human Resources">HumanResources</a>
 				<ul>
+					<%if (tabConfMap != null && tabConfMap.containsKey(TabConstants.HUMAN_RESOURCES_TEAM_HOME) && tabConfMap.get(TabConstants.HUMAN_RESOURCES_TEAM_HOME)) {%>
 					<li><a href="humanResourcesDept.htm" title="Human Resource Team Home">Human Resource Team Home</a></li>
+					<%}%>
+					<%if (tabConfMap != null && tabConfMap.containsKey(TabConstants.HUMAN_RESOURCES_MANAGE_HR) && tabConfMap.get(TabConstants.HUMAN_RESOURCES_MANAGE_HR)) {%>
 					<li><a href="humanResourcesDept.htm?do=manageTeamHumanResources" title="Human Resources">Manage Human Resources</a></li>
+					<%}%>
 				</ul>
 			</li>
+			<%}%>
+			
+			<%if (tabConfMap != null && tabConfMap.containsKey(TabConstants.SALES) && tabConfMap.get(TabConstants.SALES)) {%>
 			<li class="medias <%= (currentLink.equalsIgnoreCase("sales"))?"current":"" %>">
 			<a href="salesTeam.htm" title="Sales Team">SalesTeam</a>
 				<ul>
+					<%if (tabConfMap != null && tabConfMap.containsKey(TabConstants.SALES_TEAM_HOME) && tabConfMap.get(TabConstants.SALES_TEAM_HOME)) {%>
 					<li><a href="salesTeam.htm" title="Sales Team">Sales Team</a></li>
+					<%}%>
+					<%if (tabConfMap != null && tabConfMap.containsKey(TabConstants.SALES_FORCE_MANAGEMENT) && tabConfMap.get(TabConstants.SALES_FORCE_MANAGEMENT)) {%>
 					<li><a href="salesTeam.htm?do=getSalesForceMgmt" title="Sales Force Management">Sales Force Management</a></li>
+					<%}%>
 				</ul>
 			</li>
+			<%}%>
+			
+			<%if (tabConfMap != null && tabConfMap.containsKey(TabConstants.INTELLIGENCE) && tabConfMap.get(TabConstants.INTELLIGENCE)) {%>
 			<li class="settings <%= (currentLink.equalsIgnoreCase("intelligence"))?"current":"" %>"><a href="intelligenceTeam.htm" title="Intelligence Team">IntelligenceTeam</a>
 				<ul>
+					<%if (tabConfMap != null && tabConfMap.containsKey(TabConstants.INTELLIGENCE_TEAM_HOME) && tabConfMap.get(TabConstants.INTELLIGENCE_TEAM_HOME)) {%>
 					<li><a href="intelligenceTeam.htm" title="Intelligence Team">Intelligence Team</a></li>
+					<%}%>
+					<%if (tabConfMap != null && tabConfMap.containsKey(TabConstants.INTELLIGENCE_MARKET_RESEARCH) && tabConfMap.get(TabConstants.INTELLIGENCE_MARKET_RESEARCH)) {%>
 					<li><a href="intelligenceTeam.htm?do=displayMarketResearch" title="Conduct Market Research">Conduct Market Research</a></li>
+					<%}%>
 				</ul>
 			</li>
+			<%}%>
+			
+			<%if (tabConfMap != null && tabConfMap.containsKey(TabConstants.BOARD_ROOM) && tabConfMap.get(TabConstants.BOARD_ROOM)) {%>
 			<li class="stats <%= (currentLink.equalsIgnoreCase("boardroom"))?"current":"" %>"><a href="boardRoom.htm" title="Board Room">BoardRoom</a>
 				<ul>
+					<%if (tabConfMap != null && tabConfMap.containsKey(TabConstants.BOARD_ROOM_HOME) && tabConfMap.get(TabConstants.BOARD_ROOM_HOME)) {%>
 					<li><a href="boardRoom.htm" title="Board Room">Board Room</a></li>
+					<%}%>
+					<%if (tabConfMap != null && tabConfMap.containsKey(TabConstants.BOARD_ROOM_MARKET_NEWS) && tabConfMap.get(TabConstants.BOARD_ROOM_MARKET_NEWS)) {%>
 					<li><a href="reports.htm?reportName=StockMarketReport" title="Market News">Market News</a></li>
+					<%}%>
 					<!-- li><a href="#" title="Proposed Marketing Plan">Proposed Marketing Plan</a></li-->
 				</ul>
 			</li>
+			<%}%>
 		</ul>
 	</nav>
 	<!-- End main nav -->

@@ -88,4 +88,6 @@ public class Constants {
 	public static final String TEAM_MAX_PRODUCTION_CAPACITY = "teamMaxProductionCapacityInThisPeriod";
 	public static final String TEAM_PRODUCTION_CAPACITY_ALLOCATED = "teamProductionCapacitiesUsed";
 	
+	// Application Tab Configurator
+	public static final String TAB_CONFIGURATOR = "tabConfiguratorMap";
 }

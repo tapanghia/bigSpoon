@@ -82,6 +82,7 @@
                 <value>hbm/TeamFinance.hbm.xml</value>
                 <value>hbm/TeamOperations.hbm.xml</value>
                 <value>hbm/TeamHR.hbm.xml</value>
+                <value>hbm/TabConfigurator.hbm.xml</value>
             </list>
         </property>
     </bean>
@@ -167,6 +168,25 @@
             </props>
         </property>
     </bean>
+
+	<bean id="tabConfiguratorServiceTarget" class="com.marklabs.tabSelector.TabConfiguratorService" depends-on="sessionFactory">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="tabConfiguratorService" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="target" ref="tabConfiguratorServiceTarget"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="add*">PROPAGATION_REQUIRED</prop>
+                <prop key="delete*">PROPAGATION_REQUIRED</prop>
+                <prop key="update*">PROPAGATION_REQUIRED</prop>
+                <prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+                <prop key="save*">PROPAGATION_REQUIRED</prop>
+            </props>
+        </property>
+    </bean>
+
 
 	<bean id="researchProjectServiceTarget" class="com.marklabs.researchProject.ResearchProjectService" depends-on="sessionFactory">
         <property name="sessionFactory" ref="sessionFactory"/>
@@ -1083,6 +1103,7 @@
 		<property name="teamService" ref="teamService"/>
 		<property name="userService" ref="userService"/>
 		<property name="globalConstantsService" ref="globalConstantsService"/>
+		<property name="tabConfiguratorService" ref="tabConfiguratorService"/>
 		<property name="methodNameResolver">
 			<bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
 				<property name="paramName"><value>do</value></property>
