@@ -24,13 +24,17 @@
   }
   Brand selectedBrand = (Brand) request.getSession().getAttribute(Constants.SELECTED_BRAND_ADV);
   
+  PerceptualObj thisBrandPerceptualObj = (PerceptualObj)request.getSession().getAttribute(Constants.BRAND_PERCEPTUALOBJECTIVE);
+ 
 %>
 <style>
-	#raffles, #wannabes, #deprived, #strugglers {
+	#bluebloods, #raffles, #wannabes, #deprived, #strugglers, #print, #television, #radio, #internet {
 		float: left;
 		clear: left;
 		width: 200px;
 	}
+	#bluebloods .ui-slider-range { background: #729fcf; }
+	#bluebloods .ui-slider-handle { border-color: #729fcf; }
 	#raffles .ui-slider-range { background: #729fcf; }
 	#raffles .ui-slider-handle { border-color: #729fcf; }
 	#wannabes .ui-slider-range { background: #729fcf; }
@@ -39,7 +43,14 @@
 	#deprived .ui-slider-handle { border-color: #729fcf; }
 	#strugglers .ui-slider-range { background: #729fcf; }
 	#strugglers .ui-slider-handle { border-color: #729fcf; }
-
+	#print .ui-slider-range { background: #729fcf; }
+	#print .ui-slider-handle { border-color: #729fcf; }
+	#television .ui-slider-range { background: #729fcf; }
+	#television .ui-slider-handle { border-color: #729fcf; }
+	#radio .ui-slider-range { background: #729fcf; }
+	#radio .ui-slider-handle { border-color: #729fcf; }
+	#internet .ui-slider-range { background: #729fcf; }
+	#internet .ui-slider-handle { border-color: #729fcf; }
 </style>
 <script type="text/javascript"> 
 $.validator.setDefaults({
@@ -63,6 +74,15 @@ $("#brandAdvHomeForm").validate({
 				required: true,
 				number: true
 			},
+			advResearchBudget: {
+				required: true,
+				number: true
+			},
+			bluebloods_targetSeg: {
+				required: true,
+				number: true,
+				range: [0,100]
+			},
 			raffles_targetSeg: {
 				required: true,
 				number: true,
@@ -83,15 +103,69 @@ $("#brandAdvHomeForm").validate({
 				number: true,
 				range: [0,100]
 			},
+			print_medium: {
+				required: true,
+				number: true,
+				range: [0,100]
+			},
+			television_medium: {
+				required: true,
+				number: true,
+				range: [0,100]
+			},
+			radio_medium: {
+				required: true,
+				number: true,
+				range: [0,100]
+			},
+			internet_medium: {
+				required: true,
+				number: true,
+				range: [0,100]
+			},
 			targetSegTotal: {
 				required: true,
 				number: true,
 				equal: 100
+			},
+			targetMedTotal: {
+				required: true,
+				number: true,
+				equal: 100
+			},
+			semanticScaleDim1Obj: {
+				required: function() {
+				          return $('#perceptualObj_1:checked').length >0;
+					    },
+     				number: true,
+				range: [1, 7]
+			},
+			semanticScaleDim2Obj: {
+				required: function() {
+					    return $('#perceptualObj_1:checked').length >0;
+					    },
+				number: true,
+				range: [1, 7]
+			},
+			mdsDimen1Obj: {
+				required: function() {
+					    return $('#perceptualObj_2:checked').length >0;
+					    },
+				number: true,
+				range: [0, 20]
+			},
+			mdsDimen2Obj: {
+				required: function() {
+					    return $('#perceptualObj_2:checked').length >0;
+					    },
+				number: true,
+				range: [0, 20]
 			}
 		},
 		messages: {
 			targetSegTotal: "Target Segment total should add up to 100%",
-		}	
+			targetMedTotal: "Medium Selection total should add up to 100%"
+			}	
 	});
 
 });
@@ -99,16 +173,35 @@ $("#brandAdvHomeForm").validate({
 </script>
 <script>
 	$(function() {
-		$( "#raffles").slider({
+		$( "#bluebloods").slider({
 			range: "min",
-			value: <%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getSegRaffles():"0")%>,
+			value: <%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getSegBlueBloods():"")%>,
 			min: 0,
 			max: 100,
 			slide: function( event, ui ) {
 				var p = $( "#amount5" ).val();
 				var q = $( "#amount4" ).val();
 				var r = $( "#amount3" ).val();
-				var sum3 = parseFloat(p) + parseFloat(q) + parseFloat(r) + ui.value;
+				var s = $( "#amount2" ).val();
+				var sum3 = parseFloat(p) + parseFloat(q) + parseFloat(r) + parseFloat(s) + ui.value;
+				$( "#amount" ).val( "" + ui.value );
+				$( "#targetSegTotal" ).val( sum3 );
+			}
+		});
+		$( "#amount" ).val( "" + $( "#bluebloods" ).slider( "value" ) );	
+	});
+	$(function() {
+		$( "#raffles").slider({
+			range: "min",
+			value: <%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getSegRaffles():"")%>,
+			min: 0,
+			max: 100,
+			slide: function( event, ui ) {
+				var p = $( "#amount5" ).val();
+				var q = $( "#amount4" ).val();
+				var r = $( "#amount3" ).val();
+				var s = $( "#amount" ).val();
+				var sum3 = parseFloat(p) + parseFloat(q) + parseFloat(r) + parseFloat(s) + ui.value;
 				$( "#amount2" ).val( "" + ui.value );
 				$( "#targetSegTotal" ).val( sum3 );
 			}
@@ -118,14 +211,15 @@ $("#brandAdvHomeForm").validate({
 	$(function() {
 		$( "#wannabes").slider({
 			range: "min",
-			value: <%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getSegWannabees():"0")%>,
+			value: <%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getSegWannabees():"")%>,
 			min: 0,
 			max: 100,
 			slide: function( event, ui ) {
 				var p = $( "#amount5" ).val();
 				var q = $( "#amount4" ).val();
 				var r = $( "#amount2" ).val();
-				var sum3 = parseFloat(p) + parseFloat(q) + parseFloat(r) + ui.value;
+				var s = $( "#amount" ).val();
+				var sum3 = parseFloat(p) + parseFloat(q) + parseFloat(r) + parseFloat(s) + ui.value;
 				$( "#amount3" ).val( "" + ui.value );
 				$( "#targetSegTotal" ).val( sum3 );
 			}
@@ -135,14 +229,15 @@ $("#brandAdvHomeForm").validate({
 	$(function() {
 		$( "#deprived").slider({
 			range: "min",
-			value: <%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getSegDeprived():"0")%>,
+			value: <%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getSegDeprived():"")%>,
 			min: 0,
 			max: 100,
 			slide: function( event, ui ) {
 				var p = $( "#amount5" ).val();
 				var q = $( "#amount3" ).val();
 				var r = $( "#amount2" ).val();
-				var sum3 = parseFloat(p) + parseFloat(q) + parseFloat(r) + ui.value;
+				var s = $( "#amount" ).val();
+				var sum3 = parseFloat(p) + parseFloat(q) + parseFloat(r) + parseFloat(s) + ui.value;
 				$( "#amount4" ).val( "" + ui.value );
 				$( "#targetSegTotal" ).val( sum3 );
 			}
@@ -152,21 +247,92 @@ $("#brandAdvHomeForm").validate({
 	$(function() {
 		$( "#strugglers").slider({
 			range: "min",
-			value: <%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getSegStrugglers():"0")%>,
+			value: <%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getSegStrugglers():"")%>,
 			min: 0,
 			max: 100,
 			slide: function( event, ui ) {
 				var p = $( "#amount4" ).val();
 				var q = $( "#amount3" ).val();
 				var r = $( "#amount2" ).val();
-				var sum3 = parseFloat(p) + parseFloat(q) + parseFloat(r) + ui.value;
+				var s = $( "#amount" ).val();
+				var sum3 = parseFloat(p) + parseFloat(q) + parseFloat(r) + parseFloat(s) + ui.value;
 				$( "#amount5" ).val( "" + ui.value );
 				$( "#targetSegTotal" ).val( sum3 );
 			}
 		});
 		$( "#amount5" ).val( "" + $( "#strugglers" ).slider( "value" ) );
 	});
-	
+	$(function() {
+		$( "#print").slider({
+			range: "min",
+			value: <%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getMediumPrint():"")%>,
+			min: 0,
+			max: 100,
+			slide: function( event, ui ) {
+				var b = $( "#amount9" ).val();
+				var c = $( "#amount7" ).val();
+				var d = $( "#amount8" ).val();
+				var sum1 = parseFloat(b) + parseFloat(c) + parseFloat(d) + ui.value;
+				$( "#amount6" ).val( "" + ui.value );
+				$( "#targetMedTotal" ).val( sum1 );
+			}
+		});
+		$( "#amount6" ).val( "" + $( "#print" ).slider( "value" ) );
+	});
+	$(function() {
+		$( "#television").slider({
+			range: "min",
+			value: <%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getMediumTelevision():"")%>,
+			min: 0,
+			max: 100,
+			slide: function( event, ui ) {
+				var b = $( "#amount9" ).val();
+				var c = $( "#amount8" ).val();
+				var d = $( "#amount6" ).val();
+				var sum1 = parseFloat(b) + parseFloat(c) + parseFloat(d) + ui.value;
+				$( "#amount7" ).val( "" + ui.value );
+				$( "#targetMedTotal" ).val( sum1 );
+
+			}
+		});
+		$( "#amount7" ).val( "" + $( "#television" ).slider( "value" ) );
+	});
+	$(function() {
+		$( "#radio").slider({
+			range: "min",
+			value: <%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getMediumRadio():"")%>,
+			min: 0,
+			max: 100,
+			slide: function( event, ui ) {
+				var b = $( "#amount9" ).val();
+				var c = $( "#amount7" ).val();
+				var d = $( "#amount6" ).val();
+				var sum1 = parseFloat(b) + parseFloat(c) + parseFloat(d) + ui.value;
+				$( "#amount8" ).val( "" + ui.value );
+				$( "#targetMedTotal" ).val( sum1 );
+			}
+		});
+		$( "#amount8" ).val( "" + $( "#radio" ).slider( "value" ) );
+	});
+	$(function() {
+		$( "#internet").slider({
+			range: "min",
+			value: <%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getMediumInternet():"")%>,
+			min: 0,
+			max: 100,
+			slide: function( event, ui ) {
+				var b = $( "#amount8" ).val();
+				var c = $( "#amount7" ).val();
+				var d = $( "#amount6" ).val();
+				var sum1 = parseFloat(b) + parseFloat(c) + parseFloat(d) + ui.value;
+				$( "#amount9" ).val( "" + ui.value );
+				$( "#targetMedTotal" ).val( sum1 );
+				
+			}
+		});
+		$( "#amount9" ).val( "" + $( "#internet" ).slider( "value" ) );
+	});
+
 
 function SetSliderValue(sliderId, textBoxControl) {
 		var amount = textBoxControl.value;
@@ -181,23 +347,32 @@ function SetSliderValue(sliderId, textBoxControl) {
 </script>
 <script type="text/javascript">
   $(document).ready(function(){
-  	
   	$("input.cancel").click(function(){
       window.location = "<%=CONTEXTPATH%>/marketingTeam.htm";
   	});
 
+	var a = <%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getSegBlueBloods():"")%>;
 	var b = <%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getSegRaffles():"")%>;
 	var c = <%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getSegWannabees():"")%>;
 	var d = <%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getSegDeprived():"")%>;
 	var e = <%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getSegStrugglers():"")%>;
-      var totval = b + c + d + e;
+      var totval = a + b + c + d + e;
 	$("input.targetSegTotal").val(totval);
 
+	var f = <%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getMediumPrint():"")%>;
+	var g = <%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getMediumRadio():"")%>;
+	var h = <%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getMediumInternet():"")%>;
+	var i = <%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getMediumTelevision():"")%>;
+	var totval2 = f + g + h + i;
+	$("input.targetMedTotal").val(totval2);
 
     $("#brandAdvHomeForm").submit(function() {
-    	return true;
-    });
     
+    	//var thisForm = document.brandAdvHomeForm;
+    	//var perceptualObjRadioSelectedIndex = thisForm.perceptualObj.selectedIndex;
+    	//alert(perceptualObjRadioSelectedIndex);
+  		return true;
+    });
     $("input.tarSegFld").live("change", function(){ 
       var sum = 0;
       var inp = $("input.tarSegFld");
@@ -206,7 +381,14 @@ function SetSliderValue(sliderId, textBoxControl) {
         sum = sum + parseInt($(inp[i]).val());
       $("input.targetSegTotal").val(sum);
     });
-    
+    $("input.tarMedFld").live("change", function(){ 
+      var sum = 0;
+      var inp = $("input.tarMedFld");
+      
+      for ( i = 0; i < inp.length; i++)
+        sum = sum + parseInt($(inp[i]).val());
+      $("input.targetMedTotal").val(sum);
+    });
   });
 </script>
 
@@ -298,26 +480,46 @@ function SetSliderValue(sliderId, textBoxControl) {
 					</div>
 
 					<div class="columns">
-	        			<div class="colx3-left">
-							<span class="label"></span>
-							<strong>Advertising Media Budget</strong>
-						</div>
-						<div class="colx3-center">
-							<span class="label"></span><p><span class="relative">	
-							<input type="text" name="ppAdvMBudget" id="ppAdvMBudget" disabled 
-								value = "<%= ((previousPeriodBrandAdv != null)?previousPeriodBrandAdv.getAdvMediabudget():"")%>" 
-								class="past"><span class="check-past"></span></span></p></div>
-						<div class="colx3-right">
-							<span class="label"></span>
-							<input type="text" name="advMediaBudget" id="tpAdvMBudget" 
-								value = "<%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getAdvMediabudget():"")%>" />				
-						</div>
+        				<div class="colx3-left">
+					<span class="label"></span>
+					<strong>Advertising Media Budget</strong>
 					</div>
-					
+					<div class="colx3-center">
+						<span class="label"></span><p><span class="relative">	
+<input type="text" name="ppAdvMBudget" id="ppAdvMBudget" disabled value = "<%= ((previousPeriodBrandAdv != null)?previousPeriodBrandAdv.getAdvMediabudget():"")%>" class="past"><span class="check-past"></span></span></p></div>
+					<div class="colx3-right">
+						<span class="label"></span>
+<input type="text" name="advMediaBudget" id="tpAdvMBudget" value = "<%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getAdvMediabudget():"")%>" />				</div>
+					</div>
+
+					<div class="columns">
+        				<div class="colx3-left">
+					<span class="label"></span>
+					<strong>Advertising Research Budget</strong>
+					</div>
+					<div class="colx3-center">
+						<span class="label"></span><p><span class="relative">	
+<input type="text" name="ppAdvRBudget" id="ppAdvRBudget" disabled value = "<%= ((previousPeriodBrandAdv != null)?previousPeriodBrandAdv.getAdvResearchBudget():"")%>" class="past"><span class="check-past"></span></span></p></div>
+					<div class="colx3-right">
+						<span class="label"></span>
+<input type="text" name="advResearchBudget" id="tpAdvRBudget" value = "<%= ((thisPeriodBrandAdv != null)?thisPeriodBrandAdv.getAdvResearchBudget():"")%>" /></div></div>
 </fieldset>
 
 <fieldset>
 <legend>Targeted Segments (%)</legend>					
+					<div class="columns">
+        				<div class="colx3-left">
+					<span class="label">Bluebloods</span>
+					</div>
+					<div class="colx3-center">
+						<span class="label"></span><div id="bluebloods"></div>	
+					</div>
+					<div class="colx3-right">
+						<span class="label"></span>
+						<input type="text" id="amount" name="bluebloods_targetSeg" class="tarSegFld bbSegTotal" 
+							onKeyUp="SetSliderValue('#bluebloods', this)">
+					</div>
+					</div>
 
 					<div class="columns">
         				<div class="colx3-left">
@@ -379,7 +581,250 @@ function SetSliderValue(sliderId, textBoxControl) {
 					</div>
 					</div>
 					</fieldset>
+<fieldset>
+<legend>Medium Selection (%)</legend>					
+					<div class="columns">
+        				<div class="colx3-left">
+					<span class="label">Print</span>
+					</div>
+					<div class="colx3-center">
+						<span class="label"></span><div id="print"></div>	
+					</div>
+					<div class="colx3-right">
+						<span class="label"></span><input type="text" id="amount6" name="print_medium" onKeyUp="SetSliderValue('#print', this)" class="tarMedFld printMedTotal">
+					</div>
+					</div>
 
+					<div class="columns">
+        				<div class="colx3-left">
+					<span class="label">Television</span>
+					</div>
+					<div class="colx3-center">
+						<span class="label"></span><div id="television"></div>	
+					</div>
+					<div class="colx3-right">
+						<span class="label"></span><input type="text" id="amount7" name="television_medium" onKeyUp="SetSliderValue('#television', this)" class="tarMedFld TVMedTotal">
+					</div>
+					</div>
+
+					<div class="columns">
+        				<div class="colx3-left">
+					<span class="label">Radio</span>
+					</div>
+					<div class="colx3-center">
+						<span class="label"></span><div id="radio"></div>	
+					</div>
+					<div class="colx3-right">
+						<span class="label"></span><input type="text" id="amount8" name="radio_medium" onKeyUp="SetSliderValue('#radio', this)" class="tarMedFld radioMedTotal">
+					</div>
+					</div>
+
+					<div class="columns">
+        				<div class="colx3-left">
+					<span class="label">Internet</span>
+					</div>
+					<div class="colx3-center">
+						<span class="label"></span><div id="internet"></div>	
+					</div>
+					<div class="colx3-right">
+						<span class="label"></span><input type="text" id="amount9" name="internet_medium" onKeyUp="SetSliderValue('#internet', this)" class="tarMedFld intMedTotal">
+					</div>
+					</div>
+
+					<div class="columns">
+        				<div class="colx3-left">
+					<span class="label">Total</span>
+					</div>
+					<div class="colx3-center">
+						<span class="label"></span>	
+					</div>
+					<div class="colx3-right">
+						<span class="label"></span><input type="text" id="targetMedTotal" class="targetMedTotal" name="targetMedTotal" readonly>
+					</div>
+					</div>
+
+					</fieldset>
+					<fieldset>
+					<div class="columns">
+        				<div class="colx5-left">
+					<span class="label">Perceptual Objectives</span>
+					</div>
+					<div class="colx5-center1">
+						<span class="label">Dimension 1</span>	
+					</div>
+					<div class="colx5-center2">
+						<span class="label">Objective</span>
+					</div>
+					<div class="colx5-center3">
+						<span class="label">Dimension 2</span>	
+					</div>
+					<div class="colx5-right">
+						<span class="label">Objective</span>
+					</div>
+					</div>
+
+					<div class="columns">
+        				<div class="colx5-left">
+					<span class="label"></span><input type="radio" name="perceptualObj" value="semanticScales" id ="perceptualObj_1" <% if (thisBrandPerceptualObj != null && thisBrandPerceptualObj.getScale().equalsIgnoreCase(PerceptualObjectiveScales.SEMANTIC_SCALE.getPerceptualObjScale())) {%> checked="true" <%}%>/>Semantic Scales</div>
+					<div class="colx5-center1">
+						<span class="label"></span>
+<select name="semanticScaleDim1" id="semanticScaleDim1">
+              <option id="-1" value="-1">--</option>
+              <option id="1" value="design" 
+              <% if (thisBrandPerceptualObj != null && 
+          		thisBrandPerceptualObj.getDimension1().equalsIgnoreCase(SemanticScale.DESIGN.getSemanticScale())) {
+	          %> selected
+	          <%}%>> Design </option>
+              <option id="1" value="fragrance"
+              <% if (thisBrandPerceptualObj != null && 
+          		thisBrandPerceptualObj.getDimension1().equalsIgnoreCase(SemanticScale.FRAGRANCE.getSemanticScale())) {
+	          %> selected
+	          <%}%>>Fragrance</option>
+              <option id="1" value="persistence"
+              <% if (thisBrandPerceptualObj != null && 
+          		thisBrandPerceptualObj.getDimension1().equalsIgnoreCase(SemanticScale.PERSISTENCE.getSemanticScale())) {
+	          %> selected
+	          <%}%>>Persistence</option>
+              <option id="1" value="packaging" 
+              <% if (thisBrandPerceptualObj != null && 
+          		thisBrandPerceptualObj.getDimension1().equalsIgnoreCase(SemanticScale.PACKAGING.getSemanticScale())) {
+	          %> selected
+	          <%}%>>Packaging</option>
+              <option id="1" value="safety"
+              <% if (thisBrandPerceptualObj != null && 
+          		thisBrandPerceptualObj.getDimension1().equalsIgnoreCase(SemanticScale.SAFETY.getSemanticScale())) {
+	          %> selected
+	          <%}%>>Safety</option>
+ 		  <option id="1" value="price"
+              <% if (thisBrandPerceptualObj != null && 
+          		thisBrandPerceptualObj.getDimension1().equalsIgnoreCase(SemanticScale.PRICE.getSemanticScale())) {
+	          %> selected
+	          <%}%>>Price</option>
+
+            </select>	
+					</div>
+					<div class="colx5-center2">
+						<span class="label"></span><input type="text" name="semanticScaleDim1Obj" id="semanticScaleDim1Obj" value = "<%= ((thisBrandPerceptualObj != null && thisBrandPerceptualObj.getScale().equalsIgnoreCase(PerceptualObjectiveScales.SEMANTIC_SCALE.getPerceptualObjScale()))?thisBrandPerceptualObj.getObjective1():"")%>" size="10"/>
+					</div>
+					<div class="colx5-center3">
+						<span class="label"></span><select name="semanticScaleDim2" id="semanticScaleDim2">
+              <option id="-1" value="-1">--</option>
+              <option id="1" value="design" 
+              <% if (thisBrandPerceptualObj != null && 
+          		thisBrandPerceptualObj.getDimension2().equalsIgnoreCase(SemanticScale.DESIGN.getSemanticScale())) {
+	          %> selected
+	          <%}%>> Design </option>
+              <option id="1" value="fragrance"
+              <% if (thisBrandPerceptualObj != null && 
+          		thisBrandPerceptualObj.getDimension2().equalsIgnoreCase(SemanticScale.FRAGRANCE.getSemanticScale())) {
+	          %> selected
+	          <%}%>>Fragrance</option>
+              <option id="1" value="persistence"
+              <% if (thisBrandPerceptualObj != null && 
+          		thisBrandPerceptualObj.getDimension2().equalsIgnoreCase(SemanticScale.PERSISTENCE.getSemanticScale())) {
+	          %> selected
+	          <%}%>>Persistence</option>
+              <option id="1" value="packaging" 
+              <% if (thisBrandPerceptualObj != null && 
+          		thisBrandPerceptualObj.getDimension2().equalsIgnoreCase(SemanticScale.PACKAGING.getSemanticScale())) {
+	          %> selected
+	          <%}%>>Packaging</option>
+              <option id="1" value="safety"
+              <% if (thisBrandPerceptualObj != null && 
+          		thisBrandPerceptualObj.getDimension2().equalsIgnoreCase(SemanticScale.SAFETY.getSemanticScale())) {
+	          %> selected
+	          <%}%>>Safety</option>
+	          <option id="1" value="price"
+              <% if (thisBrandPerceptualObj != null && 
+          		thisBrandPerceptualObj.getDimension2().equalsIgnoreCase(SemanticScale.PRICE.getSemanticScale())) {
+	          %> selected
+	          <%}%>>Price</option>
+            </select>	
+					</div>
+					<div class="colx5-right">
+						<span class="label"></span><input type="text"  name="semanticScaleDim2Obj" id="semanticScaleDim2Obj" value = "<%= ((thisBrandPerceptualObj != null && thisBrandPerceptualObj.getScale().equalsIgnoreCase(PerceptualObjectiveScales.SEMANTIC_SCALE.getPerceptualObjScale()))?thisBrandPerceptualObj.getObjective2():"")%>" size="10"/>
+					</div>
+					</div>
+
+	<div class="columns">
+        				<div class="colx5-left">
+					<span class="label"></span><input type="radio" name="perceptualObj" value="mdsDimension" id="perceptualObj_2" <% if (thisBrandPerceptualObj != null && thisBrandPerceptualObj.getScale().equalsIgnoreCase(PerceptualObjectiveScales.MDS_DIMENSION.getPerceptualObjScale())) {%> checked="true" <%}%>/>MDS Dimensions</div>
+					<div class="colx5-center1">
+						<span class="label"></span>
+<select name="mdsDimen1" id="mdsDimen1">
+              <option id="-1" value="-1">--</option>
+              <option id="-1" value="Economy"
+              <% if (thisBrandPerceptualObj != null && 
+          		thisBrandPerceptualObj.getDimension1().equalsIgnoreCase(MDSDimension.ECONOMY.getMDSDimension())) {
+	          %> selected
+	          <%}%>>Economy</option>
+              <option id="-1" value="Quality"
+              <% if (thisBrandPerceptualObj != null && 
+          		thisBrandPerceptualObj.getDimension1().equalsIgnoreCase(MDSDimension.QUALITY.getMDSDimension())) {
+	          %> selected
+	          <%}%>>Quality</option>
+              <option id="-1" value="Appeal"
+              <% if (thisBrandPerceptualObj != null && 
+          		thisBrandPerceptualObj.getDimension1().equalsIgnoreCase(MDSDimension.APPEAL.getMDSDimension())) {
+	          %> selected
+	          <%}%>>Appeal</option>
+            </select>
+		</div>
+					<div class="colx5-center2">
+						<span class="label"></span><input type="text" name="mdsDimen1Obj" id="mdsDimen1Obj" value = "<%= ((thisBrandPerceptualObj != null && thisBrandPerceptualObj.getScale().equalsIgnoreCase(PerceptualObjectiveScales.MDS_DIMENSION.getPerceptualObjScale()))?thisBrandPerceptualObj.getObjective1():"")%>" size="10"/></div>
+					<div class="colx5-center3">
+						<span class="label"></span><select name="mdsDimen2" id="mdsDimen2">
+              <option id="-1" value="-1">--</option>
+              <option id="-1" value="Economy"
+              <% if (thisBrandPerceptualObj != null && 
+          		thisBrandPerceptualObj.getDimension2().equalsIgnoreCase(MDSDimension.ECONOMY.getMDSDimension())) {
+	          %> selected
+	          <%}%>>Economy</option>
+              <option id="-1" value="Quality"
+              <% if (thisBrandPerceptualObj != null && 
+          		thisBrandPerceptualObj.getDimension2().equalsIgnoreCase(MDSDimension.QUALITY.getMDSDimension())) {
+	          %> selected
+	          <%}%>>Quality</option>
+              <option id="-1" value="Appeal"
+              <% if (thisBrandPerceptualObj != null && 
+          		thisBrandPerceptualObj.getDimension2().equalsIgnoreCase(MDSDimension.APPEAL.getMDSDimension())) {
+	          %> selected
+	          <%}%>>Appeal</option>
+            </select>
+		</div>
+					<div class="colx5-right">
+						<span class="label"></span><input type="text" name="mdsDimen2Obj" id="mdsDimen2Obj" value = "<%= ((thisBrandPerceptualObj != null && thisBrandPerceptualObj.getScale().equalsIgnoreCase(PerceptualObjectiveScales.MDS_DIMENSION.getPerceptualObjScale()))?thisBrandPerceptualObj.getObjective2():"")%>" size="10"/>
+					</div>
+					</div>
+
+<div class="columns">
+        				<div class="colx5-left">
+					<span class="label"></span><input type="radio" name="perceptualObj" value="noObjective" id="perceptualObj" 
+          <% if (thisBrandPerceptualObj != null) {
+          	if (thisBrandPerceptualObj.getScale().equalsIgnoreCase(PerceptualObjectiveScales.NO_OBJECTIVE.getPerceptualObjScale())) {
+          		%> checked="true"
+          <%}
+          } else {
+          %> checked="true"
+          <%} %> />No Objective
+					</div>
+					<div class="colx5-center1">
+						<span class="label"></span>	
+					</div>
+					<div class="colx5-center2">
+						<span class="label"></span>
+					</div>
+					<div class="colx5-center3">
+						<span class="label"></span>	
+					</div>
+					<div class="colx5-right">
+						<span class="label"></span>
+					</div>
+					</div>
+
+
+
+					</fieldset>
 					<div class="columns">
 						<button type="submit" class="button save">Save</button>
 						<button type="submit" class="button cancel">Cancel</button>

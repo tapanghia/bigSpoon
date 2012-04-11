@@ -93,15 +93,16 @@
 			</li>
 		<%}%>	
 			<!-- R&D Projects functionality is removed from bizLABS -->
-			<!-- li class="write <%= (currentLink.equalsIgnoreCase("researchproject"))?"current":"" %>">
+			<li class="write <%= (currentLink.equalsIgnoreCase("researchproject"))?"current":"" %>">
 				<a href="researchProject.htm" title="R&D Team">R&DTeam</a>
 				<ul>
 					<li><a href="researchProject.htm" title="R&D Team Home">R&D Team Home</a></li>
 					<li><a href="reports.htm?reportName=RnDReport" title="View R&D Reports">View R&D Reports</a></li>
 					<li><a href="researchProject.htm?do=addResearchProject" title="Add Research Project">Add Research Project</a></li>
-					<li><a href="researchProject.htm?do=getResearchProjectsForTeam" title="View/Edit Research Projects">View/Edit Research Projects</a></li>
+					<li><a href="researchProject.htm?do=getResearchProjectsForTeam" title="View/Edit Research Projects">
+						View/Edit Research Projects</a></li>
 				</ul>
-			</li>-->
+			</li>
 	
 			<%if (tabConfMap != null && tabConfMap.containsKey(TabConstants.FINANCES) && tabConfMap.get(TabConstants.FINANCES)) {%>
 			<li class="write <%= (currentLink.equalsIgnoreCase("FinanceDept"))?"current":"" %>">
