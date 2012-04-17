@@ -37,6 +37,7 @@ public class Constants {
 	public static final String FINANCE_DEPT_LINK = "FinanceDept";
 	public static final String OPERATIONS_DEPT_LINK = "OperationsDept";
 	public static final String HR_DEPT_LINK = "HumarResourcesDept";
+	public static final String TQM_LINK = "TotalQualityManagement";
 	
 	//Session Constants
 	public static final String EXISTING_RESEARCH_PROJECTS = "existingResearchProjects";

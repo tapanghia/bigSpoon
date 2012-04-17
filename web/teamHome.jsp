@@ -12,15 +12,15 @@
         data.addColumn('string', 'Task');
         data.addColumn('number', 'Hours per Day');
         data.addRows([
-          ['Work',    11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
+          ['Team A',    11],
+          ['Team B',      2],
+          ['Team C',  2],
+          ['Team D', 2],
+          ['Team E',    7]
         ]);
 
         var options = {
-          title: 'My Daily Activities'
+          title: 'Market Share'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('chart_div1'));
@@ -32,12 +32,17 @@
 	    data.addColumn('string', 'Year');
 	    data.addColumn('number', 'Score');
 	    data.addRows([
-	      ['2005',3.6],
-	      ['2006',4.1],
-	      ['2007',3.8],
-	      ['2008',3.9],
-	      ['2009',4.6],
+	      ['Period 1',3.6],
+	      ['Period 2',4.1],
+	      ['Period 3',3.8],
+	      ['Period 4',3.9],
+	      ['Period 5',4.6],
 	    ]);
+
+	options = {
+		          title: 'Stock Price Index'
+		        };
+
 
 	    //barsVisualization = new google.visualization.ColumnChart(document.getElementById('chart_div2'));
 	    //barsVisualization.draw(data, null);
@@ -48,14 +53,14 @@
 	
 	// ******************* Column Chart ***********
 	data = new google.visualization.DataTable();
-	  var raw_data = [['Austria', 1336060, 1538156, 1576579, 1600652, 1968113, 1901067],
-		          ['Belgium', 3817614, 3968305, 4063225, 4604684, 4013653, 6792087],
-		          ['Czech Republic', 974066, 928875, 1063414, 940478, 1037079, 1037327],
-		          ['Finland', 1104797, 1151983, 1156441, 1167979, 1207029, 1284795],
-		          ['France', 6651824, 5940129, 5714009, 6190532, 6420270, 6240921],
-		          ['Germany', 15727003, 17356071, 16716049, 18542843, 19564053, 19830493]];
+	  var raw_data = [['Team A', 1336060, 1538156, 1576579, 1600652, 1968113, 1901067],
+		          ['Team B', 3817614, 3968305, 4063225, 4604684, 4013653, 6792087],
+		          ['Team C', 974066, 928875, 1063414, 940478, 1037079, 1037327],
+		          ['Team D', 1104797, 1151983, 1156441, 1167979, 1207029, 1284795],
+		          ['Team F', 6651824, 5940129, 5714009, 6190532, 6420270, 6240921],
+		          ['Team G', 15727003, 17356071, 16716049, 18542843, 19564053, 19830493]];
 	  
-	  var years = [2003, 2004, 2005, 2006, 2007, 2008];
+	  var years = [1, 2, 3, 4, 5, 6];
 		          
 	  data.addColumn('string', 'Year');
 	  for (var i = 0; i  < raw_data.length; ++i) {
@@ -76,8 +81,8 @@
 	  // Create and draw the visualization.
 	  new google.visualization.ColumnChart(document.getElementById('chart_div3')).
 	      draw(data,
-		   {title:"Yearly Coffee Consumption by Country", 
-		    hAxis: {title: "Year"}}
+		   {title:"Revenue Chart", 
+		    hAxis: {title: "Period"}}
 	      );
 
 	// *************** Bubble chart *********************
@@ -88,22 +93,22 @@
 	    data.addColumn('string', 'Region');
 	    data.addColumn('number', 'Population');
 	    data.addRows([
-	      ['CAN', 80.66, 1.67, 'North America', 33739900],
-	      ['DEU', 79.84, 1.36, 'Europe', 81902307],
-	      ['DNK', 78.6, 1.84, 'Europe', 5523095],
-	      ['EGY', 72.73, 2.78, 'Middle East', 79716203],
-	      ['GBR', 80.05, 2, 'Europe', 61801570],
-	      ['IRN', 72.49, 1.7, 'Middle East', 73137148],
-	      ['IRQ', 68.09, 4.77, 'Middle East', 31090763],
-	      ['ISR', 81.55, 2.96, 'Middle East', 7485600],
-	      ['RUS', 68.6, 1.54, 'Europe', 141850000],
-	      ['USA', 78.09, 2.05, 'North America', 307007000]
+	      ['', .66, 1.67, 'Team A', 33739900],
+	      ['', .84, 1.36, 'Team B', 81902307],
+	      ['', .6, 1.84, 'Team C', 5523095],
+	      ['', .73, 2.78, 'Team D', 79716203],
+	      ['', .05, 2, 'Team B', 61801570],
+	      ['', .49, 1.7, 'Team C', 73137148],
+	      ['', .09, 4.77, 'Team D', 31090763],
+	      ['', .55, 2.96, 'Team C', 7485600],
+	      ['', .6, 1.54, 'Team B', 141850000],
+	      ['', .09, 2.05, 'Team A', 307007000]
 	    ]);
 
 	    var options = {
-	      title: 'Correlation between life expectancy, fertility rate and population of some world countries (2010)',
-	      hAxis: {title: 'Life Expectancy'},
-	      vAxis: {title: 'Fertility Rate'},
+	      title: 'Growth Matrix',
+	      hAxis: {title: 'Growth Potential'},
+	      vAxis: {title: 'Relative Market Share'},
 	      bubble: {textStyle: {fontSize: 11}}
 	    };
 

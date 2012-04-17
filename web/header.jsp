@@ -179,6 +179,17 @@
 			</li>
 			<%}%>
 			
+			<%if (tabConfMap != null && tabConfMap.containsKey(TabConstants.TQM) && tabConfMap.get(TabConstants.TQM)) {%>
+			<li class="medias <%= (currentLink.equalsIgnoreCase("tqm"))?"current":"" %>">
+			<a href="totalQuality.htm" title="TQM">TQM</a>
+				<ul>
+					<li><a href="totalQuality.htm" title="TQM">TQM</a></li>
+				</ul>
+			</li>
+			<%}%>
+			
+			
+			
 			<%if (tabConfMap != null && tabConfMap.containsKey(TabConstants.INTELLIGENCE) && tabConfMap.get(TabConstants.INTELLIGENCE)) {%>
 			<li class="settings <%= (currentLink.equalsIgnoreCase("intelligence"))?"current":"" %>"><a href="intelligenceTeam.htm" title="Intelligence Team">IntelligenceTeam</a>
 				<ul>

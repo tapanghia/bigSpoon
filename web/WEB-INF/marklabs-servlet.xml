@@ -1083,6 +1083,7 @@
 				<prop key="/change_password.htm">changePasswordController</prop>
 				<prop key="/marketingTeam.htm">marketingTeamController</prop>
 				<prop key="/salesTeam.htm">salesTeamController</prop>
+				<prop key="/totalQuality.htm">totalQualityManagementController</prop>
 				<prop key="/intelligenceTeam.htm">intelligenceTeamController</prop>
 				<prop key="/boardRoom.htm">boardRoomController</prop>
 				<prop key="/brandManagement.htm">brandManagementController</prop>
@@ -1210,6 +1211,16 @@
 			</bean>
 		</property>
 	</bean>
+
+	<bean id="totalQualityManagementController" class="com.marklabs.web.controllers.TotalQualityManagementController">
+		<property name="methodNameResolver">
+			<bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+				<property name="paramName"><value>do</value></property>
+				<property name="defaultMethodName"><value>index</value></property>
+			</bean>
+		</property>
+	</bean>
+	
 
 	<bean id="boardRoomController" class="com.marklabs.web.controllers.BoardRoomController">
 		<property name="methodNameResolver">
