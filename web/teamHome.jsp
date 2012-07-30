@@ -221,11 +221,13 @@
 				<h1>Team Home</h1>
 						<span style="color:#0083C3">Hi&nbsp;<i>Team,</i>&nbsp;&nbsp;Welcome to BizLabs.</span><br><br>
 						
-						<div id="charts">
-						    <div id="chart_div1" style="width: 430px; height: 300px; float:left;"></div>
-							<div id="chart_div2" style="width: 430px; height: 300px; float:left;"></div>
-							<div id="chart_div3" style="width: 430px; height: 300px; float:left;"></div>
-							<div id="chart_div4" style="width: 430px; height: 300px; float:left;"></div>
+						<div id="charts1" style="width:100%; float:left">
+						    <div id="chart_div1" style="width: 400px; height: 300px; float:right;"></div>
+							<div id="chart_div2" style="width: 400px; height: 300px;"></div>
+						</div>	
+						<div id="charts2" style="width:100%; float:left">
+							<div id="chart_div3" style="width: 400px; height: 300px; float:right;"></div>
+							<div id="chart_div4" style="width: 400px; height: 300px;"></div>
 						</div>
 						
 						
