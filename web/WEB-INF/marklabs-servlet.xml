@@ -1160,6 +1160,7 @@
 	
 	
 	<bean id="teamHomeController" class="com.marklabs.web.controllers.TeamHomeController">
+		<property name="bizlabsJDBCDao" ref="bizlabsJDBCDao"/>
 		<property name="methodNameResolver">
 			<bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
 				<property name="paramName"><value>do</value></property>
@@ -1306,4 +1307,7 @@
 		</property>
 	</bean>
 	
+	<bean id="bizlabsJDBCDao" class="com.marklabs.web.controllers.BizlabsJDBCDao">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
 </beans>

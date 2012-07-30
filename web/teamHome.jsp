@@ -1,4 +1,85 @@
 <%@ include file="header.jsp" %>
+
+<%
+
+	String marketShareChartString = (String)request.getSession().getAttribute("MARKET_SHARE");
+	String stockPriceIndexChartString = (String)request.getSession().getAttribute("STOCK_PRICE_INDEX");
+	String teamRevenueAndProfitChartString = (String)request.getSession().getAttribute("TEAM_REVENUE_AND_PROFIT");
+	String brandGrowthMatrixChartString = (String)request.getSession().getAttribute("BRAND_GROWTH_MATRIX");
+
+%>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+	
+	// *********** Pie Chart **************
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Team Name');
+        data.addColumn('number', 'Market Share');
+        data.addRows(<%= marketShareChartString%>);
+
+        var options = {
+          title: 'Market Share'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div3'));
+        chart.draw(data, options);
+
+	//****************** Line Chart ***********************
+	data = google.visualization.arrayToDataTable(<%= stockPriceIndexChartString%>);
+	
+        var options = {
+          title: 'Stock Price Index'
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div1'));
+        chart.draw(data, options);
+        
+    // **********************Column Chart ***********************
+    data = google.visualization.arrayToDataTable(<%= teamRevenueAndProfitChartString%>);
+
+        var options = {
+          title: 'Revenue and Profit',
+          hAxis: {title: 'Period', titleTextStyle: {color: 'red'}}
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div2'));
+        chart.draw(data, options);
+        
+        
+	// *************** Bubble chart *********************
+	    data = google.visualization.arrayToDataTable(<%= brandGrowthMatrixChartString%>);
+
+        var options = {
+          title: 'Growth Matrix',
+          hAxis: {title: 'Relative Market Share', direction: -1, maxValue: 1, minValue: 0},
+          vAxis: {title: 'Growth Potential', maxValue: 1, minValue:0},
+          bubble: {textStyle: {fontSize: 10}},
+          sizeAxis: {minValue: 15,  maxSize: 15}
+        };
+
+        var chart = new google.visualization.BubbleChart(document.getElementById('chart_div4'));
+        chart.draw(data, options);
+		
+      }
+
+   
+
+  function barMouseOver(e) {
+    barsVisualization.setSelection([e]);
+  }
+
+  function barMouseOut(e) {
+    barsVisualization.setSelection([{'row': null, 'column': null}]);
+  }
+	
+</script>
+
+
 <article class="container_12">
 		
 		<section class="grid_3">
@@ -45,9 +126,18 @@
 		
 		<section class="grid_9">
 			<div class="block-border"><div class="block-content">
+			
+				<div id="charts1" style="width:100%; float:left">
+				    <div id="chart_div1" style="width: 400px; height: 300px; float:right;"></div>
+					<div id="chart_div2" style="width: 400px; height: 300px;"></div>
+				</div>	
+				<div id="charts2" style="width:100%; float:left">
+					<div id="chart_div3" style="width: 800px; height: 400px;"></div>
+					<div id="chart_div4" style="width: 800px; height: 400px;"></div>
+				</div>
 				<h1>Team Home</h1>
 						<span style="color:#0083C3">Hi&nbsp;<i>Team,</i>&nbsp;&nbsp;Welcome to BizLabs.</span><br><br>
-						<p style="text-align: justify;"><span style="color:#0083C3"><i>BizLabs</span></i> is an emerging economy growing at breath-neck pace. 
+						<p style="text-align: justify;"><span style="color:#0083C3"><i>BizLabs</span></i> is an emerging economy growing at break-neck pace. 
 						The whole world has its eyes on this country and all the big brands are
 						eyeing a share of this lucrative pie. <span style="color:#0083C3"><i>Competition</i></span>, therefore, is as 
 						intense as you can imagine.</p>
